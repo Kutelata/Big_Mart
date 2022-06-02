@@ -1,6 +1,9 @@
 create database BigMart_DB
 go
 
+use BigMart_DB
+go
+
 create table tblKhachHang
 (
     id int primary key,
@@ -110,15 +113,7 @@ create table tblNhaCungCap
 )
 go
 
-create table tblHinhAnh
-(
-    id int primary key,
-    idhanghoa int foreign key references tblHangHoa(id),
-    ghichu varchar(64),
-    stt tinyint, -- Thứ tự ảnh
-    trangthai bit default(1)
-)
-go
+
 
 create table tblVanCHuyen
 (
@@ -178,5 +173,15 @@ create table tblHoaDonChiTiet
     soluong float check(soluong>0),
     gia float check(gia>=0), -- Giá bán
     primary key(idhoadon, idhanghoa)
+)
+go
+
+create table tblHinhAnh
+(
+    id int primary key,
+    idhanghoa int foreign key references tblHangHoa(id),
+    ghichu varchar(64),
+    stt tinyint, -- Thứ tự ảnh
+    trangthai bit default(1)
 )
 go
