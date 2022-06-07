@@ -1,0 +1,13 @@
+Khách hàng: 
+	- Thêm sản phẩm vào giỏ hàng 
+	- Xem giỏ hàng
+	- Thanh toán (Paypal)
+	- Xem chi tiết sản phẩm
+Admin:
+	- Thêm, sửa, xóa, tìm kiếm, phân trang, lọc theo cột
+	- (Xuất file, nhập file), phân quyền
+	- Đăng nhập
+
+Api: php thuần
+Admin: web(php thuần)
+User: android(java)
