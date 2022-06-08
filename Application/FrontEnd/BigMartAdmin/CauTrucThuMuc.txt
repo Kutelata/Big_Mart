@@ -1,0 +1,3 @@
+Thư mục connections : Kết nối database
+Thư mục entities : Chứa thực thể
+Thư mục services : Xử lý logic
