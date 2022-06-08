@@ -1,3 +1,3 @@
-Thư mục connections : Kết nối database
-Thư mục entities : Chứa thực thể
-Thư mục services : Xử lý logic
+File api_connection: Lấy api về
+Thư mục services : Gọi api và xử lý logic
+Thư mục views: Giao diện người dùng
