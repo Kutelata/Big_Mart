@@ -98,7 +98,16 @@ insert into tblThanhToan(ten,ghichu,trangthai) values
 ('Thanh toán tích điểm','',1);
 
 insert into tblHoaDon(ngaytao,ngaygiaohang,idvanchuyen,idthanhtoan,idkhachhang,idnhanvien,trangthai,diachinhan,sdtnhan,ghichu) values 
-();
+('2022-06-09','2022-06-10',1,1,1,1,1,'Ng. 102 Trường Chinh, Phương Đình, Đống Đa, Hà Nội','0832536199',''),
+('2022-06-09','2022-06-10',1,1,2,2,0,'43 P.Hàm Long, Hàng Bài, Hoàn Kiếm, Hà Nội','0832535200',''),
+('2022-06-09','2022-06-10',1,1,3,3,1,'1A Ng. 165 P. Thái Hà, Láng Hạ, Đống Đa, Hà Nội','0832535201',''),
+('2022-06-09','2022-06-10',1,1,4,4,0,'140 P. Vũ Thạnh, Chợ Dừa, Đống Đa, Hà Nội','0832535202',''),
+('2022-06-09','2022-06-10',1,1,5,5,1,'380 P. Xã Đàn, Nam Đồng, Đống Đa, Hà Nội','0832535203',''),
+('2022-06-09','2022-06-10',1,1,6,6,0,'1 P. Thái Hà, Trung Liệt, Đống Đa, Hà Nội','0832535204',''),
+('2022-06-09','2022-06-10',1,1,7,7,1,'378B P. Xã Đàn, Nam Đồng, Đống Đa, Hà Nội','0832535205',''),
+('2022-06-09','2022-06-10',1,1,8,8,0,'Số 8 Ngh. 180/29 P. Kim Hoa, Phương Liên, Đống Đa, Hà Nội','0832535206',''),
+('2022-06-09','2022-06-10',1,1,9,9,1,'Bà Triệu, Nguyễn Du, Hai Bà Trưng, Hà Nội','0832535207',''),
+('2022-06-09','2022-06-10',1,1,10,10,0,'8 Ngh. 180/29 P. Kim Hoa, Phương Liên, Đống Đa, Hà Nội','0832535208','');
 
 insert into tblHangHoa(ten,idchungloai,iddonvitinh,idnhacc,soluong,gianhap,giaxuat,ngaytao,ngaycapnhat,ghichu) values 
 ('Đệm Everon',1,1,1,10,1000,1500,'2022-06-09','',''),
@@ -110,10 +119,19 @@ insert into tblHangHoa(ten,idchungloai,iddonvitinh,idnhacc,soluong,gianhap,giaxu
 ('Sữa tiệt trùng vinamilk',7,1,7,70,7000,7500,'2022-06-09','',''),
 ('Sting',8,1,8,80,8000,8500,'2022-06-09','',''),
 ('Trà xanh không độ',9,1,9,90,9000,9500,'2022-06-09','',''),
-('Lavie',10,1,10,100,10000,15000,'2022-06-09','','');
+('Lavie',10,1,10,100,10000,10500,'2022-06-09','','');
 
 insert into tblHoaDonChiTiet(idhoadon,idhanghoa,soluong,giaban) values 
-();
+(1,1,1,1500),
+(2,2,1,2500),
+(3,3,1,3500),
+(4,4,1,4500),
+(5,5,1,5500),
+(6,6,1,6500),
+(7,7,1,7500),
+(8,8,1,8500),
+(9,9,1,9500),
+(10,10,1,10500);
 
 insert into tblHinhAnh(idhanghoa,ghichu,sothutu,trangthai) values 
 ();
