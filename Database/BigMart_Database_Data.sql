@@ -101,7 +101,16 @@ insert into tblHoaDon(ngaytao,ngaygiaohang,idvanchuyen,idthanhtoan,idkhachhang,i
 ();
 
 insert into tblHangHoa(ten,idchungloai,iddonvitinh,idnhacc,soluong,gianhap,giaxuat,ngaytao,ngaycapnhat,ghichu) values 
-();
+('Đệm Everon',1,1,1,10,1000,1500,'2022-06-09','',''),
+('Bim Bim Oishi',2,1,2,20,2000,2500,'2022-06-09','',''),
+('Bếp hồng ngoại',3,1,3,30,3000,3500,'2022-06-09','',''),
+('Bàn chải điện',4,1,4,40,4000,4500,'2022-06-09','',''),
+('Cốc viễn đông',5,1,5,50,5000,5500,'2022-06-09','',''),
+('Sữa chua trân châu',6,1,6,60,6000,6500,'2022-06-09','',''),
+('Sữa tiệt trùng vinamilk',7,1,7,70,7000,7500,'2022-06-09','',''),
+('Sting',8,1,8,80,8000,8500,'2022-06-09','',''),
+('Trà xanh không độ',9,1,9,90,9000,9500,'2022-06-09','',''),
+('Lavie',10,1,10,100,10000,15000,'2022-06-09','','');
 
 insert into tblHoaDonChiTiet(idhoadon,idhanghoa,soluong,giaban) values 
 ();
