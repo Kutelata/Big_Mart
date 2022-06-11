@@ -1,3 +1,0 @@
-File db_connection: Kết nối database
-Thư mục dao: Truy vấn dữ liệu
-Thư mục api: Đưa ra ngoài api
