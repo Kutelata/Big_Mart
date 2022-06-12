@@ -1,13 +1,18 @@
 Khách hàng: 
-	- Thêm sản phẩm vào giỏ hàng 
-	- Xem giỏ hàng
-	- Thanh toán (Paypal)
-	- Xem chi tiết sản phẩm
+	- Tích điểm
+	- Danh sách sản phẩm
+	- Chi tiết sản phẩm (đặt hàng)
+	- Giỏ hàng
+	- Thanh toán
+Nhân viên: 
+	- Danh sách đơn hàng
+	- Xuất hóa đơn
+	- Danh sách khách hàng (đổi điểm)
 Admin:
 	- Thêm, sửa, xóa, tìm kiếm, phân trang, lọc theo cột
 	- (Xuất file, nhập file), phân quyền
 	- Đăng nhập
 
-Api: php thuần
-Admin: web(php thuần)
-User: android(java)
+Api: nest js
+Admin: web (php thuần)
+User: android (java)
