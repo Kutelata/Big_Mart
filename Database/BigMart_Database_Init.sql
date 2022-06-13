@@ -13,7 +13,7 @@ create table tblKhachHang
     email varchar(128) not null unique,
     ngaytao date,
     ngaycapnhat date,
-    trangthai bit default(1)
+    trangthai varchar(11) default(1)
 );
 
 create table tblDiemThuong
@@ -63,7 +63,7 @@ create table tblNhanVien
     username varchar(64),
     `password` varchar(64),
     ghichu varchar(256),
-    trangthai bit default(1),
+    trangthai varchar(11) default(1),
     foreign key (idphanquyen) references tblPhanQuyen(id)
 );
 
@@ -75,7 +75,7 @@ create table tblChungLoai
     anhminhhoa varchar(256) not null,
     ngaytao date,
     ngaycapnhat date,
-    trangthai bit default (1)
+    trangthai varchar(11) default (1)
 );
 
 create table tblDonViTinh
@@ -95,7 +95,7 @@ create table tblNhaCungCap
     ngaytao date,
     ngaycapnhat date,
     ghichu varchar(256),
-    trangthai bit default(1)
+    trangthai varchar(11) default(1)
 );
 
 create table tblVanCHuyen
@@ -103,7 +103,7 @@ create table tblVanCHuyen
     id int auto_increment primary key,
     ten varchar(64),
     ghichu varchar(128),
-    trangthai bit default(1)
+    trangthai varchar(11) default(1)
 );
 
 create table tblThanhToan
@@ -111,7 +111,7 @@ create table tblThanhToan
     id int auto_increment primary key,
     ten varchar(64),
     ghichu varchar(128),
-    trangthai bit default(1)
+    trangthai varchar(11) default(1)
 );
 
 create table tblHoaDon
@@ -123,7 +123,7 @@ create table tblHoaDon
     idthanhtoan int,
     idkhachhang int,
     idnhanvien int ,
-    trangthai bit default(1),
+    trangthai varchar(11) default(1),
     diachinhan varchar(128) not null,
     sdtnhan varchar(11) not null ,
     ghichu varchar(128),
@@ -168,6 +168,6 @@ create table tblHinhAnh
     idhanghoa int,
     ghichu varchar(64),
     sothutu tinyint,
-    trangthai bit default(1),
+    trangthai varchar(11) default(1),
     foreign key (idhanghoa) references tblHangHoa(id)
 );

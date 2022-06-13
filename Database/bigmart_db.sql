@@ -34,7 +34,7 @@ CREATE TABLE `tblchungloai` (
   `anhminhhoa` varchar(256) NOT NULL,
   `ngaytao` date DEFAULT NULL,
   `ngaycapnhat` date DEFAULT NULL,
-  `trangthai` bit(1) DEFAULT b'1'
+  `trangthai` varchar(1) DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -184,7 +184,7 @@ CREATE TABLE `tblhinhanh` (
   `idhanghoa` int(11) DEFAULT NULL,
   `ghichu` varchar(64) DEFAULT NULL,
   `sothutu` tinyint(4) DEFAULT NULL,
-  `trangthai` bit(1) DEFAULT b'1'
+  `trangthai` varchar(1) DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -201,7 +201,7 @@ CREATE TABLE `tblhoadon` (
   `idthanhtoan` int(11) DEFAULT NULL,
   `idkhachhang` int(11) DEFAULT NULL,
   `idnhanvien` int(11) DEFAULT NULL,
-  `trangthai` bit(1) DEFAULT b'1',
+  `trangthai` varchar(1) DEFAULT b'1',
   `diachinhan` varchar(128) NOT NULL,
   `sdtnhan` varchar(11) NOT NULL,
   `ghichu` varchar(128) DEFAULT NULL
@@ -268,7 +268,7 @@ CREATE TABLE `tblkhachhang` (
   `email` varchar(128) NOT NULL,
   `ngaytao` date DEFAULT NULL,
   `ngaycapnhat` date DEFAULT NULL,
-  `trangthai` bit(1) DEFAULT b'1'
+  `trangthai` varchar(1) DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -302,7 +302,7 @@ CREATE TABLE `tblnhacungcap` (
   `ngaytao` date DEFAULT NULL,
   `ngaycapnhat` date DEFAULT NULL,
   `ghichu` varchar(256) DEFAULT NULL,
-  `trangthai` bit(1) DEFAULT b'1'
+  `trangthai` varchar(1) DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -342,7 +342,7 @@ CREATE TABLE `tblnhanvien` (
   `username` varchar(64) DEFAULT NULL,
   `password` varchar(64) DEFAULT NULL,
   `ghichu` varchar(256) DEFAULT NULL,
-  `trangthai` bit(1) DEFAULT b'1'
+  `trangthai` varchar(1) DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -397,7 +397,7 @@ CREATE TABLE `tblthanhtoan` (
   `id` int(11) NOT NULL,
   `ten` varchar(64) DEFAULT NULL,
   `ghichu` varchar(128) DEFAULT NULL,
-  `trangthai` bit(1) DEFAULT b'1'
+  `trangthai` varchar(1) DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -421,7 +421,7 @@ CREATE TABLE `tblvanchuyen` (
   `id` int(11) NOT NULL,
   `ten` varchar(64) DEFAULT NULL,
   `ghichu` varchar(128) DEFAULT NULL,
-  `trangthai` bit(1) DEFAULT b'1'
+  `trangthai` varchar(1) DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
