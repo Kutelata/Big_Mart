@@ -2,7 +2,7 @@ package com.example.project.entities;
 
 import java.util.Date;
 
-public class KhachHang extends BaseEntity{
+public class KhachHang extends BaseEntity {
     private String ten;
     private String gioitinh;
     private Date ngaysinh;
@@ -11,12 +11,12 @@ public class KhachHang extends BaseEntity{
     private String email;
     private Date ngaytao;
     private Date ngaycapnhat;
-    private Boolean trangthai;
+    private String trangthai;
 
     public KhachHang() {
     }
 
-    public KhachHang(int id, String ten, String gioitinh, Date ngaysinh, String dienthoai, String diachi, String email, Date ngaytao, Date ngaycapnhat, Boolean trangthai) {
+    public KhachHang(int id, String ten, String gioitinh, Date ngaysinh, String dienthoai, String diachi, String email, Date ngaytao, Date ngaycapnhat, String trangthai) {
         super(id);
         this.ten = ten;
         this.gioitinh = gioitinh;
@@ -93,11 +93,11 @@ public class KhachHang extends BaseEntity{
         this.ngaycapnhat = ngaycapnhat;
     }
 
-    public Boolean getTrangthai() {
+    public String getTrangthai() {
         return trangthai;
     }
 
-    public void setTrangthai(Boolean trangthai) {
+    public void setTrangthai(String trangthai) {
         this.trangthai = trangthai;
     }
 }
