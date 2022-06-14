@@ -12,28 +12,16 @@ export class ProviderEntity {
     diachi?: string;
 
     @Column()
-    sdt1?: string;
-
-    @Column()
-    sdt2?: string;
-
-    @Column()
-    fax?: string;
+    sdt?: string;
 
     @Column()
     email?: string;
 
-    @Column()
-    website?: string;
-
     @Column({ type: 'timestamp' })
     ngaytao?: Date;
 
-    // @Column()
-    // ngaycapnhat?: Date;
-
-    @Column()
-    taxcode?: string;
+    @Column( {type: 'datetime', nullable: true})
+    ngaycapnhat?: Date;
 
     @Column()
     ghichu?: string;

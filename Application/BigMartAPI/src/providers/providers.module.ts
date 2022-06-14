@@ -5,7 +5,7 @@ import { ProvidersController } from './providers.controller';
 import { ProvidersService } from './providers.service';
 
 @Module({
-  imports: [HttpModule,TypeOrmModule.forFeature([ProviderEntity])],
+  imports: [TypeOrmModule.forFeature([ProviderEntity])],
   controllers: [ProvidersController],
   providers: [ProvidersService]
 })
