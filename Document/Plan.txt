@@ -1,5 +1,5 @@
 Khách hàng: 
-	- Tích điểm
+	- Danh sách tích điểm
 	- Danh sách sản phẩm
 	- Chi tiết sản phẩm (đặt hàng)
 	- Giỏ hàng

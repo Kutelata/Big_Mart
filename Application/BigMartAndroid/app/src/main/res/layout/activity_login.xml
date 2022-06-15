@@ -8,7 +8,7 @@
     tools:context=".activities.LoginActivity">
 
     <TextView
-        android:id="@+id/signin"
+        android:id="@+id/tvLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="50dp"
@@ -18,10 +18,10 @@
         android:textSize="35dp" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/edtUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/signin"
+        android:layout_below="@+id/tvLogin"
         android:layout_margin="10dp"
         android:background="#30ffffff"
         android:drawableLeft="@drawable/ic_baseline_person_outline_24"
@@ -31,10 +31,10 @@
         android:textColorHint="@color/white" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/edtPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/username"
+        android:layout_below="@+id/edtUserName"
         android:layout_margin="10dp"
         android:background="#30ffffff"
         android:drawableLeft="@drawable/ic_baseline_lock_24"
@@ -44,10 +44,10 @@
         android:textColorHint="@color/white" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/loginbtn"
+        android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/password"
+        android:layout_below="@id/edtPassword"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:backgroundTint="@color/design_default_color_secondary"
@@ -57,7 +57,7 @@
         android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/loginbtn"
+        android:layout_below="@id/btnLogin"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:text="Bạn chưa có tài khoản?"

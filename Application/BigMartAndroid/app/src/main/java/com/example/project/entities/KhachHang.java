@@ -2,7 +2,8 @@ package com.example.project.entities;
 
 import java.util.Date;
 
-public class KhachHang extends BaseEntity {
+public class KhachHang{
+    private Integer id;
     private String ten;
     private String gioitinh;
     private Date ngaysinh;
@@ -17,7 +18,7 @@ public class KhachHang extends BaseEntity {
     }
 
     public KhachHang(int id, String ten, String gioitinh, Date ngaysinh, String dienthoai, String diachi, String email, Date ngaytao, Date ngaycapnhat, String trangthai) {
-        super(id);
+        this.id = id;
         this.ten = ten;
         this.gioitinh = gioitinh;
         this.ngaysinh = ngaysinh;
@@ -27,6 +28,14 @@ public class KhachHang extends BaseEntity {
         this.ngaytao = ngaytao;
         this.ngaycapnhat = ngaycapnhat;
         this.trangthai = trangthai;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTen() {
