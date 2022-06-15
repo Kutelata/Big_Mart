@@ -1,26 +1,16 @@
 package com.example.project.utilities;
 
 import android.app.Application;
-import android.content.Intent;
-
-import com.example.project.activities.LoginActivity;
-import com.example.project.entities.KhachHang;
+import com.example.project.entities.NhanVien;
 
 public class GlobalApplication extends Application {
-    private static KhachHang khachHang = null;
+    private static NhanVien nhanVien = null;
 
-    public KhachHang getKhachHang() {
-        return khachHang;
+    public static NhanVien getNhanVien() {
+        return nhanVien;
     }
 
-    public void setKhachHang(KhachHang khachHang) {
-        GlobalApplication.khachHang = khachHang;
-    }
-
-    public void checkAuthentication() {
-        if (khachHang == null) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-        }
+    public static void setNhanVien(NhanVien nhanVien) {
+        GlobalApplication.nhanVien = nhanVien;
     }
 }
