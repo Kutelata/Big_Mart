@@ -55,16 +55,16 @@ insert into tblNhanVien(ten,gioitinh,ngaysinh,ngayvaolam,ngaycapnhat,sdt,email,d
 ('Cao Ngọc Phương Trinh',0,'1999-11-23','2022-06-09','','0832536208','caongocphuongtrinh@gmail.com','',4,4000,'caongocphuongtrinh','caongocphuongtrinh','',1);
 
 insert into tblChungLoai(ten,mota,anhminhhoa,ngaytao,ngaycapnhat,trangthai) values 
-('Đệm','','','2022-06-09','',1),
-('Bim Bim','','','2022-06-09','',0),
-('Bếp','','','2022-06-09','',1),
-('Bàn chải','','','2022-06-09','',0),
-('Cốc','','','2022-06-09','',1),
-('Sữa chua','','','2022-06-09','',0),
-('Sữa','','','2022-06-09','',1),
-('Nước tăng lực','','','2022-06-09','',0),
-('Nước giải khát','','','2022-06-09','',1),
-('Nước lọc','','','2022-06-09','',0);
+('Đệm','','dem.png','2022-06-09','',1),
+('Bim Bim','','bim_bim.png','2022-06-09','',0),
+('Bếp','','bep.png','2022-06-09','',1),
+('Bàn chải','','ban_chai.png','2022-06-09','',0),
+('Cốc','','coc.png','2022-06-09','',1),
+('Sữa chua','','sua_chua.png','2022-06-09','',0),
+('Sữa','','sua.png','2022-06-09','',1),
+('Nước tăng lực','','nuoc_tang_luc.png','2022-06-09','',0),
+('Nước giải khát','','nuoc_giai_khat.png','2022-06-09','',1),
+('Nước lọc','','nuoc_loc.png','2022-06-09','',0);
 
 insert into tblDonViTinh(tendonvi,ghichu) values 
 ('Việt Nam đồng','VND'),
@@ -134,4 +134,13 @@ insert into tblHoaDonChiTiet(idhoadon,idhanghoa,soluong,giaban) values
 (10,10,1,10500);
 
 insert into tblHinhAnh(idhanghoa,ghichu,sothutu,trangthai) values 
-();
+(1,'dem_everon.png',1,1),
+(2,'bim_bim_oishi.png',1,1),
+(3,'bep_hong_ngoai.png',1,1),
+(4,'ban_chai_dien.png',1,1),
+(5,'coc_vien_dong.png',1,1),
+(6,'sua_chua_tran_chau.png',1,1),
+(7,'sua_tiet_trung_vinamilk.png',1,1),
+(8,'sting.png',1,1),
+(9,'tra_xanh_khong_do.png',1,1),
+(10,'lavie.png',1,1);

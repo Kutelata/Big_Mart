@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2022 at 05:15 AM
+-- Generation Time: Jun 15, 2022 at 06:21 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -34,7 +34,7 @@ CREATE TABLE `tblchungloai` (
   `anhminhhoa` varchar(256) NOT NULL,
   `ngaytao` date DEFAULT NULL,
   `ngaycapnhat` date DEFAULT NULL,
-  `trangthai` varchar(1) DEFAULT b'1'
+  `trangthai` varchar(11) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -42,16 +42,16 @@ CREATE TABLE `tblchungloai` (
 --
 
 INSERT INTO `tblchungloai` (`id`, `ten`, `mota`, `anhminhhoa`, `ngaytao`, `ngaycapnhat`, `trangthai`) VALUES
-(1, 'Đệm', '', '', '2022-06-09', '0000-00-00', b'1'),
-(2, 'Bim Bim', '', '', '2022-06-09', '0000-00-00', b'0'),
-(3, 'Bếp', '', '', '2022-06-09', '0000-00-00', b'1'),
-(4, 'Bàn chải', '', '', '2022-06-09', '0000-00-00', b'0'),
-(5, 'Cốc', '', '', '2022-06-09', '0000-00-00', b'1'),
-(6, 'Sữa chua', '', '', '2022-06-09', '0000-00-00', b'0'),
-(7, 'Sữa', '', '', '2022-06-09', '0000-00-00', b'1'),
-(8, 'Nước tăng lực', '', '', '2022-06-09', '0000-00-00', b'0'),
-(9, 'Nước giải khát', '', '', '2022-06-09', '0000-00-00', b'1'),
-(10, 'Nước lọc', '', '', '2022-06-09', '0000-00-00', b'0');
+(1, 'Đệm', '', 'dem.png', '2022-06-09', '0000-00-00', '1'),
+(2, 'Bim Bim', '', 'bim_bim.png', '2022-06-09', '0000-00-00', '0'),
+(3, 'Bếp', '', 'bep.png', '2022-06-09', '0000-00-00', '1'),
+(4, 'Bàn chải', '', 'ban_chai.png', '2022-06-09', '0000-00-00', '0'),
+(5, 'Cốc', '', 'coc.png', '2022-06-09', '0000-00-00', '1'),
+(6, 'Sữa chua', '', 'sua_chua.png', '2022-06-09', '0000-00-00', '0'),
+(7, 'Sữa', '', 'sua.png', '2022-06-09', '0000-00-00', '1'),
+(8, 'Nước tăng lực', '', 'nuoc_tang_luc.png', '2022-06-09', '0000-00-00', '0'),
+(9, 'Nước giải khát', '', 'nuoc_giai_khat.png', '2022-06-09', '0000-00-00', '1'),
+(10, 'Nước lọc', '', 'nuoc_loc.png', '2022-06-09', '0000-00-00', '0');
 
 -- --------------------------------------------------------
 
@@ -184,8 +184,24 @@ CREATE TABLE `tblhinhanh` (
   `idhanghoa` int(11) DEFAULT NULL,
   `ghichu` varchar(64) DEFAULT NULL,
   `sothutu` tinyint(4) DEFAULT NULL,
-  `trangthai` varchar(1) DEFAULT b'1'
+  `trangthai` varchar(11) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tblhinhanh`
+--
+
+INSERT INTO `tblhinhanh` (`id`, `idhanghoa`, `ghichu`, `sothutu`, `trangthai`) VALUES
+(1, 1, 'dem_everon.png', 1, '1'),
+(2, 2, 'bim_bim_oishi.png', 1, '1'),
+(3, 3, 'bep_hong_ngoai.png', 1, '1'),
+(4, 4, 'ban_chai_dien.png', 1, '1'),
+(5, 5, 'coc_vien_dong.png', 1, '1'),
+(6, 6, 'sua_chua_tran_chau.png', 1, '1'),
+(7, 7, 'sua_tiet_trung_vinamilk.png', 1, '1'),
+(8, 8, 'sting.png', 1, '1'),
+(9, 9, 'tra_xanh_khong_do.png', 1, '1'),
+(10, 10, 'lavie.png', 1, '1');
 
 -- --------------------------------------------------------
 
@@ -201,7 +217,7 @@ CREATE TABLE `tblhoadon` (
   `idthanhtoan` int(11) DEFAULT NULL,
   `idkhachhang` int(11) DEFAULT NULL,
   `idnhanvien` int(11) DEFAULT NULL,
-  `trangthai` varchar(1) DEFAULT b'1',
+  `trangthai` varchar(11) DEFAULT '1',
   `diachinhan` varchar(128) NOT NULL,
   `sdtnhan` varchar(11) NOT NULL,
   `ghichu` varchar(128) DEFAULT NULL
@@ -212,16 +228,16 @@ CREATE TABLE `tblhoadon` (
 --
 
 INSERT INTO `tblhoadon` (`id`, `ngaytao`, `ngaygiaohang`, `idvanchuyen`, `idthanhtoan`, `idkhachhang`, `idnhanvien`, `trangthai`, `diachinhan`, `sdtnhan`, `ghichu`) VALUES
-(1, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 1, 1, b'1', 'Ng. 102 Trường Chinh, Phương Đình, Đống Đa, Hà Nội', '0832536199', ''),
-(2, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 2, 2, b'0', '43 P.Hàm Long, Hàng Bài, Hoàn Kiếm, Hà Nội', '0832535200', ''),
-(3, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 3, 3, b'1', '1A Ng. 165 P. Thái Hà, Láng Hạ, Đống Đa, Hà Nội', '0832535201', ''),
-(4, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 4, 4, b'0', '140 P. Vũ Thạnh, Chợ Dừa, Đống Đa, Hà Nội', '0832535202', ''),
-(5, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 5, 5, b'1', '380 P. Xã Đàn, Nam Đồng, Đống Đa, Hà Nội', '0832535203', ''),
-(6, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 6, 6, b'0', '1 P. Thái Hà, Trung Liệt, Đống Đa, Hà Nội', '0832535204', ''),
-(7, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 7, 7, b'1', '378B P. Xã Đàn, Nam Đồng, Đống Đa, Hà Nội', '0832535205', ''),
-(8, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 8, 8, b'0', 'Số 8 Ngh. 180/29 P. Kim Hoa, Phương Liên, Đống Đa, Hà Nội', '0832535206', ''),
-(9, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 9, 9, b'1', 'Bà Triệu, Nguyễn Du, Hai Bà Trưng, Hà Nội', '0832535207', ''),
-(10, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 10, 10, b'0', '8 Ngh. 180/29 P. Kim Hoa, Phương Liên, Đống Đa, Hà Nội', '0832535208', '');
+(1, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 1, 1, '1', 'Ng. 102 Trường Chinh, Phương Đình, Đống Đa, Hà Nội', '0832536199', ''),
+(2, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 2, 2, '0', '43 P.Hàm Long, Hàng Bài, Hoàn Kiếm, Hà Nội', '0832535200', ''),
+(3, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 3, 3, '1', '1A Ng. 165 P. Thái Hà, Láng Hạ, Đống Đa, Hà Nội', '0832535201', ''),
+(4, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 4, 4, '0', '140 P. Vũ Thạnh, Chợ Dừa, Đống Đa, Hà Nội', '0832535202', ''),
+(5, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 5, 5, '1', '380 P. Xã Đàn, Nam Đồng, Đống Đa, Hà Nội', '0832535203', ''),
+(6, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 6, 6, '0', '1 P. Thái Hà, Trung Liệt, Đống Đa, Hà Nội', '0832535204', ''),
+(7, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 7, 7, '1', '378B P. Xã Đàn, Nam Đồng, Đống Đa, Hà Nội', '0832535205', ''),
+(8, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 8, 8, '0', 'Số 8 Ngh. 180/29 P. Kim Hoa, Phương Liên, Đống Đa, Hà Nội', '0832535206', ''),
+(9, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 9, 9, '1', 'Bà Triệu, Nguyễn Du, Hai Bà Trưng, Hà Nội', '0832535207', ''),
+(10, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 10, 10, '0', '8 Ngh. 180/29 P. Kim Hoa, Phương Liên, Đống Đa, Hà Nội', '0832535208', '');
 
 -- --------------------------------------------------------
 
@@ -268,7 +284,7 @@ CREATE TABLE `tblkhachhang` (
   `email` varchar(128) NOT NULL,
   `ngaytao` date DEFAULT NULL,
   `ngaycapnhat` date DEFAULT NULL,
-  `trangthai` varchar(1) DEFAULT b'1'
+  `trangthai` varchar(11) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -276,16 +292,16 @@ CREATE TABLE `tblkhachhang` (
 --
 
 INSERT INTO `tblkhachhang` (`id`, `ten`, `gioitinh`, `ngaysinh`, `dienthoai`, `diachi`, `email`, `ngaytao`, `ngaycapnhat`, `trangthai`) VALUES
-(1, 'Nguyễn Ngọc Thúy', 0, '1990-11-23', '0832536199', 'Khu tập thể A3 Nam Đồng, A1P49, Phố P. Hồ Đắc Di, Nam Đồng, Đống Đa, Hà Nội', 'nguyenngocthuy@gmail.com', '2022-06-09', '0000-00-00', b'1'),
-(2, 'Đáo Đức Thành', 1, '1991-11-23', '0832536200', 'Tòa nhà C´Land, 156 Ng. Xã Đàn 2, Nam Đồng, Đống Đa, Hà Nội', 'daoducthanh@gmail.com', '2022-06-09', '0000-00-00', b'0'),
-(3, 'Tô Nghị', 2, '1992-11-23', '0832536201', 'Trần Hưng Đạo, Hoàn Kiếm, Hà Nội', 'tonghi@gmail.com', '2022-06-09', '0000-00-00', b'1'),
-(4, 'Nguyễn Lê Tuấn', 0, '1993-11-23', '0832536202', '81 Trần Hưng Đạo, Hoàn Kiếm, Hà Nội', 'nguyenletuan@gmail.com', '2022-06-09', '0000-00-00', b'0'),
-(5, 'Trần Thị Thu', 1, '1994-11-23', '0832536203', '6 Ng. 84 P. Trần Quang Diệu, Chợ Dừa, Đống Đa, Hà Nội', 'tranthithu@gmail.com', '2022-06-09', '0000-00-00', b'1'),
-(6, 'Phạm Duy Hồng', 2, '1995-11-23', '0832536204', '65 Nguyễn Đình Thi, Thuỵ Khuê, Tây Hồ, Hà Nội', 'phamduyhong@gmail.com', '2022-06-09', '0000-00-00', b'0'),
-(7, 'Lê Hồng Nguyên', 0, '1996-11-23', '0832536205', '51 Đ. Âu Cơ, Tứ Liên, Tây Hồ, Hà Nội', 'lehongnguyen@gmail.com', '2022-06-09', '0000-00-00', b'1'),
-(8, 'Hồ Cung Đạt Nhân', 1, '1997-11-23', '0832536206', 'Hàng Bột, Đống Đa, Hà Nội', 'hocungdatnhan@gmail.com', '2022-06-09', '0000-00-00', b'0'),
-(9, 'Chu Văn Nam', 2, '1998-11-23', '0832536207', '9b Nguyễn Đình Thi, Thuỵ Khuê, Tây Hồ, Hà Nội', 'chuvannam@gmail.com', '2022-06-09', '0000-00-00', b'1'),
-(10, 'Huỳnh Đức Long', 0, '1999-11-23', '0832536208', '88 P.Yên Lãng, Láng Hạ, Đống Đa, Trung Hoà Cầu Giấy Hà Nội', 'huynhduclong@gmail.com', '2022-06-09', '0000-00-00', b'0');
+(1, 'Nguyễn Ngọc Thúy', 0, '1990-11-23', '0832536199', 'Khu tập thể A3 Nam Đồng, A1P49, Phố P. Hồ Đắc Di, Nam Đồng, Đống Đa, Hà Nội', 'nguyenngocthuy@gmail.com', '2022-06-09', '0000-00-00', '1'),
+(2, 'Đáo Đức Thành', 1, '1991-11-23', '0832536200', 'Tòa nhà C´Land, 156 Ng. Xã Đàn 2, Nam Đồng, Đống Đa, Hà Nội', 'daoducthanh@gmail.com', '2022-06-09', '0000-00-00', '0'),
+(3, 'Tô Nghị', 2, '1992-11-23', '0832536201', 'Trần Hưng Đạo, Hoàn Kiếm, Hà Nội', 'tonghi@gmail.com', '2022-06-09', '0000-00-00', '1'),
+(4, 'Nguyễn Lê Tuấn', 0, '1993-11-23', '0832536202', '81 Trần Hưng Đạo, Hoàn Kiếm, Hà Nội', 'nguyenletuan@gmail.com', '2022-06-09', '0000-00-00', '0'),
+(5, 'Trần Thị Thu', 1, '1994-11-23', '0832536203', '6 Ng. 84 P. Trần Quang Diệu, Chợ Dừa, Đống Đa, Hà Nội', 'tranthithu@gmail.com', '2022-06-09', '0000-00-00', '1'),
+(6, 'Phạm Duy Hồng', 2, '1995-11-23', '0832536204', '65 Nguyễn Đình Thi, Thuỵ Khuê, Tây Hồ, Hà Nội', 'phamduyhong@gmail.com', '2022-06-09', '0000-00-00', '0'),
+(7, 'Lê Hồng Nguyên', 0, '1996-11-23', '0832536205', '51 Đ. Âu Cơ, Tứ Liên, Tây Hồ, Hà Nội', 'lehongnguyen@gmail.com', '2022-06-09', '0000-00-00', '1'),
+(8, 'Hồ Cung Đạt Nhân', 1, '1997-11-23', '0832536206', 'Hàng Bột, Đống Đa, Hà Nội', 'hocungdatnhan@gmail.com', '2022-06-09', '0000-00-00', '0'),
+(9, 'Chu Văn Nam', 2, '1998-11-23', '0832536207', '9b Nguyễn Đình Thi, Thuỵ Khuê, Tây Hồ, Hà Nội', 'chuvannam@gmail.com', '2022-06-09', '0000-00-00', '1'),
+(10, 'Huỳnh Đức Long', 0, '1999-11-23', '0832536208', '88 P.Yên Lãng, Láng Hạ, Đống Đa, Trung Hoà Cầu Giấy Hà Nội', 'huynhduclong@gmail.com', '2022-06-09', '0000-00-00', '0');
 
 -- --------------------------------------------------------
 
@@ -302,7 +318,7 @@ CREATE TABLE `tblnhacungcap` (
   `ngaytao` date DEFAULT NULL,
   `ngaycapnhat` date DEFAULT NULL,
   `ghichu` varchar(256) DEFAULT NULL,
-  `trangthai` varchar(1) DEFAULT b'1'
+  `trangthai` varchar(11) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -310,16 +326,16 @@ CREATE TABLE `tblnhacungcap` (
 --
 
 INSERT INTO `tblnhacungcap` (`id`, `tennhacc`, `diachi`, `sdt`, `email`, `ngaytao`, `ngaycapnhat`, `ghichu`, `trangthai`) VALUES
-(1, 'Công ty Cổ phần an ninh an toàn thông tin CMC', 'Tầng 4, tòa nhà CMC, phố Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, Thành phố Hà Nội', '0832536199', 'tahoanglinh@gmail.com', '2022-06-09', '0000-00-00', '', b'1'),
-(2, 'Công ty Cổ phần Thương mại Tin học và Viễn thông Sao Việt', 'Số 16, Ngách 82/5, Ngõ 651, Phố Minh Khai, Phường Thanh Lương, Quận Hai Bà Trưng, Thành phố Hà Nội', '0832536201', 'leminhhai@gmail.com', '2022-06-09', '0000-00-00', '', b'0'),
-(3, 'Công ty Cổ phần công nghệ truyền thông DTS', 'Số 287B Điện Biên Phủ, Phường 7, Quận 3, Thành phố Hồ Chí Minh', '0832536202', 'tohuyhoang@gmail.com', '2022-06-09', '0000-00-00', '', b'1'),
-(4, 'Tập đoàn Bưu chính Viễn thông Việt Nam', 'Số 57 phố Huỳnh Thúc Kháng, Phường Láng Hạ, Quận Đống Đa, Thành phố Hà Nội, Việt Nam', '0832536203', 'phamduclong@gmail.com', '2022-06-09', '0000-00-00', '', b'0'),
-(5, 'Công ty Cổ phần Dịch vụ Công nghệ Tin học HPT', 'Tầng 9 Tòa nhà Paragon, số 3 Nguyễn Lương Bằng, Phường Tân Phú, Quận 7, Thành phố Hồ Chí Minh, Việt Nam', '0832536204', 'dinhhaduylinh@gmail.com', '2022-06-09', '0000-00-00', '', b'1'),
-(6, 'Công ty Cổ phần giải pháp công nghệ SAVIS Việt Nam', 'Số 22, lô 1C, đường Trung Yên, 11C, KĐT Trung Yên, Phường Trung Hòa, Quận Cầu Giấy, Thành phố Hà Nội, Việt Nam', '0832536205', 'hoangnguyenvan@gmail.com', '2022-06-09', '0000-00-00', '', b'0'),
-(7, 'Công ty TNHH Thông tin NTT (Việt Nam)', 'Tòa nhà Vincom, số 72 đường Lê Thánh Tôn, phường Bến Nghé, quận 1, thành phố Hồ Chí Minh, Việt Nam', '0832536206', 'kinyahasegawa@gmail.com', '2022-06-09', '0000-00-00', '', b'1'),
-(8, 'Công ty Cổ phần Công nghệ Mạng và Truyền thông', 'Số 36 phố Trúc Khê, Phường Láng Hạ, Quận Đống Đa, Thành phố Hà Nội, Việt Nam', '0832536207', 'lengoctu@gmail.com', '2022-06-09', '0000-00-00', '', b'0'),
-(9, 'Công ty TNHH Hệ thống thông tin FPT', 'Tầng 22 tòa nhà Keangnam Landmark72, E6, đường Phạm Hùng, phường Mễ Trì, quận Nam Từ Liêm, thành phố Hà Nội, Việt Nam', '0832536208', 'phamminhtuan@gmail.com', '2022-06-09', '0000-00-00', '', b'1'),
-(10, 'Công ty Cổ phần An ninh mạng Việt Nam', 'Biệt thự số 26 – BT2 – khu đô thị Văn Quán, Phường Văn Quán, Quận Hà Đông, Thành phố Hà Nội, Việt Nam', '0832536209', 'truongducluong@gmail.com', '2022-06-09', '0000-00-00', '', b'0');
+(1, 'Công ty Cổ phần an ninh an toàn thông tin CMC', 'Tầng 4, tòa nhà CMC, phố Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, Thành phố Hà Nội', '0832536199', 'tahoanglinh@gmail.com', '2022-06-09', '0000-00-00', '', '1'),
+(2, 'Công ty Cổ phần Thương mại Tin học và Viễn thông Sao Việt', 'Số 16, Ngách 82/5, Ngõ 651, Phố Minh Khai, Phường Thanh Lương, Quận Hai Bà Trưng, Thành phố Hà Nội', '0832536201', 'leminhhai@gmail.com', '2022-06-09', '0000-00-00', '', '0'),
+(3, 'Công ty Cổ phần công nghệ truyền thông DTS', 'Số 287B Điện Biên Phủ, Phường 7, Quận 3, Thành phố Hồ Chí Minh', '0832536202', 'tohuyhoang@gmail.com', '2022-06-09', '0000-00-00', '', '1'),
+(4, 'Tập đoàn Bưu chính Viễn thông Việt Nam', 'Số 57 phố Huỳnh Thúc Kháng, Phường Láng Hạ, Quận Đống Đa, Thành phố Hà Nội, Việt Nam', '0832536203', 'phamduclong@gmail.com', '2022-06-09', '0000-00-00', '', '0'),
+(5, 'Công ty Cổ phần Dịch vụ Công nghệ Tin học HPT', 'Tầng 9 Tòa nhà Paragon, số 3 Nguyễn Lương Bằng, Phường Tân Phú, Quận 7, Thành phố Hồ Chí Minh, Việt Nam', '0832536204', 'dinhhaduylinh@gmail.com', '2022-06-09', '0000-00-00', '', '1'),
+(6, 'Công ty Cổ phần giải pháp công nghệ SAVIS Việt Nam', 'Số 22, lô 1C, đường Trung Yên, 11C, KĐT Trung Yên, Phường Trung Hòa, Quận Cầu Giấy, Thành phố Hà Nội, Việt Nam', '0832536205', 'hoangnguyenvan@gmail.com', '2022-06-09', '0000-00-00', '', '0'),
+(7, 'Công ty TNHH Thông tin NTT (Việt Nam)', 'Tòa nhà Vincom, số 72 đường Lê Thánh Tôn, phường Bến Nghé, quận 1, thành phố Hồ Chí Minh, Việt Nam', '0832536206', 'kinyahasegawa@gmail.com', '2022-06-09', '0000-00-00', '', '1'),
+(8, 'Công ty Cổ phần Công nghệ Mạng và Truyền thông', 'Số 36 phố Trúc Khê, Phường Láng Hạ, Quận Đống Đa, Thành phố Hà Nội, Việt Nam', '0832536207', 'lengoctu@gmail.com', '2022-06-09', '0000-00-00', '', '0'),
+(9, 'Công ty TNHH Hệ thống thông tin FPT', 'Tầng 22 tòa nhà Keangnam Landmark72, E6, đường Phạm Hùng, phường Mễ Trì, quận Nam Từ Liêm, thành phố Hà Nội, Việt Nam', '0832536208', 'phamminhtuan@gmail.com', '2022-06-09', '0000-00-00', '', '1'),
+(10, 'Công ty Cổ phần An ninh mạng Việt Nam', 'Biệt thự số 26 – BT2 – khu đô thị Văn Quán, Phường Văn Quán, Quận Hà Đông, Thành phố Hà Nội, Việt Nam', '0832536209', 'truongducluong@gmail.com', '2022-06-09', '0000-00-00', '', '0');
 
 -- --------------------------------------------------------
 
@@ -342,7 +358,7 @@ CREATE TABLE `tblnhanvien` (
   `username` varchar(64) DEFAULT NULL,
   `password` varchar(64) DEFAULT NULL,
   `ghichu` varchar(256) DEFAULT NULL,
-  `trangthai` varchar(1) DEFAULT b'1'
+  `trangthai` varchar(11) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -350,16 +366,16 @@ CREATE TABLE `tblnhanvien` (
 --
 
 INSERT INTO `tblnhanvien` (`id`, `ten`, `gioitinh`, `ngaysinh`, `ngayvaolam`, `ngaycapnhat`, `sdt`, `email`, `diachi`, `idphanquyen`, `luongcoban`, `username`, `password`, `ghichu`, `trangthai`) VALUES
-(1, 'Võ Thị Thanh Thảo', 0, '1990-11-23', '2022-06-09', '0000-00-00', '0832536199', 'vothithanhthao@gmail.com', '', 1, 1000, 'vothithanhthao', 'vothithanhthao', '', b'1'),
-(2, 'Lày A Cẩu', 1, '1991-11-23', '2022-06-09', '0000-00-00', '0832536200', 'layacau@gmail.com', '', 2, 2000, 'layacau', 'layacau', '', b'1'),
-(3, 'Bùi Mạnh Quốc Huy', 2, '1992-11-23', '2022-06-09', '0000-00-00', '0832536201', 'buimanhquochuy@gmail.com', '', 3, 3000, 'buimanhquochuy', 'buimanhquochuy', '', b'1'),
-(4, 'Lê Thị Mai', 0, '1993-11-23', '2022-06-09', '0000-00-00', '0832536202', 'lethimai@gmail.com', '', 4, 4000, 'lethimai', 'lethimai', '', b'1'),
-(5, 'Trần Kim Ngọc', 1, '1994-11-23', '2022-06-09', '0000-00-00', '0832536203', 'trankimngoc@gmail.com', '', 5, 5000, 'trankimngoc', 'trankimngoc', '', b'1'),
-(6, 'Lai Như Quỳnh', 2, '1995-11-23', '2022-06-09', '0000-00-00', '0832536204', 'lainhuquynh@gmail.com', '', 6, 6000, 'lainhuquynh', 'lainhuquynh', '', b'1'),
-(7, 'Đặng Ngọc Thanh Loan', 0, '1996-11-23', '2022-06-09', '0000-00-00', '0832536205', 'dangngocthanhloan@gmail.com', '', 1, 1000, 'dangngocthanhloan', 'dangngocthanhloan', '', b'1'),
-(8, 'Lê Thị Đào', 1, '1997-11-23', '2022-06-09', '0000-00-00', '0832536206', 'lethidao@gmail.com', '', 2, 2000, 'lethidao', 'lethidao', '', b'1'),
-(9, 'Phạm Đoàn Minh Hiếu', 2, '1998-11-23', '2022-06-09', '0000-00-00', '0832536207', 'phamdoanminhhieu@gmail.com', '', 3, 3000, 'phamdoanminhhieu', 'phamdoanminhhieu', '', b'1'),
-(10, 'Cao Ngọc Phương Trinh', 0, '1999-11-23', '2022-06-09', '0000-00-00', '0832536208', 'caongocphuongtrinh@gmail.com', '', 4, 4000, 'caongocphuongtrinh', 'caongocphuongtrinh', '', b'1');
+(1, 'Võ Thị Thanh Thảo', 0, '1990-11-23', '2022-06-09', '0000-00-00', '0832536199', 'vothithanhthao@gmail.com', '', 1, 1000, 'vothithanhthao', 'vothithanhthao', '', '1'),
+(2, 'Lày A Cẩu', 1, '1991-11-23', '2022-06-09', '0000-00-00', '0832536200', 'layacau@gmail.com', '', 2, 2000, 'layacau', 'layacau', '', '1'),
+(3, 'Bùi Mạnh Quốc Huy', 2, '1992-11-23', '2022-06-09', '0000-00-00', '0832536201', 'buimanhquochuy@gmail.com', '', 3, 3000, 'buimanhquochuy', 'buimanhquochuy', '', '1'),
+(4, 'Lê Thị Mai', 0, '1993-11-23', '2022-06-09', '0000-00-00', '0832536202', 'lethimai@gmail.com', '', 4, 4000, 'lethimai', 'lethimai', '', '1'),
+(5, 'Trần Kim Ngọc', 1, '1994-11-23', '2022-06-09', '0000-00-00', '0832536203', 'trankimngoc@gmail.com', '', 5, 5000, 'trankimngoc', 'trankimngoc', '', '1'),
+(6, 'Lai Như Quỳnh', 2, '1995-11-23', '2022-06-09', '0000-00-00', '0832536204', 'lainhuquynh@gmail.com', '', 6, 6000, 'lainhuquynh', 'lainhuquynh', '', '1'),
+(7, 'Đặng Ngọc Thanh Loan', 0, '1996-11-23', '2022-06-09', '0000-00-00', '0832536205', 'dangngocthanhloan@gmail.com', '', 1, 1000, 'dangngocthanhloan', 'dangngocthanhloan', '', '1'),
+(8, 'Lê Thị Đào', 1, '1997-11-23', '2022-06-09', '0000-00-00', '0832536206', 'lethidao@gmail.com', '', 2, 2000, 'lethidao', 'lethidao', '', '1'),
+(9, 'Phạm Đoàn Minh Hiếu', 2, '1998-11-23', '2022-06-09', '0000-00-00', '0832536207', 'phamdoanminhhieu@gmail.com', '', 3, 3000, 'phamdoanminhhieu', 'phamdoanminhhieu', '', '1'),
+(10, 'Cao Ngọc Phương Trinh', 0, '1999-11-23', '2022-06-09', '0000-00-00', '0832536208', 'caongocphuongtrinh@gmail.com', '', 4, 4000, 'caongocphuongtrinh', 'caongocphuongtrinh', '', '1');
 
 -- --------------------------------------------------------
 
@@ -397,7 +413,7 @@ CREATE TABLE `tblthanhtoan` (
   `id` int(11) NOT NULL,
   `ten` varchar(64) DEFAULT NULL,
   `ghichu` varchar(128) DEFAULT NULL,
-  `trangthai` varchar(1) DEFAULT b'1'
+  `trangthai` varchar(11) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -405,11 +421,11 @@ CREATE TABLE `tblthanhtoan` (
 --
 
 INSERT INTO `tblthanhtoan` (`id`, `ten`, `ghichu`, `trangthai`) VALUES
-(1, 'Thanh toán tiền mặt tại quầy', '', b'1'),
-(2, 'Thanh toán bằng thẻ ngân hàng', '', b'0'),
-(3, 'Chuyển khoản ngân hàng', '', b'1'),
-(4, 'Ship COD', '', b'0'),
-(5, 'Thanh toán tích điểm', '', b'1');
+(1, 'Thanh toán tiền mặt tại quầy', '', '1'),
+(2, 'Thanh toán bằng thẻ ngân hàng', '', '0'),
+(3, 'Chuyển khoản ngân hàng', '', '1'),
+(4, 'Ship COD', '', '0'),
+(5, 'Thanh toán tích điểm', '', '1');
 
 -- --------------------------------------------------------
 
@@ -421,7 +437,7 @@ CREATE TABLE `tblvanchuyen` (
   `id` int(11) NOT NULL,
   `ten` varchar(64) DEFAULT NULL,
   `ghichu` varchar(128) DEFAULT NULL,
-  `trangthai` varchar(1) DEFAULT b'1'
+  `trangthai` varchar(11) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -429,11 +445,11 @@ CREATE TABLE `tblvanchuyen` (
 --
 
 INSERT INTO `tblvanchuyen` (`id`, `ten`, `ghichu`, `trangthai`) VALUES
-(1, 'Giao hàng nhanh', 'GHN', b'1'),
-(2, 'Giao hàng tiết kiệm', 'GHTK', b'0'),
-(3, 'Viettel Post', '', b'1'),
-(4, 'J&T Express', '', b'0'),
-(5, 'Ahamove', '', b'1');
+(1, 'Giao hàng nhanh', 'GHN', '1'),
+(2, 'Giao hàng tiết kiệm', 'GHTK', '0'),
+(3, 'Viettel Post', '', '1'),
+(4, 'J&T Express', '', '0'),
+(5, 'Ahamove', '', '1');
 
 --
 -- Indexes for dumped tables
@@ -578,7 +594,7 @@ ALTER TABLE `tblhanghoa`
 -- AUTO_INCREMENT for table `tblhinhanh`
 --
 ALTER TABLE `tblhinhanh`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tblhoadon`
