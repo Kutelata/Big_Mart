@@ -2,172 +2,141 @@ create database BigMart_DB;
 
 use BigMart_DB;
 
-create table tblKhachHang
+create table tblCustomer
 (
     id int auto_increment primary key,
-    ten varchar(64) not null,
-    gioitinh tinyint default(1),
-    ngaysinh date,
-    dienthoai varchar(11) not null unique,
-    diachi varchar(128),
+    `name` varchar(64) not null,
+    gender int(11) default(1),
+    birthday date,
+    phone varchar(11) not null unique,
+    `address` varchar(128),
     email varchar(128) not null unique,
-    ngaytao date,
-    ngaycapnhat date,
-    trangthai varchar(11) default(1)
+    `status` int(11) default(1),
+	created_at date,
+    updated_at date
 );
 
-create table tblDiemThuong
+create table tblGiftPoint
 (
     id int auto_increment primary key,
-    idkhachhang int,
-    noidung varchar(128),
-    diem smallint,
-    ngaytao date,
-    foreign key (idkhachhang) references tblKhachHang(id)
+    customer_id int,
+    content varchar(128),
+    `point` int,
+    created_at date
 );
 
-create table tblCuaHang
+create table tblStore
 (
     id int auto_increment primary key,
-    tencuahang varchar(128) not null,
-    diachi varchar(128) not null,
-    sdt varchar(11) not null unique,
-    idnhanvien int,
-    giomocua tinyint,
-    giodongcua tinyint,
-    ghichu varchar(256)
+    `name` varchar(128) not null,
+    `address` varchar(128) not null,
+    phone varchar(11) not null unique,
+    employee_id int,
+    open_time int,
+    close_time int
 );
 
-create table tblPhanQuyen
+create table tblRole
 (
     id int auto_increment primary key,
-    tenquyen varchar(8) not null,
-    vitri varchar(64) not null,
-    ngaytao date,
-    ghichu varchar(256)
+    `name` varchar(64) not null,
+    position varchar(64) not null
 );
 
-create table tblNhanVien
+create table tblEmployee
 (
     id int auto_increment primary key,
-    ten varchar(64) not null,
-    gioitinh tinyint default(1),
-    ngaysinh date not null,
-    ngayvaolam date,
-    ngaycapnhat date,
-    sdt varchar(11) not null unique,
+    `name` varchar(64) not null,
+    gender int(11) default(1),
+    birthday date not null,
+    phone varchar(11) not null unique,
     email varchar(128) unique,
-    diachi varchar(128),
-    idphanquyen int,
-    luongcoban float default(0),
+    `address` varchar(128),
+    role_id int,
+    salary float default(0),
     username varchar(64),
     `password` varchar(64),
-    ghichu varchar(256),
-    trangthai varchar(11) default(1),
-    foreign key (idphanquyen) references tblPhanQuyen(id)
+    `status` int(11) default(1),
+	created_at date,
+    updated_at date
 );
 
-create table tblChungLoai
+create table tblCategory
 (
     id int auto_increment primary key,
-    ten varchar(64) not null,
-    mota varchar(128),
-    anhminhhoa varchar(256) not null,
-    ngaytao date,
-    ngaycapnhat date,
-    trangthai varchar(11) default (1)
+    `name` varchar(64) not null,
+    `description` varchar(128),
+    `image` varchar(256) not null
 );
 
-create table tblDonViTinh
+create table tblUnit
 (
     id int auto_increment primary key,
-    tendonvi varchar(32) not null,
-    ghichu varchar(256)
+    `name` varchar(32) not null,
+    note varchar(64)
 );
 
-create table tblNhaCungCap
+create table tblProvider
 (
     id int auto_increment primary key,
-    tennhacc varchar(128) not null,
-    diachi varchar(128) not null,
-    sdt varchar(11) not null,
+    `name` varchar(128) not null,
+    `address` varchar(128) not null,
+    phone varchar(11) not null,
     email varchar(256) not null unique,
-    ngaytao date,
-    ngaycapnhat date,
-    ghichu varchar(256),
-    trangthai varchar(11) default(1)
+    `status` int(11) default(1)
 );
 
-create table tblVanCHuyen
+create table tblShipment
 (
     id int auto_increment primary key,
-    ten varchar(64),
-    ghichu varchar(128),
-    trangthai varchar(11) default(1)
+    `name` varchar(64),
+    note varchar(128),
+    `status` int(11) default(1)
 );
 
-create table tblThanhToan
+create table tblPayment
 (
     id int auto_increment primary key,
-    ten varchar(64),
-    ghichu varchar(128),
-    trangthai varchar(11) default(1)
+    `name` varchar(64),
+    note varchar(128),
+    `status` int(11) default(1)
 );
 
-create table tblHoaDon
+create table tblInvoice
 (
     id int auto_increment primary key,
-    ngaytao datetime,
-    ngaygiaohang datetime,
-    idvanchuyen int,
-    idthanhtoan int,
-    idkhachhang int,
-    idnhanvien int ,
-    trangthai varchar(11) default(1),
-    diachinhan varchar(128) not null,
-    sdtnhan varchar(11) not null ,
-    ghichu varchar(128),
-    foreign key (idvanchuyen) references tblVanCHuyen(id),
-    foreign key (idthanhtoan) references tblThanhToan(id),
-    foreign key (idkhachhang) references tblKhachHang(id),
-    foreign key (idnhanvien) references tblNhanVien(id)
+    created_at datetime,
+    ship_at datetime,
+    shipment_id int,
+    payment_id int,
+    customer_id int,
+    employee_id int ,
+    `status` int(11) default(1),
+    addredd_ship varchar(128) not null,
+    phone_ship int(11) not null,
+    note varchar(128)
 );
 
-create table tblHangHoa
+create table tblProduct
 (
     id int auto_increment primary key,
-    ten varchar(128) not null,
-    idchungloai int,
-    iddonvitinh int,
-    idnhacc int,
-    soluong float default(0),
-    gianhap float default(0),
-    giaxuat float default(0),
-    ngaytao date,
-    ngaycapnhat date,
-    ghichu varchar(128),
-    foreign key (idchungloai) references tblChungLoai(id),
-    foreign key (iddonvitinh) references tblDonViTinh(id),
-    foreign key (idnhacc) references tblNhaCungCap(id)
+    `name` varchar(128) not null,
+    `image` varchar(128),
+    category_id int,
+    unit_id int,
+    provider_id int,
+    `number` int default(0),
+    import_price float default(0),
+    export_price float default(0),
+    created_at date,
+    updated_at date
 );
 
-create table tblHoaDonChiTiet
+create table tblInvoiceDetail
 (
-    idhoadon int,
-    idhanghoa int,
-    soluong float,
-    giaban float,
-    primary key(idhoadon, idhanghoa),
-    foreign key (idhoadon) references tblHoaDon(id),
-    foreign key (idhanghoa) references tblHangHoa(id)
-);
-
-create table tblHinhAnh
-(
-    id int auto_increment primary key,
-    idhanghoa int,
-    ghichu varchar(64),
-    sothutu tinyint,
-    trangthai varchar(11) default(1),
-    foreign key (idhanghoa) references tblHangHoa(id)
+    invoice_id int,
+    product_id int,
+    `number` int,
+    export_price float,
+    primary key(invoice_id, product_id)
 );
