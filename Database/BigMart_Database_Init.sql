@@ -73,7 +73,7 @@ create table tblUnit
 (
     id int auto_increment primary key,
     `name` varchar(32) not null,
-    note varchar(64)
+    `value` varchar(64)
 );
 
 create table tblProvider
@@ -112,7 +112,7 @@ create table tblInvoice
     customer_id int,
     employee_id int ,
     `status` int(11) default(1),
-    addredd_ship varchar(128) not null,
+    address_ship varchar(128) not null,
     phone_ship int(11) not null,
     note varchar(128)
 );
@@ -125,9 +125,11 @@ create table tblProduct
     category_id int,
     unit_id int,
     provider_id int,
-    `number` int default(0),
-    import_price float default(0),
-    export_price float default(0),
+    quantity int default(0),
+    price float default(0),
+    saleable_qty int,
+    `status` int(11) default(1),
+    `description` varchar(128),
     created_at date,
     updated_at date
 );
@@ -136,7 +138,7 @@ create table tblInvoiceDetail
 (
     invoice_id int,
     product_id int,
-    `number` int,
-    export_price float,
+    quantity int,
+    price float,
     primary key(invoice_id, product_id)
 );

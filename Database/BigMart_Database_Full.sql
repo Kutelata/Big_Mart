@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2022 at 11:22 AM
+-- Generation Time: Jun 16, 2022 at 12:17 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -169,7 +169,7 @@ CREATE TABLE `tblinvoice` (
   `customer_id` int(11) DEFAULT NULL,
   `employee_id` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT 1,
-  `addredd_ship` varchar(128) NOT NULL,
+  `address_ship` varchar(128) NOT NULL,
   `phone_ship` int(11) NOT NULL,
   `note` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -178,7 +178,7 @@ CREATE TABLE `tblinvoice` (
 -- Dumping data for table `tblinvoice`
 --
 
-INSERT INTO `tblinvoice` (`id`, `created_at`, `ship_at`, `shipment_id`, `payment_id`, `customer_id`, `employee_id`, `status`, `addredd_ship`, `phone_ship`, `note`) VALUES
+INSERT INTO `tblinvoice` (`id`, `created_at`, `ship_at`, `shipment_id`, `payment_id`, `customer_id`, `employee_id`, `status`, `address_ship`, `phone_ship`, `note`) VALUES
 (1, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 1, 1, 1, 'Ng. 102 Trường Chinh, Phương Đình, Đống Đa, Hà Nội', 832536199, ''),
 (2, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 2, 2, 0, '43 P.Hàm Long, Hàng Bài, Hoàn Kiếm, Hà Nội', 832535200, ''),
 (3, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 3, 3, 1, '1A Ng. 165 P. Thái Hà, Láng Hạ, Đống Đa, Hà Nội', 832535201, ''),
@@ -199,15 +199,15 @@ INSERT INTO `tblinvoice` (`id`, `created_at`, `ship_at`, `shipment_id`, `payment
 CREATE TABLE `tblinvoicedetail` (
   `invoice_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `number` int(11) DEFAULT NULL,
-  `export_price` float DEFAULT NULL
+  `quantity` int(11) DEFAULT NULL,
+  `price` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tblinvoicedetail`
 --
 
-INSERT INTO `tblinvoicedetail` (`invoice_id`, `product_id`, `number`, `export_price`) VALUES
+INSERT INTO `tblinvoicedetail` (`invoice_id`, `product_id`, `quantity`, `price`) VALUES
 (1, 1, 1, 1500),
 (2, 2, 1, 2500),
 (3, 3, 1, 3500),
@@ -256,9 +256,11 @@ CREATE TABLE `tblproduct` (
   `category_id` int(11) DEFAULT NULL,
   `unit_id` int(11) DEFAULT NULL,
   `provider_id` int(11) DEFAULT NULL,
-  `number` int(11) DEFAULT 0,
-  `import_price` float DEFAULT 0,
-  `export_price` float DEFAULT 0,
+  `quantity` int(11) DEFAULT 0,
+  `price` float DEFAULT 0,
+  `saleable_qty` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT 1,
+  `description` varchar(128) DEFAULT NULL,
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -267,17 +269,17 @@ CREATE TABLE `tblproduct` (
 -- Dumping data for table `tblproduct`
 --
 
-INSERT INTO `tblproduct` (`id`, `name`, `image`, `category_id`, `unit_id`, `provider_id`, `number`, `import_price`, `export_price`, `created_at`, `updated_at`) VALUES
-(1, 'Đệm Everon', 'dem_everon.png', 1, 1, 1, 10, 1000, 1500, '2022-06-09', '0000-00-00'),
-(2, 'Bim Bim Oishi', 'bim_bim_oishi.png', 2, 1, 2, 20, 2000, 2500, '2022-06-09', '0000-00-00'),
-(3, 'Bếp hồng ngoại', 'bep_hong_ngoai.png', 3, 1, 3, 30, 3000, 3500, '2022-06-09', '0000-00-00'),
-(4, 'Bàn chải điện', 'ban_chai_dien.png', 4, 1, 4, 40, 4000, 4500, '2022-06-09', '0000-00-00'),
-(5, 'Cốc viễn đông', 'coc_vien_dong.png', 5, 1, 5, 50, 5000, 5500, '2022-06-09', '0000-00-00'),
-(6, 'Sữa chua trân châu', 'sua_chua_tran_chau.png', 6, 1, 6, 60, 6000, 6500, '2022-06-09', '0000-00-00'),
-(7, 'Sữa tiệt trùng vinamilk', 'sua_tiet_trung_vinamilk.png', 7, 1, 7, 70, 7000, 7500, '2022-06-09', '0000-00-00'),
-(8, 'Sting', 'sting.png', 8, 1, 8, 80, 8000, 8500, '2022-06-09', '0000-00-00'),
-(9, 'Trà xanh không độ', 'tra_xanh_khong_do.png', 9, 1, 9, 90, 9000, 9500, '2022-06-09', '0000-00-00'),
-(10, 'Lavie', 'lavie.png', 10, 1, 10, 100, 10000, 10500, '2022-06-09', '0000-00-00');
+INSERT INTO `tblproduct` (`id`, `name`, `image`, `category_id`, `unit_id`, `provider_id`, `quantity`, `price`, `saleable_qty`, `status`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'Đệm Everon', 'dem_everon.png', 1, 1, 1, 10, 1000, 15, 1, '', '2022-06-09', '0000-00-00'),
+(2, 'Bim Bim Oishi', 'bim_bim_oishi.png', 2, 1, 2, 20, 2000, 25, 0, '', '2022-06-09', '0000-00-00'),
+(3, 'Bếp hồng ngoại', 'bep_hong_ngoai.png', 3, 1, 3, 30, 3000, 35, 1, '', '2022-06-09', '0000-00-00'),
+(4, 'Bàn chải điện', 'ban_chai_dien.png', 4, 1, 4, 40, 4000, 45, 0, '', '2022-06-09', '0000-00-00'),
+(5, 'Cốc viễn đông', 'coc_vien_dong.png', 5, 1, 5, 50, 5000, 55, 1, '', '2022-06-09', '0000-00-00'),
+(6, 'Sữa chua trân châu', 'sua_chua_tran_chau.png', 6, 1, 6, 60, 6000, 65, 0, '', '2022-06-09', '0000-00-00'),
+(7, 'Sữa tiệt trùng vinamilk', 'sua_tiet_trung_vinamilk.png', 7, 1, 7, 70, 7000, 75, 1, '', '2022-06-09', '0000-00-00'),
+(8, 'Sting', 'sting.png', 8, 1, 8, 80, 8000, 85, 0, '', '2022-06-09', '0000-00-00'),
+(9, 'Trà xanh không độ', 'tra_xanh_khong_do.png', 9, 1, 9, 90, 9000, 95, 1, '', '2022-06-09', '0000-00-00'),
+(10, 'Lavie', 'lavie.png', 10, 1, 10, 100, 10000, 105, 0, '', '2022-06-09', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -399,14 +401,14 @@ INSERT INTO `tblstore` (`id`, `name`, `address`, `phone`, `employee_id`, `open_t
 CREATE TABLE `tblunit` (
   `id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
-  `note` varchar(64) DEFAULT NULL
+  `value` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tblunit`
 --
 
-INSERT INTO `tblunit` (`id`, `name`, `note`) VALUES
+INSERT INTO `tblunit` (`id`, `name`, `value`) VALUES
 (1, 'Việt Nam đồng', 'VND'),
 (2, 'Đô la Mỹ', 'USD'),
 (3, 'đồng EURO', 'EUR');

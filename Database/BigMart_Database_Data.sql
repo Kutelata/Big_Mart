@@ -66,7 +66,7 @@ insert into tblCategory(`name`,`description`,`image`) values
 ('Nước giải khát','','nuoc_giai_khat.png'),
 ('Nước lọc','','nuoc_loc.png');
 
-insert into tblUnit(`name`,note) values 
+insert into tblUnit(`name`,`value`) values 
 ('Việt Nam đồng','VND'),
 ('Đô la Mỹ','USD'),
 ('đồng EURO','EUR');
@@ -97,7 +97,7 @@ insert into tblPayment(`name`,note,`status`) values
 ('Ship COD','',0),
 ('Thanh toán tích điểm','',1);
 
-insert into tblInvoice(created_at,ship_at,shipment_id,payment_id,customer_id,employee_id,`status`,addredd_ship,phone_ship,note) values 
+insert into tblInvoice(created_at,ship_at,shipment_id,payment_id,customer_id,employee_id,`status`,address_ship,phone_ship,note) values 
 ('2022-06-09','2022-06-10',1,1,1,1,1,'Ng. 102 Trường Chinh, Phương Đình, Đống Đa, Hà Nội','0832536199',''),
 ('2022-06-09','2022-06-10',1,1,2,2,0,'43 P.Hàm Long, Hàng Bài, Hoàn Kiếm, Hà Nội','0832535200',''),
 ('2022-06-09','2022-06-10',1,1,3,3,1,'1A Ng. 165 P. Thái Hà, Láng Hạ, Đống Đa, Hà Nội','0832535201',''),
@@ -109,19 +109,19 @@ insert into tblInvoice(created_at,ship_at,shipment_id,payment_id,customer_id,emp
 ('2022-06-09','2022-06-10',1,1,9,9,1,'Bà Triệu, Nguyễn Du, Hai Bà Trưng, Hà Nội','0832535207',''),
 ('2022-06-09','2022-06-10',1,1,10,10,0,'8 Ngh. 180/29 P. Kim Hoa, Phương Liên, Đống Đa, Hà Nội','0832535208','');
 
-insert into tblProduct(`name`,`image`,category_id,unit_id,provider_id,`number`,import_price,export_price,created_at,updated_at) values 
-('Đệm Everon','dem_everon.png',1,1,1,10,1000,1500,'2022-06-09',''),
-('Bim Bim Oishi','bim_bim_oishi.png',2,1,2,20,2000,2500,'2022-06-09',''),
-('Bếp hồng ngoại','bep_hong_ngoai.png',3,1,3,30,3000,3500,'2022-06-09',''),
-('Bàn chải điện','ban_chai_dien.png',4,1,4,40,4000,4500,'2022-06-09',''),
-('Cốc viễn đông','coc_vien_dong.png',5,1,5,50,5000,5500,'2022-06-09',''),
-('Sữa chua trân châu','sua_chua_tran_chau.png',6,1,6,60,6000,6500,'2022-06-09',''),
-('Sữa tiệt trùng vinamilk','sua_tiet_trung_vinamilk.png',7,1,7,70,7000,7500,'2022-06-09',''),
-('Sting','sting.png',8,1,8,80,8000,8500,'2022-06-09',''),
-('Trà xanh không độ','tra_xanh_khong_do.png',9,1,9,90,9000,9500,'2022-06-09',''),
-('Lavie','lavie.png',10,1,10,100,10000,10500,'2022-06-09','');
+insert into tblProduct(`name`,`image`,category_id,unit_id,provider_id,quantity,price,saleable_qty,`status`,`description`,created_at,updated_at) values 
+('Đệm Everon','dem_everon.png',1,1,1,10,1000,15,1,'','2022-06-09',''),
+('Bim Bim Oishi','bim_bim_oishi.png',2,1,2,20,2000,25,0,'','2022-06-09',''),
+('Bếp hồng ngoại','bep_hong_ngoai.png',3,1,3,30,3000,35,1,'','2022-06-09',''),
+('Bàn chải điện','ban_chai_dien.png',4,1,4,40,4000,45,0,'','2022-06-09',''),
+('Cốc viễn đông','coc_vien_dong.png',5,1,5,50,5000,55,1,'','2022-06-09',''),
+('Sữa chua trân châu','sua_chua_tran_chau.png',6,1,6,60,6000,65,0,'','2022-06-09',''),
+('Sữa tiệt trùng vinamilk','sua_tiet_trung_vinamilk.png',7,1,7,70,7000,75,1,'','2022-06-09',''),
+('Sting','sting.png',8,1,8,80,8000,85,0,'','2022-06-09',''),
+('Trà xanh không độ','tra_xanh_khong_do.png',9,1,9,90,9000,95,1,'','2022-06-09',''),
+('Lavie','lavie.png',10,1,10,100,10000,105,0,'','2022-06-09','');
 
-insert into tblInvoiceDetail(invoice_id,product_id,`number`,export_price) values 
+insert into tblInvoiceDetail(invoice_id,product_id,quantity,price) values 
 (1,1,1,1500),
 (2,2,1,2500),
 (3,3,1,3500),
