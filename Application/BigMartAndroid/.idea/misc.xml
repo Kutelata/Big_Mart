@@ -3,16 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1835" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/drawable/bg_list_view.xml" value="0.1835" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/drawable/cut_card_background.xml" value="0.1975" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.195" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/drawable/ic_baseline_assignment_24.xml" value="0.195" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.1835" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1835" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.1835" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/drawable/ic_baseline_supervisor_account_24.xml" value="0.195" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/drawable/ic_home.xml" value="0.195" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1835" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/activity_login.xml" value="0.27717391304347827" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/activity_main.xml" value="0.3383152173913043" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/activity_register.xml" value="0.3383152173913043" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/item_hanghoa.xml" value="0.30932971014492755" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/item_khachhang.xml" value="0.23326502732240437" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/item_product.xml" value="0.30932971014492755" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/xml/network_security_config.xml" value="0.1" />
       </map>
     </option>
