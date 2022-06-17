@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,7 +15,8 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.project.R;
-import com.example.project.entities.NhanVien;
+import com.example.project.entities.Employee;
+import com.example.project.entities.Product;
 import com.example.project.utilities.CallAPIServer;
 import com.example.project.utilities.GlobalApplication;
 import com.google.android.material.button.MaterialButton;
@@ -43,30 +45,33 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void actionLogin(String userName, String password) {
-        String api = CallAPIServer.prepareAPI("employees");
+        String api = CallAPIServer.prepareAPI("");
 
         Response.Listener listener = response -> {
             String json = response.toString();
+
             Gson gson = new Gson();
-            TypeToken<List<NhanVien>> typeToken = new TypeToken<List<NhanVien>>() {
-            };
-            List<NhanVien> lst = gson.fromJson(json, typeToken.getType());
-            boolean result = false;
-            for (NhanVien nhanVien : lst) {
-                if (userName == nhanVien.getUsername()
-                        && password == nhanVien.getPassword()) {
-                    GlobalApplication.setNhanVien(nhanVien);
-                    result = true;
-                    break;
-                }
-            }
-            if (result) {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                finish();
-                startActivity(intent);
-            } else {
-                Toast.makeText(LoginActivity.this, "Tài khoản và mật khẩu không tồn tại", Toast.LENGTH_SHORT).show();
-            }
+            Product product = gson.fromJson(json, Product.class);
+//            TypeToken<List<Employee>> typeToken = new TypeToken<List<Employee>>() {
+//            };
+            Log.e("Test:", product.getTest() + " " + product.getTitle());
+//            List<Employee> lst = gson.fromJson(json, typeToken.getType());
+//            boolean result = false;
+//            for (Employee employee : lst) {
+//                if (userName == employee.getUsername()
+//                        && password == employee.getPassword()) {
+//                    GlobalApplication.setNhanVien(employee);
+//                    result = true;
+//                    break;
+//                }
+//            }
+//            if (result) {
+//                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                finish();
+//                startActivity(intent);
+//            } else {
+//                Toast.makeText(LoginActivity.this, "Tài khoản và mật khẩu không tồn tại", Toast.LENGTH_SHORT).show();
+//            }
         };
 
         Response.ErrorListener errorListener = error ->
