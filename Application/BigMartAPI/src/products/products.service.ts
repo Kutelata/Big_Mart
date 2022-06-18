@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ProductEntity } from './entity/products.entity';
@@ -13,31 +13,67 @@ export class ProductsService {
     constructor(@InjectRepository(ProductEntity) private readonly productModel: Repository<ProductEntity>) {}
 
     async findAll(): Promise<ProductEntity[]> {
-        return this.productModel.createQueryBuilder('product')
-            .innerJoinAndMapOne('product.idchungloai', CategoryEntity, 'cate', 'cate.id = product.idchungloai')
-            .innerJoinAndMapOne('product.iddonvitinh', UnitEntity, 'unit', 'unit.id = product.iddonvitinh')
-            .innerJoinAndMapOne('product.idnhacc', ProviderEntity, 'provider', 'provider.id = product.idnhacc')
+        try {
+            return this.productModel.createQueryBuilder('product')
+            .innerJoinAndMapOne('product.category_id', CategoryEntity, 'cate', 'cate.id = product.category_id')
+            .innerJoinAndMapOne('product.unit_id', UnitEntity, 'unit', 'unit.id = product.unit_id')
+            .innerJoinAndMapOne('product.provider_id', ProviderEntity, 'provider', 'provider.id = product.provider_id')
             .getMany(); 
+          } catch (err) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: 'Viet, Long ga qua, bi loi server roi',
+              }, HttpStatus.FORBIDDEN);
+          }
+       
     }
 
     async findOne(id: number): Promise<ProductEntity> {
-        return await this.productModel.createQueryBuilder('product')
-            .innerJoinAndMapOne('product.idchungloai', CategoryEntity, 'cate', 'cate.id = product.idchungloai')
-            .innerJoinAndMapOne('product.iddonvitinh', UnitEntity, 'unit', 'unit.id = product.iddonvitinh')
-            .innerJoinAndMapOne('product.idnhacc', ProviderEntity, 'provider', 'provider.id = product.idnhacc')
-            .where("product.id = "+`"${id['id']}"`)
-            .execute()
+        try {
+            return await this.productModel.createQueryBuilder('product')
+            .innerJoinAndMapOne('product.category_id', CategoryEntity, 'cate', 'cate.id = product.category_id')
+            .innerJoinAndMapOne('product.unit_id', UnitEntity, 'unit', 'unit.id = product.unit_id')
+            .innerJoinAndMapOne('product.provider_id', ProviderEntity, 'provider', 'provider.id = product.provider_id')
+            .where("product.id = "+`"${id}"`)
+            .getOne()
+          } catch (err) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: 'Viet, Long ga qua, bi loi server roi',
+              }, HttpStatus.FORBIDDEN);
+          }
+        
     }
-
     async update(id: number, products: ProductEntity){
-        await this.productModel.update(id, products)
+        try {
+            return await this.productModel.update(id, products)
+          } catch (err) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: 'Viet, Long ga qua, bi loi server roi',
+              }, HttpStatus.FORBIDDEN);
+          }
     }
 
     async addNew(products: ProductEntity): Promise<ProductEntity> {
-        return await this.productModel.save(products)
+        try {
+            return await this.productModel.save(products)
+          } catch (err) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: 'Viet, Long ga qua, bi loi server roi',
+              }, HttpStatus.FORBIDDEN);
+          }
     }
 
     async deleteOne(id: number): Promise<void>{
-        await this.productModel.delete(id)
+        try {
+            await this.productModel.delete(id)
+          } catch (err) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: 'Viet, Long ga qua, bi loi server roi',
+              }, HttpStatus.FORBIDDEN);
+          }
     }
 }

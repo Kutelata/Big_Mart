@@ -12,12 +12,12 @@ export class StoresController {
     }
 
     @Get(':id')
-    async getOneStore(@Param() id: number) {
+    async getOneStore(@Param('id') id: number) {
         return await this.storesService.findOne(id);
     }
 
     @Put(':id')
-    async update(@Param() id: number, @Body() createStoreDto: StoreEntity) {
+    async update(@Param('id') id: number, @Body() createStoreDto: StoreEntity) {
         return await this.storesService.update(id, createStoreDto);
     }
 
@@ -27,7 +27,7 @@ export class StoresController {
     }
 
     @Delete('deleteStore/:id')
-    async delete(@Param() id: number) {
+    async delete(@Param('id') id: number) {
         return await this.storesService.deleteOne(id);
     }
 }

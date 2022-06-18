@@ -1,31 +1,22 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({name: 'tblnhacungcap'})
+@Entity({name: 'tblProvider'})
 export class ProviderEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    tennhacc?: string;
+    name?: string;
 
     @Column()
-    diachi?: string;
+    address?: string;
 
     @Column()
-    sdt?: string;
+    phone?: string;
 
     @Column()
     email?: string;
 
-    @Column({ type: 'timestamp' })
-    ngaytao?: Date;
-
-    @Column( {type: 'datetime', nullable: true})
-    ngaycapnhat?: Date;
-
-    @Column()
-    ghichu?: string;
-
-    @Column()
-    trangthai?: string;
+    @Column({default: 1})
+    status?: number;
 }

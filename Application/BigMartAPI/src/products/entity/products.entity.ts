@@ -1,37 +1,43 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({name: 'tblhanghoa'})
+@Entity({name: 'tblProduct'})
 export class ProductEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    ten?: string;
+    name?: string;
+
+    @Column({nullable: true})
+    image?: string;
 
     @Column()
-    idchungloai?: number;
+    category_id?: number;
 
     @Column()
-    iddonvitinh?: number;
+    unit_id?: number;
 
     @Column()
-    idnhacc?: number;
+    provider_id?: number;
 
     @Column({type: 'float'})
-    soluong?: number;
+    quantity?: number;
 
     @Column({type: 'float'})
-    gianhap?: number;
+    price?: number;
 
-    @Column({type: 'float'})
-    giaxuat?: number;
+    @Column()
+    saleable_qty?: number;
 
     @Column({ type: 'timestamp' })
-    ngaytao?: Date;
+    created_at?: Date;
 
     @Column({type: 'datetime', nullable: true})
-    ngaycapnhat?: Date;
+    updated_at?: Date;
 
-    @Column()
-    ghichu?: string;
+    @Column({nullable: true})
+    description?: string;
+
+    @Column({default: 1})
+    status?: number;
 }

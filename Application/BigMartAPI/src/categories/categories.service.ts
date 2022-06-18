@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CategoryEntity } from './entity/categories.entity';
@@ -10,24 +10,59 @@ export class CategoriesService {
     
     
     async findAll(): Promise<CategoryEntity[]> {
-        return await this.cateModel.find();
+        try {
+            return await this.cateModel.find();
+          } catch (err) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: 'Viet, Long ga qua, bi loi server roi',
+              }, HttpStatus.FORBIDDEN);
+          }
     }
 
     async findOne(id: number): Promise<CategoryEntity> {
-        return await this.cateModel.createQueryBuilder('p')
-        .where("p.id = "+`"${id['id']}"`)
-        .execute()
+        try {
+            return await this.cateModel.createQueryBuilder('p')
+            .where("p.id = "+`"${id}"`)
+            .execute()
+          } catch (err) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: 'Viet, Long ga qua, bi loi server roi',
+              }, HttpStatus.FORBIDDEN);
+          }
     }
 
     async update(id: number, cates: CategoryEntity){
-        await this.cateModel.update(id, cates)
+        try {
+            await this.cateModel.update(id, cates)
+          } catch (err) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: 'Viet, Long ga qua, bi loi server roi',
+              }, HttpStatus.FORBIDDEN);
+          }
     }
 
     async addNew(cates: CategoryEntity): Promise<CategoryEntity> {
-        return await this.cateModel.save(cates)
+        try {
+            return await this.cateModel.save(cates)
+          } catch (err) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: 'Viet, Long ga qua, bi loi server roi',
+              }, HttpStatus.FORBIDDEN);
+          }
     }
 
     async deleteOne(id: number): Promise<void>{
-        await this.cateModel.delete(id)
+        try {
+            await this.cateModel.delete(id)
+          } catch (err) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: 'Viet, Long ga qua, bi loi server roi',
+              }, HttpStatus.FORBIDDEN);
+          }
     }
 }

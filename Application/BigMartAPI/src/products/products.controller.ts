@@ -12,12 +12,12 @@ export class ProductsController {
     }
 
     @Get(':id')
-    async getOneProduct(@Param() id: number) {
+    async getOneProduct(@Param('id') id: number) {
         return await this.productsService.findOne(id);
     }
 
     @Put(':id')
-    async update(@Param() id: number, @Body() createProductDto: ProductEntity) {
+    async update(@Param('id') id: number, @Body() createProductDto: ProductEntity) {
         return await this.productsService.update(id, createProductDto);
     }
 
@@ -27,7 +27,7 @@ export class ProductsController {
     }
 
     @Delete('deleteProduct/:id')
-    async delete(@Param() id: number) {
+    async delete(@Param('id') id: number) {
         return await this.productsService.deleteOne(id);
     }
 }

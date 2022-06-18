@@ -12,12 +12,12 @@ export class ProvidersController {
     }
 
     @Get(':id')
-    async getOneProvider(@Param() id: number) {
+    async getOneProvider(@Param('id') id: number) {
         return await this.providersService.findOne(id);
     }
 
     @Put(':id')
-    async update(@Param() id: number, @Body() createProviderDto: ProviderEntity) {
+    async update(@Param('id') id: number, @Body() createProviderDto: ProviderEntity) {
         return await this.providersService.update(id, createProviderDto);
     }
 
@@ -27,7 +27,7 @@ export class ProvidersController {
     }
 
     @Delete('deleteProvider/:id')
-    async delete(@Param() id: number) {
+    async delete(@Param('id') id: number) {
         return await this.providersService.deleteOne(id);
     }
 }

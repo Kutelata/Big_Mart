@@ -12,12 +12,12 @@ export class EmployeesController {
     }
 
     @Get(':id')
-    async getOneEmployee(@Param() id: number) {
+    async getOneEmployee(@Param('id') id: number) {
         return await this.employeesService.findOne(id);
     }
 
     @Put(':id')
-    async update(@Param() id: number, @Body() createEmployeeDto: EmployeeEntity) {
+    async update(@Param('id') id: number, @Body() createEmployeeDto: EmployeeEntity) {
         return await this.employeesService.update(id, createEmployeeDto);
     }
 
@@ -27,7 +27,7 @@ export class EmployeesController {
     }
 
     @Delete('deleteEmployee/:id')
-    async delete(@Param() id: number) {
+    async delete(@Param('id') id: number) {
         return await this.employeesService.deleteOne(id);
     }
 }

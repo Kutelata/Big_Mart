@@ -13,12 +13,12 @@ export class UnitController {
     }
 
     @Get(':id')
-    async getOneUnit(@Param() id: number) {
+    async getOneUnit(@Param('id') id: number) {
         return await this.unitService.findOne(id);
     }
 
     @Put(':id')
-    async update(@Param() id: number, @Body() createUnitDto: UnitEntity) {
+    async update(@Param('id') id: number, @Body() createUnitDto: UnitEntity) {
         return await this.unitService.update(id, createUnitDto);
     }
 
@@ -28,7 +28,7 @@ export class UnitController {
     }
 
     @Delete('deleteUnit/:id')
-    async delete(@Param() id: number) {
+    async delete(@Param('id') id: number) {
         return await this.unitService.deleteOne(id);
     }
 }

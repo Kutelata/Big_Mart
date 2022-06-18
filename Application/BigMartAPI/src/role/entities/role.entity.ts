@@ -1,13 +1,13 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({name: 'tblUnit'})
-export class UnitEntity {
+@Entity({name: 'tblRole'})
+export class RoleEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
     name?: string;
 
-    @Column({nullable: true})
-    value?: string;
+    @Column()
+    position?: string;
 }

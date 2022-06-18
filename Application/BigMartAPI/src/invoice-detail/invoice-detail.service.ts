@@ -1,19 +1,21 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CustomerEntity } from 'src/customers/entity/customers.entity';
+import { InvoiceEntity } from 'src/invoices/entity/invoices.entity';
+import { ProductEntity } from 'src/products/entity/products.entity';
 import { Repository } from 'typeorm';
-import { PointEntity } from './entity/points.entity';
+import { InvoiceDetailEntity } from './entity/invoice-detail.entity';
 
 @Injectable()
-export class PointsService {
+export class InvoiceDetailService {
 
-    constructor(@InjectRepository(PointEntity) private readonly pointModel: Repository<PointEntity>) {}
+    constructor(@InjectRepository(InvoiceDetailEntity) private readonly invoiceDetailModel: Repository<InvoiceDetailEntity>) {}
     
     
-    async findAll(): Promise<PointEntity[]> {
+    async findAll(): Promise<InvoiceDetailEntity[]> {
         try {
-            return this.pointModel.createQueryBuilder('p')
-            .innerJoinAndMapOne('p.customer_id', CustomerEntity, 'c', 'c.id = p.customer_id')
+            return this.invoiceDetailModel.createQueryBuilder('id')
+            .innerJoinAndMapOne('id.invoice_id', InvoiceEntity, 'i', 'i.id = id.invoice_id')
+            .innerJoinAndMapOne('id.product_id', ProductEntity, 'p', 'p.id = id.product_id')
             .getMany(); 
             } catch (err) {
             throw new HttpException({
@@ -23,11 +25,12 @@ export class PointsService {
             }
     }
 
-    async findOne(id: number): Promise<PointEntity> {
+    async findOne(id: number): Promise<InvoiceDetailEntity> {InvoiceDetailEntity
         try {
-            return this.pointModel.createQueryBuilder('p')
-            .innerJoinAndMapOne('p.customer_id', CustomerEntity, 'c', 'c.id = p.customer_id')
-            .where("p.id = "+`"${id}"`)
+            return this.invoiceDetailModel.createQueryBuilder('id')
+            .innerJoinAndMapOne('id.invoice_id', InvoiceEntity, 'i', 'i.id = id.invoice_id')
+            .innerJoinAndMapOne('id.product_id', ProductEntity, 'p', 'p.id = id.product_id')
+            .where("id.id = "+`"${id}"`)
             .getOne()
             } catch (err) {
             throw new HttpException({
@@ -37,9 +40,9 @@ export class PointsService {
             }
     }
 
-    async update(id: number, payment: PointEntity){
+    async update(id: number, invoiceDetail: InvoiceDetailEntity){
         try {
-            await this.pointModel.update(id, payment)
+            await this.invoiceDetailModel.update(id, invoiceDetail)
             } catch (err) {
             throw new HttpException({
                 status: HttpStatus.FORBIDDEN,
@@ -48,9 +51,9 @@ export class PointsService {
             }
     }
 
-    async addNew(payment: PointEntity): Promise<PointEntity> {
+    async addNew(invoiceDetail: InvoiceDetailEntity): Promise<InvoiceDetailEntity> {
         try {
-            return await this.pointModel.save(payment)
+            return await this.invoiceDetailModel.save(invoiceDetail)
             } catch (err) {
             throw new HttpException({
                 status: HttpStatus.FORBIDDEN,
@@ -61,7 +64,7 @@ export class PointsService {
 
     async deleteOne(id: number): Promise<void>{
         try {
-            await this.pointModel.delete(id)
+            await this.invoiceDetailModel.delete(id)
             } catch (err) {
             throw new HttpException({
                 status: HttpStatus.FORBIDDEN,

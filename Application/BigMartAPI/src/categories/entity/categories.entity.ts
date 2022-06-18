@@ -1,25 +1,16 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({name: 'tblchungloai'})
+@Entity({name: 'tblCategory'})
 export class CategoryEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    ten?: string;
+    name?: string;
 
-    @Column()
-    mota?: string;
+    @Column({nullable: true})
+    description?: string;
 
-    @Column()
-    anhminhhoa?: string;
-
-    @Column({ type: 'timestamp' })
-    ngaytao?: Date;
-
-    @Column({type: 'datetime', nullable: true})
-    ngaycapnhat?: Date;
-
-    @Column()
-    trangthai?: string;
+    @Column({nullable: true})
+    image?: string;
 }

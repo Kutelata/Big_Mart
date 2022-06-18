@@ -13,12 +13,12 @@ export class CategoriesController {
     }
 
     @Get(':id')
-    async getOneCategory(@Param() id: number) {
+    async getOneCategory(@Param('id') id: number) {
         return await this.categoriesService.findOne(id);
     }
 
     @Put(':id')
-    async update(@Param() id: number, @Body() createCategoryDto: CategoryEntity) {
+    async update(@Param('id') id: number, @Body() createCategoryDto: CategoryEntity) {
         return await this.categoriesService.update(id, createCategoryDto);
     }
 
@@ -28,7 +28,7 @@ export class CategoriesController {
     }
 
     @Delete('deleteCategory/:id')
-    async delete(@Param() id: number) {
+    async delete(@Param('id') id: number) {
         return await this.categoriesService.deleteOne(id);
     }
 }

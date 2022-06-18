@@ -1,4 +1,4 @@
-import { HttpServer, HttpService, Injectable } from '@nestjs/common';
+import { HttpException, HttpServer, HttpService, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ProviderEntity } from './entity/providers.entity';
@@ -9,24 +9,73 @@ export class ProvidersService {
     
     
     async findAll(): Promise<ProviderEntity[]> {
-        return await this.providersModel.find();
+        try {
+            return await this.providersModel.find();
+        } catch (err) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: 'Viet, Long ga qua, bi loi server roi',
+              }, HttpStatus.FORBIDDEN);
+        }
     }
 
     async findOne(id: number): Promise<ProviderEntity> {
-        return await this.providersModel.createQueryBuilder('p')
-        .where("p.id = "+`"${id['id']}"`)
+        try {
+            return await this.providersModel.createQueryBuilder('p')
+        .where("p.id = "+`"${id}"`)
         .execute()
+        } catch (err) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: 'Viet, Long ga qua, bi loi server roi',
+              }, HttpStatus.FORBIDDEN);
+        }
     }
 
     async update(id: number, providers: ProviderEntity){
-        await this.providersModel.update(id, providers)
+        try {
+            await this.providersModel.update(id, providers)
+        } catch (err) {
+           if (err.code === 'ER_DUP_ENTRY') {
+                throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: 'Viet, Long ga qua, bi trung email roi',
+              }, HttpStatus.FORBIDDEN);
+           } else {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: 'Viet, Long ga qua, bi loi server roi',
+              }, HttpStatus.FORBIDDEN);
+            }
+        }
     }
 
     async addNew(providers: ProviderEntity): Promise<ProviderEntity> {
-        return await this.providersModel.save(providers)
+        try {
+            return await this.providersModel.save(providers)
+        } catch (err) {
+           if (err.code === 'ER_DUP_ENTRY') {
+                throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: 'Viet, Long ga qua, bi trung email roi',
+              }, HttpStatus.FORBIDDEN);
+           } else {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: 'Viet, Long ga qua, bi loi server roi',
+              }, HttpStatus.FORBIDDEN);
+            }
+        }
     }
 
     async deleteOne(id: number): Promise<void>{
-        await this.providersModel.delete(id)
+        try {
+            await this.providersModel.delete(id)
+        } catch (err) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: 'Viet, Long ga qua, bi loi server roi',
+              }, HttpStatus.FORBIDDEN);
+        }
     }
 }

@@ -12,12 +12,12 @@ export class CustomersController {
     }
 
     @Get(':id')
-    async getOneCustomer(@Param() id: number) {
+    async getOneCustomer(@Param('id') id: number) {
         return await this.customersService.findOne(id);
     }
 
     @Put(':id')
-    async update(@Param() id: number, @Body() createCustomerDto: CustomerEntity) {
+    async update(@Param('id') id: number, @Body() createCustomerDto: CustomerEntity) {
         return await this.customersService.update(id, createCustomerDto);
     }
 
@@ -27,7 +27,7 @@ export class CustomersController {
     }
 
     @Delete('deleteCustomer/:id')
-    async delete(@Param() id: number) {
+    async delete(@Param('id') id: number) {
         return await this.customersService.deleteOne(id);
     }
 }

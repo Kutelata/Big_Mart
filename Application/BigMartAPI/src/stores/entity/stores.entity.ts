@@ -1,28 +1,25 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({name: 'tblcuahang'})
+@Entity({name: 'tblStore'})
 export class StoreEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    tencuahang?: string;
+    name?: string;
 
     @Column()
-    diachi?: string;
+    address?: string;
 
     @Column()
-    sdt?: string;
+    phone?: string;
 
     @Column()
-    idnhanvien?: number;
+    employee_id?: number;
 
     @Column()
-    giomocua?: number;
+    open_time?: number;
 
     @Column()
-    giodongcua?: number;
-
-    @Column()
-    ghichu?: string;
+    close_time?: number;
 }

@@ -1,34 +1,34 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({name: 'tblkhachhang'})
+@Entity({name: 'tblCustomer'})
 export class CustomerEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    ten?: string;
+    name?: string;
 
     @Column()
-    gioitinh?: string;
+    gender?: string;
 
     @Column({type: 'date', nullable: true})
-    ngaysinh?: Date;
+    birthday?: Date;
 
     @Column()
-    dienthoai?: string;
+    phone?: string;
     
     @Column()
-    diachi?: string;
+    address?: string;
 
     @Column()
     email?: string;
 
     @Column({ type: 'timestamp' })
-    ngaytao?: Date;
+    created_at?: Date;
 
     @Column({type: 'datetime', nullable: true})
-    ngaycapnhat?: Date;
+    updated_at?: Date;
 
-    @Column()
-    trangthai?: string;
+    @Column({default: 1})
+    status?: number;
 }
