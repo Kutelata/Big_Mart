@@ -45,16 +45,19 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void actionLogin(String userName, String password) {
-        String api = CallAPIServer.prepareAPI("");
-
-        Response.Listener listener = response -> {
-            String json = response.toString();
-
-            Gson gson = new Gson();
-            Product product = gson.fromJson(json, Product.class);
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        finish();
+        startActivity(intent);
+//        String api = CallAPIServer.prepareAPI("");
+//
+//        Response.Listener listener = response -> {
+//            String json = response.toString();
+//
+//            Gson gson = new Gson();
+//            Product product = gson.fromJson(json, Product.class);
 //            TypeToken<List<Employee>> typeToken = new TypeToken<List<Employee>>() {
 //            };
-            Log.e("Test:", product.getTest() + " " + product.getTitle());
+//            Log.e("Test:", product.getTest() + " " + product.getTitle());
 //            List<Employee> lst = gson.fromJson(json, typeToken.getType());
 //            boolean result = false;
 //            for (Employee employee : lst) {
@@ -72,14 +75,14 @@ public class LoginActivity extends AppCompatActivity {
 //            } else {
 //                Toast.makeText(LoginActivity.this, "Tài khoản và mật khẩu không tồn tại", Toast.LENGTH_SHORT).show();
 //            }
-        };
+//        };
 
-        Response.ErrorListener errorListener = error ->
-                Toast.makeText(LoginActivity.this, "Có lỗi xảy ra, đăng nhập thất bại!", Toast.LENGTH_SHORT).show();
-
-        StringRequest stringRequest = new StringRequest(api, listener, errorListener);
-        RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
-        requestQueue.add(stringRequest);
+//        Response.ErrorListener errorListener = error ->
+//                Toast.makeText(LoginActivity.this, "Có lỗi xảy ra, đăng nhập thất bại!", Toast.LENGTH_SHORT).show();
+//
+//        StringRequest stringRequest = new StringRequest(api, listener, errorListener);
+//        RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
+//        requestQueue.add(stringRequest);
     }
 
     private void redirectRegister() {

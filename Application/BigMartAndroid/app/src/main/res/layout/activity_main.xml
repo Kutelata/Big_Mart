@@ -45,7 +45,7 @@
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="match_parent"
         android:layout_below="@id/rlHomeTop"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
@@ -55,6 +55,7 @@
         android:rowCount="2">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardCustomer"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_row="0"
@@ -89,6 +90,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardInvoice"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_row="0"
@@ -124,11 +126,48 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardProduct"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_row="1"
             android:layout_rowWeight="1"
             android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:textAlignment="center"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_balance" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Danh sách sản phẩm"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardLogout"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_row="1"
+            android:layout_rowWeight="1"
+            android:layout_column="1"
             android:layout_columnWeight="1"
             android:textAlignment="center"
             app:cardCornerRadius="8dp"
