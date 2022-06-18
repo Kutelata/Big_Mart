@@ -136,9 +136,9 @@ create table tblProduct
 
 create table tblInvoiceDetail
 (
+    id int auto_increment primary key,
     invoice_id int,
     product_id int,
     quantity int,
-    price float,
-    primary key(invoice_id, product_id)
+    price float
 );

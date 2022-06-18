@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2022 at 12:17 PM
+-- Generation Time: Jun 18, 2022 at 10:39 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -197,8 +197,9 @@ INSERT INTO `tblinvoice` (`id`, `created_at`, `ship_at`, `shipment_id`, `payment
 --
 
 CREATE TABLE `tblinvoicedetail` (
-  `invoice_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `invoice_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   `price` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -207,17 +208,17 @@ CREATE TABLE `tblinvoicedetail` (
 -- Dumping data for table `tblinvoicedetail`
 --
 
-INSERT INTO `tblinvoicedetail` (`invoice_id`, `product_id`, `quantity`, `price`) VALUES
-(1, 1, 1, 1500),
-(2, 2, 1, 2500),
-(3, 3, 1, 3500),
-(4, 4, 1, 4500),
-(5, 5, 1, 5500),
-(6, 6, 1, 6500),
-(7, 7, 1, 7500),
-(8, 8, 1, 8500),
-(9, 9, 1, 9500),
-(10, 10, 1, 10500);
+INSERT INTO `tblinvoicedetail` (`id`, `invoice_id`, `product_id`, `quantity`, `price`) VALUES
+(1, 1, 1, 1, 1500),
+(2, 2, 2, 1, 2500),
+(3, 3, 3, 1, 3500),
+(4, 4, 4, 1, 4500),
+(5, 5, 5, 1, 5500),
+(6, 6, 6, 1, 6500),
+(7, 7, 7, 1, 7500),
+(8, 8, 8, 1, 8500),
+(9, 9, 9, 1, 9500),
+(10, 10, 10, 1, 10500);
 
 -- --------------------------------------------------------
 
@@ -455,7 +456,7 @@ ALTER TABLE `tblinvoice`
 -- Indexes for table `tblinvoicedetail`
 --
 ALTER TABLE `tblinvoicedetail`
-  ADD PRIMARY KEY (`invoice_id`,`product_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tblpayment`
@@ -533,6 +534,12 @@ ALTER TABLE `tblgiftpoint`
 -- AUTO_INCREMENT for table `tblinvoice`
 --
 ALTER TABLE `tblinvoice`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `tblinvoicedetail`
+--
+ALTER TABLE `tblinvoicedetail`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
