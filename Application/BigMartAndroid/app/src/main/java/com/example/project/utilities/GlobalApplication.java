@@ -1,11 +1,11 @@
 package com.example.project.utilities;
 
 import android.app.Application;
-import com.example.project.entities.dto.EmployeeSaveLogin;
+import com.example.project.entities.dto.EmployeeDTO;
 
 public class GlobalApplication extends Application {
     private static GlobalApplication instance;
-    private EmployeeSaveLogin mEmployeeSaveLogin;
+    private EmployeeDTO mEmployeeSaveLogin;
 
     @Override
     public void onCreate() {
@@ -17,11 +17,11 @@ public class GlobalApplication extends Application {
         return instance;
     }
 
-    public EmployeeSaveLogin getEmployeeSaveLogin() {
+    public EmployeeDTO getEmployeeSaveLogin() {
         return mEmployeeSaveLogin;
     }
 
-    public void setEmployeeSaveLogin(EmployeeSaveLogin mEmployeeSaveLogin) {
+    public void setEmployeeSaveLogin(EmployeeDTO mEmployeeSaveLogin) {
         this.mEmployeeSaveLogin = mEmployeeSaveLogin;
     }
 }

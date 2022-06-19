@@ -37,7 +37,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         cardLogout.setOnClickListener(view -> {
-
+            Intent intent = new Intent(this, LoginActivity.class);
+            finish();
+            startActivity(intent);
         });
     }
 }

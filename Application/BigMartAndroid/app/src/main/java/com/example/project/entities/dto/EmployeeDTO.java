@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
-public class EmployeeSaveLogin {
+public class EmployeeDTO {
     public Integer id;
     public String name;
     public Integer gender;
