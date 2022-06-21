@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".activities.LoginActivity">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnEmployee"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        android:backgroundTint="@color/design_default_color_secondary"
+        android:text="Nhân viên" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCustomer"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="50dp"
+        android:backgroundTint="@color/design_default_color_secondary"
+        android:text="Khách hàng" />
+</RelativeLayout>

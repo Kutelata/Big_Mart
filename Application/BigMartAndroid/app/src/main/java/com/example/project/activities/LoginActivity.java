@@ -41,6 +41,9 @@ public class LoginActivity extends AppCompatActivity {
         edtPassword = findViewById(R.id.edtPassword);
         tvRegister = findViewById(R.id.register);
 
+        edtUserName.setText("vothithanhthao");
+        edtPassword.setText("vothithanhthao");
+
         btnLogin.setOnClickListener(view ->
                 actionLogin(edtUserName.getText().toString(), edtPassword.getText().toString()));
 

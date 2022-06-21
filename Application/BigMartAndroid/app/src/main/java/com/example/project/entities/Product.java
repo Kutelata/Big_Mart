@@ -5,146 +5,146 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Date;
 
 public class Product {
-    private Integer Id;
-    private String Name;
-    private String Image;
+    private Integer id;
+    private String name;
+    private String image;
     @SerializedName("category_id")
-    private Integer CategoryId;
+    private Integer categoryId;
     @SerializedName("unit_id")
-    private Integer UnitId;
+    private Integer unitId;
     @SerializedName("provider_id")
-    private Integer ProviderId;
-    private Integer Quantity;
-    private Float Price;
+    private Integer providerId;
+    private Integer quantity;
+    private Float price;
     @SerializedName("saleable_qty")
-    private Integer SaleableQty ;
-    private Integer Status;
-    private String Description;
+    private Integer saleableQty ;
+    private Integer status;
+    private String description;
     @SerializedName("created_at")
-    private Date CreatedAt;
+    private Date createdAt;
     @SerializedName("updated_at")
-    private Date UpdatedAt;
+    private Date updatedAt;
 
     public Product() {
     }
 
     public Product(Integer id, String name, String image, Integer categoryId, Integer unitId, Integer providerId, Integer quantity, Float price, Integer saleableQty, Integer status, String description, Date createdAt, Date updatedAt) {
-        Id = id;
-        Name = name;
-        Image = image;
-        CategoryId = categoryId;
-        UnitId = unitId;
-        ProviderId = providerId;
-        Quantity = quantity;
-        Price = price;
-        SaleableQty = saleableQty;
-        Status = status;
-        Description = description;
-        CreatedAt = createdAt;
-        UpdatedAt = updatedAt;
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.categoryId = categoryId;
+        this.unitId = unitId;
+        this.providerId = providerId;
+        this.quantity = quantity;
+        this.price = price;
+        this.saleableQty = saleableQty;
+        this.status = status;
+        this.description = description;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getImage() {
-        return Image;
+        return image;
     }
 
     public void setImage(String image) {
-        Image = image;
+        this.image = image;
     }
 
     public Integer getCategoryId() {
-        return CategoryId;
+        return categoryId;
     }
 
     public void setCategoryId(Integer categoryId) {
-        CategoryId = categoryId;
+        this.categoryId = categoryId;
     }
 
     public Integer getUnitId() {
-        return UnitId;
+        return unitId;
     }
 
     public void setUnitId(Integer unitId) {
-        UnitId = unitId;
+        this.unitId = unitId;
     }
 
     public Integer getProviderId() {
-        return ProviderId;
+        return providerId;
     }
 
     public void setProviderId(Integer providerId) {
-        ProviderId = providerId;
+        this.providerId = providerId;
     }
 
     public Integer getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
     public void setQuantity(Integer quantity) {
-        Quantity = quantity;
+        this.quantity = quantity;
     }
 
     public Float getPrice() {
-        return Price;
+        return price;
     }
 
     public void setPrice(Float price) {
-        Price = price;
+        this.price = price;
     }
 
     public Integer getSaleableQty() {
-        return SaleableQty;
+        return saleableQty;
     }
 
     public void setSaleableQty(Integer saleableQty) {
-        SaleableQty = saleableQty;
+        this.saleableQty = saleableQty;
     }
 
     public Integer getStatus() {
-        return Status;
+        return status;
     }
 
     public void setStatus(Integer status) {
-        Status = status;
+        this.status = status;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public Date getCreatedAt() {
-        return CreatedAt;
+        return createdAt;
     }
 
     public void setCreatedAt(Date createdAt) {
-        CreatedAt = createdAt;
+        this.createdAt = createdAt;
     }
 
     public Date getUpdatedAt() {
-        return UpdatedAt;
+        return updatedAt;
     }
 
     public void setUpdatedAt(Date updatedAt) {
-        UpdatedAt = updatedAt;
+        this.updatedAt = updatedAt;
     }
 }

@@ -5,112 +5,112 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Date;
 
 public class Customer {
-    private Integer Id;
-    private String Name;
-    private Integer Gender;
-    private Date Birthday;
-    private String Phone;
-    private String Address;
-    private String Email;
-    private Integer Status;
+    private Integer id;
+    private String name;
+    private Integer gender;
+    private Date birthday;
+    private String phone;
+    private String address;
+    private String email;
+    private Integer status;
     @SerializedName("created_at")
-    private Date CreatedAt;
+    private Date createdAt;
     @SerializedName("updated_at")
-    private Date UpdatedAt;
+    private Date updatedAt;
 
     public Customer() {
     }
 
     public Customer(Integer id, String name, Integer gender, Date birthday, String phone, String address, String email, Integer status, Date createdAt, Date updatedAt) {
-        Id = id;
-        Name = name;
-        Gender = gender;
-        Birthday = birthday;
-        Phone = phone;
-        Address = address;
-        Email = email;
-        Status = status;
-        CreatedAt = createdAt;
-        UpdatedAt = updatedAt;
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+        this.birthday = birthday;
+        this.phone = phone;
+        this.address = address;
+        this.email = email;
+        this.status = status;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public Integer getGender() {
-        return Gender;
+        return gender;
     }
 
     public void setGender(Integer gender) {
-        Gender = gender;
+        this.gender = gender;
     }
 
     public Date getBirthday() {
-        return Birthday;
+        return birthday;
     }
 
     public void setBirthday(Date birthday) {
-        Birthday = birthday;
+        this.birthday = birthday;
     }
 
     public String getPhone() {
-        return Phone;
+        return phone;
     }
 
     public void setPhone(String phone) {
-        Phone = phone;
+        this.phone = phone;
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(String address) {
-        Address = address;
+        this.address = address;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public Integer getStatus() {
-        return Status;
+        return status;
     }
 
     public void setStatus(Integer status) {
-        Status = status;
+        this.status = status;
     }
 
     public Date getCreatedAt() {
-        return CreatedAt;
+        return createdAt;
     }
 
     public void setCreatedAt(Date createdAt) {
-        CreatedAt = createdAt;
+        this.createdAt = createdAt;
     }
 
     public Date getUpdatedAt() {
-        return UpdatedAt;
+        return updatedAt;
     }
 
     public void setUpdatedAt(Date updatedAt) {
-        UpdatedAt = updatedAt;
+        this.updatedAt = updatedAt;
     }
 }
