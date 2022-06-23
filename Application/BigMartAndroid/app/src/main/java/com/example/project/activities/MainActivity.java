@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -18,6 +17,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.project.R;
 import com.example.project.adapters.AdapterProduct;
+import com.example.project.databinding.ActivityMainBinding;
+import com.example.project.entities.Category;
 import com.example.project.entities.dto.ProductDTO;
 import com.example.project.utilities.CallAPIServer;
 import com.example.project.utilities.GlobalApplication;
@@ -27,30 +28,32 @@ import com.google.gson.reflect.TypeToken;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    Button btnCart, btnLogout;
+    ActivityMainBinding binding;
+    Button btnCart, btnSearch;
     Spinner sCategory;
     ListView lvProduct;
-    TextView tvUserName;
+    TextView tvUserName, tvLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        btnCart = findViewById(R.id.btnCart);
-        btnLogout = findViewById(R.id.btnLogout);
-        sCategory = findViewById(R.id.sCategory);
-        lvProduct = findViewById(R.id.lvProduct);
-        tvUserName = findViewById(R.id.tvUserName);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        btnCart = binding.btnCart;
+        btnSearch = binding.btnSearch;
+        sCategory = binding.sCategory;
+        lvProduct = binding.lvProduct;
+        tvUserName = binding.tvUserName;
+        tvLogout = binding.tvLogout;
 
         tvUserName.setText(GlobalApplication.getInstance().getEmployeeSaveLogin().name);
 
 //        btnCart
 
-        btnLogout.setOnClickListener(view -> {
-            Intent intent = new Intent(this, LoginActivity.class);
-            finish();
-            startActivity(intent);
+        tvLogout.setOnClickListener(view -> {
+            logout();
         });
 
         getListProduct();
@@ -76,4 +79,28 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+    private void getListCategory(){
+        String api = CallAPIServer.prepareAPI("categories");
+
+        Response.Listener<String> listener = response -> {
+            String json = response;
+            Gson gson = new Gson();
+            TypeToken<List<Category>> typeToken = new TypeToken<List<Category>>() {
+            };
+            List<Category> categories = gson.fromJson(json, typeToken.getType());
+
+
+        };
+
+        Response.ErrorListener errorListener = error -> Toast.makeText(this, "Có lỗi xảy ra, không lấy được danh sách sản phẩm!", Toast.LENGTH_SHORT).show();
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, api, listener, errorListener);
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
+    private void logout(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        finish();
+        startActivity(intent);
+    }
 }

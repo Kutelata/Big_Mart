@@ -38,8 +38,6 @@ public class AdapterProduct extends ArrayAdapter<ProductDTO> {
 
         ProductDTO productDTO = mProductDTOs.get(position);
 
-        Log.e("Error", productDTO.name);
-
         TextView tvProductName = item.findViewById(R.id.tvProductName);
         TextView tvProductPrice = item.findViewById(R.id.tvProductPrice);
 
