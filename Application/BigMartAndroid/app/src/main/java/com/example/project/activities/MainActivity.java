@@ -85,10 +85,12 @@ public class MainActivity extends AppCompatActivity {
         Response.Listener<String> listener = response -> {
             String json = response;
             Gson gson = new Gson();
-            TypeToken<List<Category>> typeToken = new TypeToken<List<Category>>() {
+            TypeToken<List<CategoryDTO>> typeToken = new TypeToken<List<CategoryDTO>>() {
             };
-            List<Category> categories = gson.fromJson(json, typeToken.getType());
-
+            List<CategoryDTO> categoryDTOs = gson.fromJson(json, typeToken.getType());
+            ArrayAdapter<CategoryDTO> adapter = new ArrayAdapter<CategoryDTO>(this, android.R.layout.simple_spinner_dropdown_item, categoryDTOs);
+            sCategory.setAdapter(adapter);
+            sCategory.setSelection(adapter.getPosition(myItem));
 
         };
 
