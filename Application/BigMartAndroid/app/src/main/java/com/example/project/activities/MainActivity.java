@@ -34,7 +34,7 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DialogSearch.ISearch {
     ActivityMainBinding binding;
     Button btnCart, btnSearch;
     Spinner sCategory;
@@ -58,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
         tvUserName.setText(GlobalApplication.getInstance().getEmployeeSaveLogin().name);
 
 //        btnCart
+        btnSearch.setOnClickListener(view -> {
+            showDialogSearch();
+        });
 
         tvLogout.setOnClickListener(view -> {
             logout();
@@ -124,6 +127,16 @@ public class MainActivity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, api, listener, errorListener);
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+    }
+
+    private void showDialogSearch(){
+        DialogSearch dialogSearch = new DialogSearch(this);
+        dialogSearch.show();
+    }
+
+    @Override
+    public void searchProductName(String productName){
+
     }
 
     private void logout(){

@@ -1,10 +1,14 @@
-<?php 
+<?php
 
-require_once './dao/ControllerInterface.php';
-
-class Controller implements ControllerInterface {
-    public function getParams() 
+class Controller
+{
+    public function getParams()
     {
         return $_POST;
+    }
+
+    public function getBaseUrl()
+    {
+        return $_SERVER['HTTP_ORIGIN'];
     }
 }

@@ -1,0 +1,41 @@
+.my-btn{
+
+}
+
+.my-btn__dropdown--group{
+    border-radius: 0 0.375rem 0.375rem 0;
+}
+
+.my-input-group{
+    display: flex;
+    width: 150px;
+}
+
+.my-input-group span{
+    width: 120px;
+    margin-left: 10px;
+}
+
+.my-input-group input{
+    border-top-right-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+}
+
+.my-data--in-page{
+    margin-right: 10px;
+}
+
+#pre-page{
+    margin-right: 5px;
+}
+
+#next-page{
+    margin-left: 5px;
+}
+
+.paging-group{
+    margin: 20px 0 10px 0;
+    display: inline-flex;
+    justify-content: end;
+    align-items: center;
+}
