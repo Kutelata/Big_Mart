@@ -23,6 +23,7 @@ import com.example.project.R;
 import com.example.project.adapters.AdapterProduct;
 import com.example.project.databinding.ActivityMainBinding;
 import com.example.project.entities.Category;
+import com.example.project.entities.Product;
 import com.example.project.entities.dto.CategoryDTO;
 import com.example.project.entities.dto.EmployeeDTO;
 import com.example.project.entities.dto.ProductDTO;
@@ -69,31 +70,40 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
         sCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                CategoryDTO categoryDTO = (CategoryDTO) adapterView.getSelectedItem();
-                Log.e("Error", categoryDTO.name);
+                String categoryName = (String) adapterView.getSelectedItem();
+                getListProduct(categoryName);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+                getListProduct("Tất cả");
             }
         });
 
-        getListProduct();
         getListCategory();
     }
 
-    private void getListProduct(){
+    private void getListProduct(String categoryName) {
         String api = CallAPIServer.prepareAPI("products");
 
         Response.Listener<String> listener = response -> {
             String json = response;
             Gson gson = new Gson();
+            AdapterProduct adapterProduct;
             TypeToken<List<ProductDTO>> typeToken = new TypeToken<List<ProductDTO>>() {
             };
             List<ProductDTO> productDTOs = gson.fromJson(json, typeToken.getType());
-
-            AdapterProduct adapterProduct = new AdapterProduct(this, R.layout.item_product, productDTOs);
+            if (!categoryName.equals("Tất cả")) {
+                List<ProductDTO> newProductDTOs = new ArrayList<>();
+                for (ProductDTO productDTO : productDTOs) {
+                    if (categoryName.equals(productDTO.categoryId.getName())) {
+                        newProductDTOs.add(productDTO);
+                    }
+                }
+                adapterProduct = new AdapterProduct(this, R.layout.item_product, newProductDTOs);
+            } else {
+                adapterProduct = new AdapterProduct(this, R.layout.item_product, productDTOs);
+            }
             lvProduct.setAdapter(adapterProduct);
         };
 
@@ -103,24 +113,25 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
         requestQueue.add(stringRequest);
     }
 
-    private void getListCategory(){
+    private void getListCategory() {
         String api = CallAPIServer.prepareAPI("categories");
 
         Response.Listener<String> listener = response -> {
-            ArrayList<CategoryDTO> categorySpinners = new ArrayList<>();
+            ArrayList<String> categorySpinners = new ArrayList<>();
             String json = response;
             Gson gson = new Gson();
             TypeToken<List<Category>> typeToken = new TypeToken<List<Category>>() {
             };
             List<Category> categories = gson.fromJson(json, typeToken.getType());
 
+            categorySpinners.add("Tất cả");
             for (Category category : categories) {
-                Log.e("Error", category.getName());
-                categorySpinners.add(new CategoryDTO(category.getId(), category.getName()));
+                categorySpinners.add(category.getName());
             }
 
-            ArrayAdapter<CategoryDTO> adapter = new ArrayAdapter<CategoryDTO>(this, android.R.layout.simple_spinner_dropdown_item, categorySpinners);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, categorySpinners);
             sCategory.setAdapter(adapter);
+            sCategory.setSelection(0);
         };
 
         Response.ErrorListener errorListener = error -> Toast.makeText(this, "Có lỗi xảy ra, không lấy được danh sách danh mục!", Toast.LENGTH_SHORT).show();
@@ -129,17 +140,43 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
         requestQueue.add(stringRequest);
     }
 
-    private void showDialogSearch(){
+    private void showDialogSearch() {
         DialogSearch dialogSearch = new DialogSearch(this);
         dialogSearch.show();
     }
 
     @Override
-    public void searchProductName(String productName){
+    public void searchProductName(String productName) {
+        String api = CallAPIServer.prepareAPI("products");
 
+        Response.Listener<String> listener = response -> {
+            String json = response;
+            Gson gson = new Gson();
+            AdapterProduct adapterProduct;
+            TypeToken<List<ProductDTO>> typeToken = new TypeToken<List<ProductDTO>>() {
+            };
+            List<ProductDTO> productDTOs = gson.fromJson(json, typeToken.getType());
+            if (!productName.equals("")) {
+                List<ProductDTO> newProductDTOs = new ArrayList<>();
+                for (ProductDTO productDTO : productDTOs) {
+                    if (productDTO.name.contains(productName)) {
+                        newProductDTOs.add(productDTO);
+                    }
+                }
+                adapterProduct = new AdapterProduct(this, R.layout.item_product, newProductDTOs);
+            } else {
+                adapterProduct = new AdapterProduct(this, R.layout.item_product, productDTOs);
+            }
+            lvProduct.setAdapter(adapterProduct);
+        };
+
+        Response.ErrorListener errorListener = error -> Toast.makeText(this, "Có lỗi xảy ra, không lấy được danh sách sản phẩm!", Toast.LENGTH_SHORT).show();
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, api, listener, errorListener);
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 
-    private void logout(){
+    private void logout() {
         Intent intent = new Intent(this, LoginActivity.class);
         finish();
         startActivity(intent);
