@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="./assets/css/demo.css"/>
     <link rel="stylesheet" href="./assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"/>
     <link rel="stylesheet" href="./assets/vendor/css/pages/page-auth.css"/>
+    <link rel="stylesheet" href="./assets/css/my-style.css"/>
     <script src="./assets/vendor/js/helpers.js"></script>
     <script src="./assets/js/config.js"></script>
 </head>

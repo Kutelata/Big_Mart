@@ -1,3 +1,0 @@
-File api_connection: Lấy api về
-Thư mục services : Gọi api và xử lý logic
-Thư mục views: Giao diện người dùng

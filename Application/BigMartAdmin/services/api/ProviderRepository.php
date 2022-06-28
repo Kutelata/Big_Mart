@@ -2,7 +2,7 @@
 
 class ProviderRepository
 {
-    const URl_API = 'http://localhost:2619/';
+    const URl_API = 'http://38.242.236.227:999/';
 
     public function getAllProviders()
     {

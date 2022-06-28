@@ -57,7 +57,7 @@
 
     <ul class="menu-inner py-1">
         <li class="menu-item active">
-            <a href="index.html" class="menu-link">
+            <a href="index.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
@@ -91,31 +91,6 @@
                     </a>
                 </li>
             </ul>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Layouts">Form Layouts</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="form-layouts-vertical.html" class="menu-link">
-                        <div data-i18n="Vertical Form">Vertical Form</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="form-layouts-horizontal.html" class="menu-link">
-                        <div data-i18n="Horizontal Form">Horizontal Form</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <!-- Tables -->
-        <li class="menu-item">
-            <a href="tables-basic.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-table"></i>
-                <div data-i18n="Tables">Tables</div>
-            </a>
         </li>
     </ul>
 </aside>
