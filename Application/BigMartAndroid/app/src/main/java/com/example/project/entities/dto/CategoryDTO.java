@@ -1,10 +1,11 @@
 package com.example.project.entities.dto;
 
-import com.google.gson.annotations.SerializedName;
-
-import java.util.Date;
-
-public class EmployeeDTO {
+public class CategoryDTO {
     public Integer id;
     public String name;
+
+    public CategoryDTO(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

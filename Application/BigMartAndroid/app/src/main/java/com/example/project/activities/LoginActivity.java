@@ -12,7 +12,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.project.R;
 import com.example.project.databinding.ActivityLoginBinding;
 import com.example.project.entities.dto.EmployeeDTO;
 import com.example.project.utilities.CallAPIServer;

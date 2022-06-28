@@ -4,6 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -19,12 +23,15 @@ import com.example.project.R;
 import com.example.project.adapters.AdapterProduct;
 import com.example.project.databinding.ActivityMainBinding;
 import com.example.project.entities.Category;
+import com.example.project.entities.dto.CategoryDTO;
+import com.example.project.entities.dto.EmployeeDTO;
 import com.example.project.entities.dto.ProductDTO;
 import com.example.project.utilities.CallAPIServer;
 import com.example.project.utilities.GlobalApplication;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,7 +63,21 @@ public class MainActivity extends AppCompatActivity {
             logout();
         });
 
+        sCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                CategoryDTO categoryDTO = (CategoryDTO) adapterView.getSelectedItem();
+                Log.e("Error", categoryDTO.name);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         getListProduct();
+        getListCategory();
     }
 
     private void getListProduct(){
@@ -83,18 +104,23 @@ public class MainActivity extends AppCompatActivity {
         String api = CallAPIServer.prepareAPI("categories");
 
         Response.Listener<String> listener = response -> {
+            ArrayList<CategoryDTO> categorySpinners = new ArrayList<>();
             String json = response;
             Gson gson = new Gson();
-            TypeToken<List<CategoryDTO>> typeToken = new TypeToken<List<CategoryDTO>>() {
+            TypeToken<List<Category>> typeToken = new TypeToken<List<Category>>() {
             };
-            List<CategoryDTO> categoryDTOs = gson.fromJson(json, typeToken.getType());
-            ArrayAdapter<CategoryDTO> adapter = new ArrayAdapter<CategoryDTO>(this, android.R.layout.simple_spinner_dropdown_item, categoryDTOs);
-            sCategory.setAdapter(adapter);
-            sCategory.setSelection(adapter.getPosition(myItem));
+            List<Category> categories = gson.fromJson(json, typeToken.getType());
 
+            for (Category category : categories) {
+                Log.e("Error", category.getName());
+                categorySpinners.add(new CategoryDTO(category.getId(), category.getName()));
+            }
+
+            ArrayAdapter<CategoryDTO> adapter = new ArrayAdapter<CategoryDTO>(this, android.R.layout.simple_spinner_dropdown_item, categorySpinners);
+            sCategory.setAdapter(adapter);
         };
 
-        Response.ErrorListener errorListener = error -> Toast.makeText(this, "Có lỗi xảy ra, không lấy được danh sách sản phẩm!", Toast.LENGTH_SHORT).show();
+        Response.ErrorListener errorListener = error -> Toast.makeText(this, "Có lỗi xảy ra, không lấy được danh sách danh mục!", Toast.LENGTH_SHORT).show();
         StringRequest stringRequest = new StringRequest(Request.Method.GET, api, listener, errorListener);
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
