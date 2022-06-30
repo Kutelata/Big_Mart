@@ -27,13 +27,11 @@ public class SelectActivity extends AppCompatActivity {
 
         btnEmployee.setOnClickListener(view -> {
             Intent intent = new Intent(this, LoginActivity.class);
-            finish();
             startActivity(intent);
         });
 
         btnCustomer.setOnClickListener(view -> {
             Intent intent = new Intent(this, SearchActivity.class);
-            finish();
             startActivity(intent);
         });
     }

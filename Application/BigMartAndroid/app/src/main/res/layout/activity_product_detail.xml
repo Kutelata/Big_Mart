@@ -1,9 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ProductDetailActivity">
+    android:background="@color/purple_200"
+    android:orientation="vertical"
+    android:padding="20dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/edtSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textColor="@color/white"
+        android:hint="Địa chỉ email khách hàng"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tìm kiếm" />
+
+    <RelativeLayout
+        android:id="@+id/rlCustomerInfo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
+        <TextView
+
+            android:id="@+id/tvCustomerInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Thông tin khách hàng"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+
+        <GridLayout
+            android:id="@+id/glCustomerInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvCustomerInfo"
+            android:columnCount="2"
+            android:padding="10dp"
+            android:rowCount="10"
+            android:useDefaultMargins="true">
+
+            <TextView
+                android:layout_row="0"
+                android:layout_column="0"
+                android:text="Mã khách hàng :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvCustomerId"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:text="Mã khách hàng :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_row="1"
+                android:layout_column="0"
+                android:text="Tên khách hàng :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvCustomerName"
+                android:layout_row="1"
+                android:layout_column="1"
+                android:text="Tên khách hàng :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_row="2"
+                android:layout_column="0"
+                android:text="Giới tính :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvCustomerGender"
+                android:layout_row="2"
+                android:layout_column="1"
+                android:text="Giới tính :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_row="3"
+                android:layout_column="0"
+                android:text="Ngày sinh :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvCustomerBirthday"
+                android:layout_row="3"
+                android:layout_column="1"
+                android:text="Ngày sinh :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_row="4"
+                android:layout_column="0"
+                android:text="Số điện thoại :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvCustomerPhone"
+                android:layout_row="4"
+                android:layout_column="1"
+                android:text="Số điện thoại :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_row="5"
+                android:layout_column="0"
+                android:text="Địa chỉ nhà :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvCustomerAddress"
+                android:layout_row="5"
+                android:layout_column="1"
+                android:text="Địa chỉ nhà :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_row="6"
+                android:layout_column="0"
+                android:text="Địa chỉ email :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvCustomerEmail"
+                android:layout_row="6"
+                android:layout_column="1"
+                android:text="Địa chỉ email :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_row="7"
+                android:layout_column="0"
+                android:text="Ngày tạo :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvCustomerCreatedAt"
+                android:layout_row="7"
+                android:layout_column="1"
+                android:text="Ngày tạo :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_row="8"
+                android:layout_column="0"
+                android:text="Ngày cập nhật :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvCustomerUpdatedAt"
+                android:layout_row="8"
+                android:layout_column="1"
+                android:text="Ngày cập nhật :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_row="9"
+                android:layout_column="0"
+                android:text="Trạng thái :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvCustomerStatus"
+                android:layout_row="9"
+                android:layout_column="1"
+                android:text="Trạng thái :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </GridLayout>
+
+        <Button
+            android:id="@+id/btnHistoryInvoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/glCustomerInfo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Lịch sử đơn hàng" />
+    </RelativeLayout>
+
+</LinearLayout>

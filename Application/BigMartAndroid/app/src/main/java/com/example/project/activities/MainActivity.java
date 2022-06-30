@@ -4,12 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,10 +22,8 @@ import com.android.volley.toolbox.Volley;
 import com.example.project.R;
 import com.example.project.adapters.AdapterProduct;
 import com.example.project.databinding.ActivityMainBinding;
+import com.example.project.dialogs.DialogSearch;
 import com.example.project.entities.Category;
-import com.example.project.entities.Product;
-import com.example.project.entities.dto.CategoryDTO;
-import com.example.project.entities.dto.EmployeeDTO;
 import com.example.project.entities.dto.ProductDTO;
 import com.example.project.utilities.CallAPIServer;
 import com.example.project.utilities.GlobalApplication;
@@ -41,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
     Spinner sCategory;
     ListView lvProduct;
     TextView tvUserName, tvLogout;
+    PopupMenu pmProduct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
         lvProduct = binding.lvProduct;
         tvUserName = binding.tvUserName;
         tvLogout = binding.tvLogout;
+
 
         tvUserName.setText(GlobalApplication.getInstance().getEmployeeSaveLogin().name);
 
@@ -79,6 +79,12 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
                 getListProduct("Tất cả");
             }
         });
+
+//        lvProduct.setOnItemClickListener((adapterView, view, i, l) -> {
+//            Object listItem = lvProduct.getItemAtPosition(i);
+//
+//            Toast.makeText(this, "Click ListItem Number" + listItem.getClass(), Toast.LENGTH_LONG).show();
+//        });
 
         getListCategory();
     }
@@ -159,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
             if (!productName.equals("")) {
                 List<ProductDTO> newProductDTOs = new ArrayList<>();
                 for (ProductDTO productDTO : productDTOs) {
-                    if (productDTO.name.contains(productName)) {
+                    if (productDTO.name.toLowerCase().contains(productName.toLowerCase())) {
                         newProductDTOs.add(productDTO);
                     }
                 }

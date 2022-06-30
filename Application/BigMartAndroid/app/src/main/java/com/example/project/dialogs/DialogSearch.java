@@ -1,4 +1,4 @@
-package com.example.project.activities;
+package com.example.project.dialogs;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +8,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.example.project.R;
+import com.example.project.activities.MainActivity;
 import com.example.project.databinding.DialogSearchBinding;
 
 public class DialogSearch extends Dialog {

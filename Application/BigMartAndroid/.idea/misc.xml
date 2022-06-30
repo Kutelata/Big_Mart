@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1835" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/drawable/bg_dashboard_employee.xml" value="0.1885" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/drawable/bg_list_view.xml" value="0.1835" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/drawable/cut_card_background.xml" value="0.1975" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/drawable/ic_baseline_arrow_back.xml" value="0.207" />
@@ -16,22 +17,37 @@
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/drawable/ic_baseline_supervisor_account_24.xml" value="0.195" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/drawable/ic_home.xml" value="0.195" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1835" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/drawable/shape_rectangle.xml" value="0.1885" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout-icon/test.xml" value="0.2234375" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout-item/layout/test.xml" value="0.22447916666666667" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout-items/item_customer.xml" value="0.30932971014492755" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout-items/item_product.xml" value="0.30932971014492755" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/activity_invoice_detail.xml" value="0.2717391304347826" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/activity_invoice_list.xml" value="0.2717391304347826" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/activity_login.xml" value="0.27717391304347827" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/activity_main.xml" value="0.3383152173913043" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/activity_payment.xml" value="0.1" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/activity_product_detail.xml" value="0.27717391304347827" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/activity_product_list.xml" value="0.30932971014492755" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/activity_register.xml" value="0.3383152173913043" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/activity_search.xml" value="0.3421875" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/activity_select.xml" value="0.1688135593220339" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/dialog_search.xml" value="0.24895833333333334" />
-        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/item_customer.xml" value="0.18125" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/item_customer.xml" value="0.25" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/item_hanghoa.xml" value="0.30932971014492755" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/item_invoice.xml" value="0.2717391304347826" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/item_khachhang.xml" value="0.23326502732240437" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/item_product.xml" value="0.30932971014492755" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/layout-icon/layout/test.xml" value="0.168359375" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/layout-icon/test.xml" value="0.22447916666666667" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/layout-item/layout-item/test.xml" value="0.22447916666666667" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/layout-item/test.xml" value="0.22447916666666667" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/layout-item/test123.xml" value="0.2234375" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/menu_product.xml" value="0.2717391304347826" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/spinner_item.xml" value="0.13601823708206687" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layout/test.xml" value="0.18125" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/layouts/layouts_category2/layout/longtest.xml" value="0.22447916666666667" />
+        <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/menu/menu_product.xml" value="0.35625" />
         <entry key="..\:/Study/Big_Mart/Application/BigMartAndroid/app/src/main/res/xml/network_security_config.xml" value="0.1" />
       </map>
     </option>

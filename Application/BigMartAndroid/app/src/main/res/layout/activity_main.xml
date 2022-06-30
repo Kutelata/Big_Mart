@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_dashboard_employee"
+    android:background="@color/purple_200"
     tools:context=".activities.MainActivity">
 
     <RelativeLayout
+        android:background="@drawable/shape_rectangle"
         android:id="@+id/rlHomeTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Xin chào"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -31,7 +32,7 @@
             android:layout_below="@id/tvHomeTitle"
             android:layout_marginTop="6dp"
             android:text="Long"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
         <ImageView
@@ -50,7 +51,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="6dp"
             android:text="Đăng xuất"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="18sp" />
     </RelativeLayout>
 
@@ -76,11 +77,10 @@
             android:layout_columnWeight="5"
             android:text="Danh sách sản phẩm"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="25sp" />
 
         <Button
-            android:textSize="15sp"
             android:id="@+id/btnCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -88,10 +88,10 @@
             android:layout_column="0"
             android:layout_columnWeight="5"
             android:layout_gravity="fill"
-            android:text="Giỏ hàng" />
+            android:text="Giỏ hàng"
+            android:textSize="15sp" />
 
         <Button
-            android:textSize="15sp"
             android:id="@+id/btnSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -99,7 +99,8 @@
             android:layout_column="1"
             android:layout_columnWeight="5"
             android:layout_gravity="fill"
-            android:text="Tìm kiếm" />
+            android:text="Tìm kiếm"
+            android:textSize="15sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -109,7 +110,7 @@
             android:layout_columnWeight="5"
             android:layout_gravity="fill"
             android:text="Phân loại : "
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <Spinner
@@ -125,8 +126,9 @@
     <ListView
         android:id="@+id/lvProduct"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/glHomeMenu">
 
     </ListView>
+
 </RelativeLayout>
