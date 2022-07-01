@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menuChangeQuantity"
+        android:title="Thay đổi số lượng" />
+
+    <item
+        android:id="@+id/menuDelete"
+        android:title="Xóa khỏi giỏ hàng" />
+</menu>

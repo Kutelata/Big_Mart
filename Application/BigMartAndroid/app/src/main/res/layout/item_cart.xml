@@ -34,7 +34,11 @@
                 android:src="@drawable/bg_list_view" />
         </RelativeLayout>
 
-
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:src="@drawable/ic_baseline_person" />
 
         <RelativeLayout
             android:id="@+id/rlMenuProduct"
@@ -82,15 +86,49 @@
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/tvProductPrice"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_weight="1"
-                android:text="30 items"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Đơn giá : "
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tvProductPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="30 items"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Số lượng : "
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tvProductCartQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="30 items"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

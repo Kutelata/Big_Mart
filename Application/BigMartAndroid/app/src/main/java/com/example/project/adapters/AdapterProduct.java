@@ -17,10 +17,19 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.project.R;
 import com.example.project.activities.MainActivity;
 import com.example.project.activities.ProductDetailActivity;
+import com.example.project.entities.Product;
 import com.example.project.entities.dto.ProductDTO;
+import com.example.project.utilities.CallAPIServer;
+import com.example.project.utilities.GlobalApplication;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -64,6 +73,7 @@ public class AdapterProduct extends ArrayAdapter<ProductDTO> {
                         break;
 
                     case R.id.menuAddToCart:
+                        getProduct(productDTO.id);
                         break;
                 }
                 return true;
@@ -76,5 +86,43 @@ public class AdapterProduct extends ArrayAdapter<ProductDTO> {
         tvProductPrice.setText(productDTO.price + "");
 
         return item;
+    }
+
+    private void getProduct(int productId) {
+        String url = String.format("products/%d", productId);
+        String api = CallAPIServer.prepareAPI(url);
+
+        List<ProductDTO> productDTOs = GlobalApplication.getInstance().getProductCart();
+
+        Response.Listener<String> listener = response -> {
+            String json = response;
+            Gson gson = new Gson();
+            ProductDTO productDTO = gson.fromJson(json, ProductDTO.class);
+
+            if (productDTO != null){
+                int checkProduct = 0;
+                if(productDTOs.size() != 0){
+                    for(ProductDTO item : productDTOs){
+                        if(item.id == productDTO.id){
+                            item.cartQuantity += productDTO.cartQuantity;
+                            checkProduct++;
+                            break;
+                        }
+                    }
+                }
+
+                if(checkProduct == 0){
+                    productDTOs.add(productDTO);
+                }
+
+                Toast.makeText(mCtx, "Thêm thành công!", Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        Response.ErrorListener errorListener = error -> Toast.makeText(mCtx, "Có lỗi xảy ra, không lấy được danh sách sản phẩm!", Toast.LENGTH_SHORT).show();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, api, listener, errorListener);
+        RequestQueue requestQueue = Volley.newRequestQueue(mCtx);
+        requestQueue.add(stringRequest);
     }
 }

@@ -27,4 +27,5 @@ public class ProductDTO {
     public Date createdAt;
     @SerializedName("updated_at")
     public Date updatedAt;
+    public Integer cartQuantity = 0;
 }

@@ -6,5 +6,5 @@
 
     <item
         android:id="@+id/menuAddToCart"
-        android:title="Đặt hàng" />
+        android:title="Thêm vào giỏ hàng" />
 </menu>

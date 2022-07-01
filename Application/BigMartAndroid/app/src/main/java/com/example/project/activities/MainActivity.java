@@ -4,12 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
     Spinner sCategory;
     ListView lvProduct;
     TextView tvUserName, tvLogout;
-    PopupMenu pmProduct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +54,13 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
         tvUserName = binding.tvUserName;
         tvLogout = binding.tvLogout;
 
-
         tvUserName.setText(GlobalApplication.getInstance().getEmployeeSaveLogin().name);
 
-//        btnCart
+        btnCart.setOnClickListener(view -> {
+            Intent intent = new Intent(this, CartActivity.class);
+            startActivity(intent);
+        });
+
         btnSearch.setOnClickListener(view -> {
             showDialogSearch();
         });
@@ -80,11 +82,6 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
             }
         });
 
-//        lvProduct.setOnItemClickListener((adapterView, view, i, l) -> {
-//            Object listItem = lvProduct.getItemAtPosition(i);
-//
-//            Toast.makeText(this, "Click ListItem Number" + listItem.getClass(), Toast.LENGTH_LONG).show();
-//        });
 
         getListCategory();
     }
