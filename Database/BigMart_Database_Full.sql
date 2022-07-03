@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 18, 2022 at 10:39 AM
+-- Generation Time: Jul 03, 2022 at 01:32 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -30,25 +30,25 @@ SET time_zone = "+00:00";
 CREATE TABLE `tblcategory` (
   `id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
-  `description` varchar(128) DEFAULT NULL,
-  `image` varchar(256) NOT NULL
+  `image` varchar(256) NOT NULL,
+  `status` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tblcategory`
 --
 
-INSERT INTO `tblcategory` (`id`, `name`, `description`, `image`) VALUES
-(1, 'Đệm', '', 'dem.png'),
-(2, 'Bim Bim', '', 'bim_bim.png'),
-(3, 'Bếp', '', 'bep.png'),
-(4, 'Bàn chải', '', 'ban_chai.png'),
-(5, 'Cốc', '', 'coc.png'),
-(6, 'Sữa chua', '', 'sua_chua.png'),
-(7, 'Sữa', '', 'sua.png'),
-(8, 'Nước tăng lực', '', 'nuoc_tang_luc.png'),
-(9, 'Nước giải khát', '', 'nuoc_giai_khat.png'),
-(10, 'Nước lọc', '', 'nuoc_loc.png');
+INSERT INTO `tblcategory` (`id`, `name`, `image`, `status`) VALUES
+(1, 'Đệm', 'dem.png', 0),
+(2, 'Bim Bim', 'bim_bim.png', 1),
+(3, 'Bếp', 'bep.png', 0),
+(4, 'Bàn chải', 'ban_chai.png', 1),
+(5, 'Cốc', 'coc.png', 0),
+(6, 'Sữa chua', 'sua_chua.png', 1),
+(7, 'Sữa', 'sua.png', 0),
+(8, 'Nước tăng lực', 'nuoc_tang_luc.png', 1),
+(9, 'Nước giải khát', 'nuoc_giai_khat.png', 0),
+(10, 'Nước lọc', 'nuoc_loc.png', 1);
 
 -- --------------------------------------------------------
 
@@ -64,95 +64,24 @@ CREATE TABLE `tblcustomer` (
   `phone` varchar(11) NOT NULL,
   `address` varchar(128) DEFAULT NULL,
   `email` varchar(128) NOT NULL,
-  `status` int(11) DEFAULT 1,
-  `created_at` date DEFAULT NULL,
-  `updated_at` date DEFAULT NULL
+  `status` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tblcustomer`
 --
 
-INSERT INTO `tblcustomer` (`id`, `name`, `gender`, `birthday`, `phone`, `address`, `email`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Nguyễn Ngọc Thúy', 0, '1990-11-23', '0832536199', 'Khu tập thể A3 Nam Đồng, A1P49, Phố P. Hồ Đắc Di, Nam Đồng, Đống Đa, Hà Nội', 'nguyenngocthuy@gmail.com', 1, '2022-06-09', '0000-00-00'),
-(2, 'Đáo Đức Thành', 1, '1991-11-23', '0832536200', 'Tòa nhà C´Land, 156 Ng. Xã Đàn 2, Nam Đồng, Đống Đa, Hà Nội', 'daoducthanh@gmail.com', 0, '2022-06-09', '0000-00-00'),
-(3, 'Tô Nghị', 2, '1992-11-23', '0832536201', 'Trần Hưng Đạo, Hoàn Kiếm, Hà Nội', 'tonghi@gmail.com', 1, '2022-06-09', '0000-00-00'),
-(4, 'Nguyễn Lê Tuấn', 0, '1993-11-23', '0832536202', '81 Trần Hưng Đạo, Hoàn Kiếm, Hà Nội', 'nguyenletuan@gmail.com', 0, '2022-06-09', '0000-00-00'),
-(5, 'Trần Thị Thu', 1, '1994-11-23', '0832536203', '6 Ng. 84 P. Trần Quang Diệu, Chợ Dừa, Đống Đa, Hà Nội', 'tranthithu@gmail.com', 1, '2022-06-09', '0000-00-00'),
-(6, 'Phạm Duy Hồng', 2, '1995-11-23', '0832536204', '65 Nguyễn Đình Thi, Thuỵ Khuê, Tây Hồ, Hà Nội', 'phamduyhong@gmail.com', 0, '2022-06-09', '0000-00-00'),
-(7, 'Lê Hồng Nguyên', 0, '1996-11-23', '0832536205', '51 Đ. Âu Cơ, Tứ Liên, Tây Hồ, Hà Nội', 'lehongnguyen@gmail.com', 1, '2022-06-09', '0000-00-00'),
-(8, 'Hồ Cung Đạt Nhân', 1, '1997-11-23', '0832536206', 'Hàng Bột, Đống Đa, Hà Nội', 'hocungdatnhan@gmail.com', 0, '2022-06-09', '0000-00-00'),
-(9, 'Chu Văn Nam', 2, '1998-11-23', '0832536207', '9b Nguyễn Đình Thi, Thuỵ Khuê, Tây Hồ, Hà Nội', 'chuvannam@gmail.com', 1, '2022-06-09', '0000-00-00'),
-(10, 'Huỳnh Đức Long', 0, '1999-11-23', '0832536208', '88 P.Yên Lãng, Láng Hạ, Đống Đa, Trung Hoà Cầu Giấy Hà Nội', 'huynhduclong@gmail.com', 0, '2022-06-09', '0000-00-00');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tblemployee`
---
-
-CREATE TABLE `tblemployee` (
-  `id` int(11) NOT NULL,
-  `name` varchar(64) NOT NULL,
-  `gender` int(11) DEFAULT 1,
-  `birthday` date NOT NULL,
-  `phone` varchar(11) NOT NULL,
-  `email` varchar(128) DEFAULT NULL,
-  `address` varchar(128) DEFAULT NULL,
-  `role_id` int(11) DEFAULT NULL,
-  `salary` float DEFAULT 0,
-  `username` varchar(64) DEFAULT NULL,
-  `password` varchar(64) DEFAULT NULL,
-  `status` int(11) DEFAULT 1,
-  `created_at` date DEFAULT NULL,
-  `updated_at` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tblemployee`
---
-
-INSERT INTO `tblemployee` (`id`, `name`, `gender`, `birthday`, `phone`, `email`, `address`, `role_id`, `salary`, `username`, `password`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Võ Thị Thanh Thảo', 0, '1990-11-23', '0832536199', 'vothithanhthao@gmail.com', '', 1, 1000, 'vothithanhthao', 'vothithanhthao', 1, '2022-06-09', '0000-00-00'),
-(2, 'Lày A Cẩu', 1, '1991-11-23', '0832536200', 'layacau@gmail.com', '', 2, 2000, 'layacau', 'layacau', 1, '2022-06-09', '0000-00-00'),
-(3, 'Bùi Mạnh Quốc Huy', 2, '1992-11-23', '0832536201', 'buimanhquochuy@gmail.com', '', 3, 3000, 'buimanhquochuy', 'buimanhquochuy', 1, '2022-06-09', '0000-00-00'),
-(4, 'Lê Thị Mai', 0, '1993-11-23', '0832536202', 'lethimai@gmail.com', '', 4, 4000, 'lethimai', 'lethimai', 1, '2022-06-09', '0000-00-00'),
-(5, 'Trần Kim Ngọc', 1, '1994-11-23', '0832536203', 'trankimngoc@gmail.com', '', 5, 5000, 'trankimngoc', 'trankimngoc', 1, '2022-06-09', '0000-00-00'),
-(6, 'Lai Như Quỳnh', 2, '1995-11-23', '0832536204', 'lainhuquynh@gmail.com', '', 6, 6000, 'lainhuquynh', 'lainhuquynh', 1, '2022-06-09', '0000-00-00'),
-(7, 'Đặng Ngọc Thanh Loan', 0, '1996-11-23', '0832536205', 'dangngocthanhloan@gmail.com', '', 1, 1000, 'dangngocthanhloan', 'dangngocthanhloan', 1, '2022-06-09', '0000-00-00'),
-(8, 'Lê Thị Đào', 1, '1997-11-23', '0832536206', 'lethidao@gmail.com', '', 2, 2000, 'lethidao', 'lethidao', 1, '2022-06-09', '0000-00-00'),
-(9, 'Phạm Đoàn Minh Hiếu', 2, '1998-11-23', '0832536207', 'phamdoanminhhieu@gmail.com', '', 3, 3000, 'phamdoanminhhieu', 'phamdoanminhhieu', 1, '2022-06-09', '0000-00-00'),
-(10, 'Cao Ngọc Phương Trinh', 0, '1999-11-23', '0832536208', 'caongocphuongtrinh@gmail.com', '', 4, 4000, 'caongocphuongtrinh', 'caongocphuongtrinh', 1, '2022-06-09', '0000-00-00');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tblgiftpoint`
---
-
-CREATE TABLE `tblgiftpoint` (
-  `id` int(11) NOT NULL,
-  `customer_id` int(11) DEFAULT NULL,
-  `content` varchar(128) DEFAULT NULL,
-  `point` int(11) DEFAULT NULL,
-  `created_at` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tblgiftpoint`
---
-
-INSERT INTO `tblgiftpoint` (`id`, `customer_id`, `content`, `point`, `created_at`) VALUES
-(1, 1, 'Đây là phần quà dành cho bạn, cảm ơn đã mua hàng của chúng tôi', 1, '2022-06-09'),
-(2, 2, 'Đây là phần quà dành cho bạn, cảm ơn đã mua hàng của chúng tôi', 2, '2022-06-09'),
-(3, 3, 'Đây là phần quà dành cho bạn, cảm ơn đã mua hàng của chúng tôi', 3, '2022-06-09'),
-(4, 4, 'Đây là phần quà dành cho bạn, cảm ơn đã mua hàng của chúng tôi', 4, '2022-06-09'),
-(5, 5, 'Đây là phần quà dành cho bạn, cảm ơn đã mua hàng của chúng tôi', 5, '2022-06-09'),
-(6, 6, 'Đây là phần quà dành cho bạn, cảm ơn đã mua hàng của chúng tôi', 6, '2022-06-09'),
-(7, 7, 'Đây là phần quà dành cho bạn, cảm ơn đã mua hàng của chúng tôi', 7, '2022-06-09'),
-(8, 8, 'Đây là phần quà dành cho bạn, cảm ơn đã mua hàng của chúng tôi', 8, '2022-06-09'),
-(9, 9, 'Đây là phần quà dành cho bạn, cảm ơn đã mua hàng của chúng tôi', 9, '2022-06-09'),
-(10, 10, 'Đây là phần quà dành cho bạn, cảm ơn đã mua hàng của chúng tôi', 10, '2022-06-09');
+INSERT INTO `tblcustomer` (`id`, `name`, `gender`, `birthday`, `phone`, `address`, `email`, `status`) VALUES
+(1, 'Nguyễn Ngọc Thúy', 0, '1990-11-23', '0832536199', 'Khu tập thể A3 Nam Đồng, A1P49, Phố P. Hồ Đắc Di, Nam Đồng, Đống Đa, Hà Nội', 'nguyenngocthuy@gmail.com', 1),
+(2, 'Đáo Đức Thành', 1, '1991-11-23', '0832536200', 'Tòa nhà C´Land, 156 Ng. Xã Đàn 2, Nam Đồng, Đống Đa, Hà Nội', 'daoducthanh@gmail.com', 0),
+(3, 'Tô Nghị', 2, '1992-11-23', '0832536201', 'Trần Hưng Đạo, Hoàn Kiếm, Hà Nội', 'tonghi@gmail.com', 1),
+(4, 'Nguyễn Lê Tuấn', 0, '1993-11-23', '0832536202', '81 Trần Hưng Đạo, Hoàn Kiếm, Hà Nội', 'nguyenletuan@gmail.com', 0),
+(5, 'Trần Thị Thu', 1, '1994-11-23', '0832536203', '6 Ng. 84 P. Trần Quang Diệu, Chợ Dừa, Đống Đa, Hà Nội', 'tranthithu@gmail.com', 1),
+(6, 'Phạm Duy Hồng', 2, '1995-11-23', '0832536204', '65 Nguyễn Đình Thi, Thuỵ Khuê, Tây Hồ, Hà Nội', 'phamduyhong@gmail.com', 0),
+(7, 'Lê Hồng Nguyên', 0, '1996-11-23', '0832536205', '51 Đ. Âu Cơ, Tứ Liên, Tây Hồ, Hà Nội', 'lehongnguyen@gmail.com', 1),
+(8, 'Hồ Cung Đạt Nhân', 1, '1997-11-23', '0832536206', 'Hàng Bột, Đống Đa, Hà Nội', 'hocungdatnhan@gmail.com', 0),
+(9, 'Chu Văn Nam', 2, '1998-11-23', '0832536207', '9b Nguyễn Đình Thi, Thuỵ Khuê, Tây Hồ, Hà Nội', 'chuvannam@gmail.com', 1),
+(10, 'Huỳnh Đức Long', 0, '1999-11-23', '0832536208', '88 P.Yên Lãng, Láng Hạ, Đống Đa, Trung Hoà Cầu Giấy Hà Nội', 'huynhduclong@gmail.com', 0);
 
 -- --------------------------------------------------------
 
@@ -162,33 +91,28 @@ INSERT INTO `tblgiftpoint` (`id`, `customer_id`, `content`, `point`, `created_at
 
 CREATE TABLE `tblinvoice` (
   `id` int(11) NOT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `ship_at` datetime DEFAULT NULL,
   `shipment_id` int(11) DEFAULT NULL,
   `payment_id` int(11) DEFAULT NULL,
   `customer_id` int(11) DEFAULT NULL,
-  `employee_id` int(11) DEFAULT NULL,
-  `status` int(11) DEFAULT 1,
-  `address_ship` varchar(128) NOT NULL,
-  `phone_ship` int(11) NOT NULL,
-  `note` varchar(128) DEFAULT NULL
+  `total` float DEFAULT 0,
+  `status` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tblinvoice`
 --
 
-INSERT INTO `tblinvoice` (`id`, `created_at`, `ship_at`, `shipment_id`, `payment_id`, `customer_id`, `employee_id`, `status`, `address_ship`, `phone_ship`, `note`) VALUES
-(1, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 1, 1, 1, 'Ng. 102 Trường Chinh, Phương Đình, Đống Đa, Hà Nội', 832536199, ''),
-(2, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 2, 2, 0, '43 P.Hàm Long, Hàng Bài, Hoàn Kiếm, Hà Nội', 832535200, ''),
-(3, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 3, 3, 1, '1A Ng. 165 P. Thái Hà, Láng Hạ, Đống Đa, Hà Nội', 832535201, ''),
-(4, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 4, 4, 0, '140 P. Vũ Thạnh, Chợ Dừa, Đống Đa, Hà Nội', 832535202, ''),
-(5, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 5, 5, 1, '380 P. Xã Đàn, Nam Đồng, Đống Đa, Hà Nội', 832535203, ''),
-(6, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 6, 6, 0, '1 P. Thái Hà, Trung Liệt, Đống Đa, Hà Nội', 832535204, ''),
-(7, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 7, 7, 1, '378B P. Xã Đàn, Nam Đồng, Đống Đa, Hà Nội', 832535205, ''),
-(8, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 8, 8, 0, 'Số 8 Ngh. 180/29 P. Kim Hoa, Phương Liên, Đống Đa, Hà Nội', 832535206, ''),
-(9, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 9, 9, 1, 'Bà Triệu, Nguyễn Du, Hai Bà Trưng, Hà Nội', 832535207, ''),
-(10, '2022-06-09 00:00:00', '2022-06-10 00:00:00', 1, 1, 10, 10, 0, '8 Ngh. 180/29 P. Kim Hoa, Phương Liên, Đống Đa, Hà Nội', 832535208, '');
+INSERT INTO `tblinvoice` (`id`, `shipment_id`, `payment_id`, `customer_id`, `total`, `status`) VALUES
+(1, 1, 1, 1, 10000, 1),
+(2, 1, 1, 2, 20000, 0),
+(3, 1, 1, 3, 30000, 1),
+(4, 1, 1, 4, 40000, 0),
+(5, 1, 1, 5, 50000, 1),
+(6, 1, 1, 6, 60000, 0),
+(7, 1, 1, 7, 70000, 1),
+(8, 1, 1, 8, 80000, 0),
+(9, 1, 1, 9, 90000, 1),
+(10, 1, 1, 10, 100000, 0);
 
 -- --------------------------------------------------------
 
@@ -201,14 +125,14 @@ CREATE TABLE `tblinvoicedetail` (
   `invoice_id` int(11) DEFAULT NULL,
   `product_id` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
-  `price` float DEFAULT NULL
+  `row_total` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tblinvoicedetail`
 --
 
-INSERT INTO `tblinvoicedetail` (`id`, `invoice_id`, `product_id`, `quantity`, `price`) VALUES
+INSERT INTO `tblinvoicedetail` (`id`, `invoice_id`, `product_id`, `quantity`, `row_total`) VALUES
 (1, 1, 1, 1, 1500),
 (2, 2, 2, 1, 2500),
 (3, 3, 3, 1, 3500),
@@ -229,7 +153,8 @@ INSERT INTO `tblinvoicedetail` (`id`, `invoice_id`, `product_id`, `quantity`, `p
 CREATE TABLE `tblpayment` (
   `id` int(11) NOT NULL,
   `name` varchar(64) DEFAULT NULL,
-  `note` varchar(128) DEFAULT NULL,
+  `code` varchar(128) DEFAULT NULL,
+  `price` float DEFAULT 0,
   `status` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -237,12 +162,12 @@ CREATE TABLE `tblpayment` (
 -- Dumping data for table `tblpayment`
 --
 
-INSERT INTO `tblpayment` (`id`, `name`, `note`, `status`) VALUES
-(1, 'Thanh toán tiền mặt tại quầy', '', 1),
-(2, 'Thanh toán bằng thẻ ngân hàng', '', 0),
-(3, 'Chuyển khoản ngân hàng', '', 1),
-(4, 'Ship COD', '', 0),
-(5, 'Thanh toán tích điểm', '', 1);
+INSERT INTO `tblpayment` (`id`, `name`, `code`, `price`, `status`) VALUES
+(1, 'Thanh toán tiền mặt tại quầy', 'HERE', 1000, 1),
+(2, 'Thanh toán bằng thẻ ngân hàng', 'CARD', 2000, 0),
+(3, 'Chuyển khoản ngân hàng', 'CKNH', 3000, 1),
+(4, 'Ship COD', 'SSS', 4000, 0),
+(5, 'Thanh toán tích điểm', 'TTTD', 5000, 1);
 
 -- --------------------------------------------------------
 
@@ -255,11 +180,11 @@ CREATE TABLE `tblproduct` (
   `name` varchar(128) NOT NULL,
   `image` varchar(128) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
-  `unit_id` int(11) DEFAULT NULL,
   `provider_id` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT 0,
   `price` float DEFAULT 0,
   `saleable_qty` int(11) DEFAULT NULL,
+  `point` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT 1,
   `description` varchar(128) DEFAULT NULL,
   `created_at` date DEFAULT NULL,
@@ -270,17 +195,17 @@ CREATE TABLE `tblproduct` (
 -- Dumping data for table `tblproduct`
 --
 
-INSERT INTO `tblproduct` (`id`, `name`, `image`, `category_id`, `unit_id`, `provider_id`, `quantity`, `price`, `saleable_qty`, `status`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Đệm Everon', 'dem_everon.png', 1, 1, 1, 10, 1000, 15, 1, '', '2022-06-09', '0000-00-00'),
-(2, 'Bim Bim Oishi', 'bim_bim_oishi.png', 2, 1, 2, 20, 2000, 25, 0, '', '2022-06-09', '0000-00-00'),
-(3, 'Bếp hồng ngoại', 'bep_hong_ngoai.png', 3, 1, 3, 30, 3000, 35, 1, '', '2022-06-09', '0000-00-00'),
-(4, 'Bàn chải điện', 'ban_chai_dien.png', 4, 1, 4, 40, 4000, 45, 0, '', '2022-06-09', '0000-00-00'),
-(5, 'Cốc viễn đông', 'coc_vien_dong.png', 5, 1, 5, 50, 5000, 55, 1, '', '2022-06-09', '0000-00-00'),
-(6, 'Sữa chua trân châu', 'sua_chua_tran_chau.png', 6, 1, 6, 60, 6000, 65, 0, '', '2022-06-09', '0000-00-00'),
-(7, 'Sữa tiệt trùng vinamilk', 'sua_tiet_trung_vinamilk.png', 7, 1, 7, 70, 7000, 75, 1, '', '2022-06-09', '0000-00-00'),
-(8, 'Sting', 'sting.png', 8, 1, 8, 80, 8000, 85, 0, '', '2022-06-09', '0000-00-00'),
-(9, 'Trà xanh không độ', 'tra_xanh_khong_do.png', 9, 1, 9, 90, 9000, 95, 1, '', '2022-06-09', '0000-00-00'),
-(10, 'Lavie', 'lavie.png', 10, 1, 10, 100, 10000, 105, 0, '', '2022-06-09', '0000-00-00');
+INSERT INTO `tblproduct` (`id`, `name`, `image`, `category_id`, `provider_id`, `quantity`, `price`, `saleable_qty`, `point`, `status`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'Đệm Everon', 'dem_everon.png', 1, 1, 10, 1000, 15, 1, 1, '', '2022-06-09', '0000-00-00'),
+(2, 'Bim Bim Oishi', 'bim_bim_oishi.png', 2, 2, 20, 2000, 25, 2, 0, '', '2022-06-09', '0000-00-00'),
+(3, 'Bếp hồng ngoại', 'bep_hong_ngoai.png', 3, 3, 30, 3000, 35, 3, 1, '', '2022-06-09', '0000-00-00'),
+(4, 'Bàn chải điện', 'ban_chai_dien.png', 4, 4, 40, 4000, 45, 4, 0, '', '2022-06-09', '0000-00-00'),
+(5, 'Cốc viễn đông', 'coc_vien_dong.png', 5, 5, 50, 5000, 55, 5, 1, '', '2022-06-09', '0000-00-00'),
+(6, 'Sữa chua trân châu', 'sua_chua_tran_chau.png', 6, 6, 60, 6000, 65, 6, 0, '', '2022-06-09', '0000-00-00'),
+(7, 'Sữa tiệt trùng vinamilk', 'sua_tiet_trung_vinamilk.png', 7, 7, 70, 7000, 75, 7, 1, '', '2022-06-09', '0000-00-00'),
+(8, 'Sting', 'sting.png', 8, 8, 80, 8000, 85, 8, 0, '', '2022-06-09', '0000-00-00'),
+(9, 'Trà xanh không độ', 'tra_xanh_khong_do.png', 9, 9, 90, 9000, 95, 9, 1, '', '2022-06-09', '0000-00-00'),
+(10, 'Lavie', 'lavie.png', 10, 10, 100, 10000, 105, 10, 0, '', '2022-06-09', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -321,21 +246,20 @@ INSERT INTO `tblprovider` (`id`, `name`, `address`, `phone`, `email`, `status`) 
 
 CREATE TABLE `tblrole` (
   `id` int(11) NOT NULL,
-  `name` varchar(64) NOT NULL,
-  `position` varchar(64) NOT NULL
+  `name` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tblrole`
 --
 
-INSERT INTO `tblrole` (`id`, `name`, `position`) VALUES
-(1, 'Toàn bộ', 'Chủ cửa hàng'),
-(2, 'Phụ trách thu chi', 'Kế toán'),
-(3, 'Phụ trách kho hàng', 'Quản lý kho'),
-(4, 'Phụ trách sản phẩm', 'Thu mua'),
-(5, 'Phụ trách đơn hàng', 'Bán hàng'),
-(6, 'Phụ trách nhân sự', 'Quản lý nhân viên');
+INSERT INTO `tblrole` (`id`, `name`) VALUES
+(1, 'Chủ cửa hàng'),
+(2, 'Kế toán'),
+(3, 'Kho'),
+(4, 'Nhập hàng'),
+(5, 'Bán hàng'),
+(6, 'Nhân sự');
 
 -- --------------------------------------------------------
 
@@ -346,7 +270,8 @@ INSERT INTO `tblrole` (`id`, `name`, `position`) VALUES
 CREATE TABLE `tblshipment` (
   `id` int(11) NOT NULL,
   `name` varchar(64) DEFAULT NULL,
-  `note` varchar(128) DEFAULT NULL,
+  `code` varchar(128) DEFAULT NULL,
+  `price` float DEFAULT 0,
   `status` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -354,65 +279,43 @@ CREATE TABLE `tblshipment` (
 -- Dumping data for table `tblshipment`
 --
 
-INSERT INTO `tblshipment` (`id`, `name`, `note`, `status`) VALUES
-(1, 'Giao hàng nhanh', 'GHN', 1),
-(2, 'Giao hàng tiết kiệm', 'GHTK', 0),
-(3, 'Viettel Post', '', 1),
-(4, 'J&T Express', '', 0),
-(5, 'Ahamove', '', 1);
+INSERT INTO `tblshipment` (`id`, `name`, `code`, `price`, `status`) VALUES
+(1, 'Giao hàng nhanh', 'GHN', 1000, 1),
+(2, 'Giao hàng tiết kiệm', 'GHTK', 2000, 0),
+(3, 'Viettel Post', 'VP', 3000, 1),
+(4, 'J&T Express', 'JE', 4000, 0),
+(5, 'Ahamove', 'AM', 5000, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblstore`
+-- Table structure for table `tbluser`
 --
 
-CREATE TABLE `tblstore` (
+CREATE TABLE `tbluser` (
   `id` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL,
-  `address` varchar(128) NOT NULL,
-  `phone` varchar(11) NOT NULL,
-  `employee_id` int(11) DEFAULT NULL,
-  `open_time` int(11) DEFAULT NULL,
-  `close_time` int(11) DEFAULT NULL
+  `name` varchar(64) NOT NULL,
+  `image` varchar(256) DEFAULT NULL,
+  `username` varchar(64) NOT NULL,
+  `password` varchar(64) NOT NULL,
+  `role_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tblstore`
+-- Dumping data for table `tbluser`
 --
 
-INSERT INTO `tblstore` (`id`, `name`, `address`, `phone`, `employee_id`, `open_time`, `close_time`) VALUES
-(1, 'Big Mart 1', 'Số 349 đường 3/2, TT. Đức Tài, H. Đức Linh, T. Bình Thuận (Đối diện bến xe Đức Tài)', '0832536199', 1, 7, 19),
-(2, 'Big Mart 2', 'Tiểu khu 7, Thị Trấn Thuận Châu, Huyện Thuận Châu, Tỉnh Sơn La', '0832536200', 2, 7, 19),
-(3, 'Big Mart 3', 'Số 473, đường Tô Hiệu, TT. Ít Ong, H. Mường La, T. Sơn La', '0832536201', 3, 7, 19),
-(4, 'Big Mart 4', 'Tổ 9, Phường Tân Phong, Thành Phố Lai Châu, Tỉnh Lai Châu', '0832536202', 4, 7, 19),
-(5, 'Big Mart 5', 'Số 69 Đường Hồng Bàng, P. Sở Dầu, Q. Hồng Bàng, TP. Hải Phòng', '0832536203', 5, 7, 19),
-(6, 'Big Mart 6', 'Quốc lộ 27, Thôn Hạnh Trí 1, X. Quảng Sơn, H. Ninh Sơn, T. Ninh Thuận (gần chợ Quảng Sơn)', '0832536204', 6, 7, 19),
-(7, 'Big Mart 7', 'Phố Ba Mỏ, TT. Thanh Sơn, H. Thanh Sơn, T. Phú Thọ (Gần ngã tư bến xe Thanh Sơn)', '0832536205', 7, 7, 19),
-(8, 'Big Mart 8', '485 Hùng Vương, TT. Vạn Giã, H. Vạn Ninh, T. Khánh Hòa', '0832536206', 8, 7, 19),
-(9, 'Big Mart 9', '226 Trần Hưng Đạo, Phường Nam Lý, Thành phố Đồng Hới, Tỉnh Quảng Bình', '0832536207', 9, 7, 19),
-(10, 'Big Mart 10', 'Quốc Lộ 1A, Thôn Dinh Mười, X. Gia Ninh, H. Quảng Ninh, T. Quảng Bình', '0832536208', 10, 7, 19);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tblunit`
---
-
-CREATE TABLE `tblunit` (
-  `id` int(11) NOT NULL,
-  `name` varchar(32) NOT NULL,
-  `value` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tblunit`
---
-
-INSERT INTO `tblunit` (`id`, `name`, `value`) VALUES
-(1, 'Việt Nam đồng', 'VND'),
-(2, 'Đô la Mỹ', 'USD'),
-(3, 'đồng EURO', 'EUR');
+INSERT INTO `tbluser` (`id`, `name`, `image`, `username`, `password`, `role_id`) VALUES
+(1, 'Võ Thị Thanh Thảo', '', 'vothithanhthao', 'vothithanhthao', 1),
+(2, 'Lày A Cẩu', '', 'layacau', 'layacau', 2),
+(3, 'Bùi Mạnh Quốc Huy', '', 'buimanhquochuy', 'buimanhquochuy', 3),
+(4, 'Lê Thị Mai', '', 'lethimai', 'lethimai', 4),
+(5, 'Trần Kim Ngọc', '', 'trankimngoc', 'trankimngoc', 5),
+(6, 'Lai Như Quỳnh', '', 'lainhuquynh', 'lainhuquynh', 6),
+(7, 'Đặng Ngọc Thanh Loan', '', 'dangngocthanhloan', 'dangngocthanhloan', 7),
+(8, 'Lê Thị Đào', '', 'lethidao', 'lethidao', 8),
+(9, 'Phạm Đoàn Minh Hiếu', '', 'phamdoanminhhieu', 'phamdoanminhhieu', 9),
+(10, 'Cao Ngọc Phương Trinh', '', 'caongocphuongtrinh', 'caongocphuongtrinh', 10);
 
 --
 -- Indexes for dumped tables
@@ -431,20 +334,6 @@ ALTER TABLE `tblcustomer`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `phone` (`phone`),
   ADD UNIQUE KEY `email` (`email`);
-
---
--- Indexes for table `tblemployee`
---
-ALTER TABLE `tblemployee`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `phone` (`phone`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- Indexes for table `tblgiftpoint`
---
-ALTER TABLE `tblgiftpoint`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tblinvoice`
@@ -490,16 +379,9 @@ ALTER TABLE `tblshipment`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tblstore`
+-- Indexes for table `tbluser`
 --
-ALTER TABLE `tblstore`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `phone` (`phone`);
-
---
--- Indexes for table `tblunit`
---
-ALTER TABLE `tblunit`
+ALTER TABLE `tbluser`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -516,18 +398,6 @@ ALTER TABLE `tblcategory`
 -- AUTO_INCREMENT for table `tblcustomer`
 --
 ALTER TABLE `tblcustomer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `tblemployee`
---
-ALTER TABLE `tblemployee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `tblgiftpoint`
---
-ALTER TABLE `tblgiftpoint`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
@@ -573,16 +443,10 @@ ALTER TABLE `tblshipment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `tblstore`
+-- AUTO_INCREMENT for table `tbluser`
 --
-ALTER TABLE `tblstore`
+ALTER TABLE `tbluser`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `tblunit`
---
-ALTER TABLE `tblunit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
