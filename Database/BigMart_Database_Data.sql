@@ -1,14 +1,14 @@
-insert into tblCustomer(`name`,gender,birthday,phone,`address`,email,`status`) values 
-('Nguyễn Ngọc Thúy',0,'1990-11-23','0832536199','Khu tập thể A3 Nam Đồng, A1P49, Phố P. Hồ Đắc Di, Nam Đồng, Đống Đa, Hà Nội','nguyenngocthuy@gmail.com',1),
-('Đáo Đức Thành',1,'1991-11-23','0832536200','Tòa nhà C´Land, 156 Ng. Xã Đàn 2, Nam Đồng, Đống Đa, Hà Nội','daoducthanh@gmail.com',0),
-('Tô Nghị',2,'1992-11-23','0832536201','Trần Hưng Đạo, Hoàn Kiếm, Hà Nội','tonghi@gmail.com',1),
-('Nguyễn Lê Tuấn',0,'1993-11-23','0832536202','81 Trần Hưng Đạo, Hoàn Kiếm, Hà Nội','nguyenletuan@gmail.com',0),
-('Trần Thị Thu',1,'1994-11-23','0832536203','6 Ng. 84 P. Trần Quang Diệu, Chợ Dừa, Đống Đa, Hà Nội','tranthithu@gmail.com',1),
-('Phạm Duy Hồng',2,'1995-11-23','0832536204','65 Nguyễn Đình Thi, Thuỵ Khuê, Tây Hồ, Hà Nội','phamduyhong@gmail.com',0),
-('Lê Hồng Nguyên',0,'1996-11-23','0832536205','51 Đ. Âu Cơ, Tứ Liên, Tây Hồ, Hà Nội','lehongnguyen@gmail.com',1),
-('Hồ Cung Đạt Nhân',1,'1997-11-23','0832536206','Hàng Bột, Đống Đa, Hà Nội','hocungdatnhan@gmail.com',0),
-('Chu Văn Nam',2,'1998-11-23','0832536207','9b Nguyễn Đình Thi, Thuỵ Khuê, Tây Hồ, Hà Nội','chuvannam@gmail.com',1),
-('Huỳnh Đức Long',0,'1999-11-23','0832536208','88 P.Yên Lãng, Láng Hạ, Đống Đa, Trung Hoà Cầu Giấy Hà Nội','huynhduclong@gmail.com',0);
+insert into tblCustomer(`name`,gender,birthday,phone,`address`,email,`password`,`status`) values 
+('Nguyễn Ngọc Thúy',0,'1990-11-23','0832536199','Khu tập thể A3 Nam Đồng, A1P49, Phố P. Hồ Đắc Di, Nam Đồng, Đống Đa, Hà Nội','nguyenngocthuy@gmail.com','123',1),
+('Đáo Đức Thành',1,'1991-11-23','0832536200','Tòa nhà C´Land, 156 Ng. Xã Đàn 2, Nam Đồng, Đống Đa, Hà Nội','daoducthanh@gmail.com','123',0),
+('Tô Nghị',2,'1992-11-23','0832536201','Trần Hưng Đạo, Hoàn Kiếm, Hà Nội','tonghi@gmail.com','123',1),
+('Nguyễn Lê Tuấn',0,'1993-11-23','0832536202','81 Trần Hưng Đạo, Hoàn Kiếm, Hà Nội','nguyenletuan@gmail.com','123',0),
+('Trần Thị Thu',1,'1994-11-23','0832536203','6 Ng. 84 P. Trần Quang Diệu, Chợ Dừa, Đống Đa, Hà Nội','tranthithu@gmail.com','123',1),
+('Phạm Duy Hồng',2,'1995-11-23','0832536204','65 Nguyễn Đình Thi, Thuỵ Khuê, Tây Hồ, Hà Nội','phamduyhong@gmail.com','123',0),
+('Lê Hồng Nguyên',0,'1996-11-23','0832536205','51 Đ. Âu Cơ, Tứ Liên, Tây Hồ, Hà Nội','lehongnguyen@gmail.com','123',1),
+('Hồ Cung Đạt Nhân',1,'1997-11-23','0832536206','Hàng Bột, Đống Đa, Hà Nội','hocungdatnhan@gmail.com','123',0),
+('Chu Văn Nam',2,'1998-11-23','0832536207','9b Nguyễn Đình Thi, Thuỵ Khuê, Tây Hồ, Hà Nội','chuvannam@gmail.com','123',1),
+('Huỳnh Đức Long',0,'1999-11-23','0832536208','88 P.Yên Lãng, Láng Hạ, Đống Đa, Trung Hoà Cầu Giấy Hà Nội','huynhduclong@gmail.com','123',0);
 
 insert into tblRole(`name`) values 
 ('Chủ cửa hàng'),
@@ -18,7 +18,7 @@ insert into tblRole(`name`) values
 ('Bán hàng'),
 ('Nhân sự');
 
-insert into tblUser(`name`,`image`,username,`password`,role_id) values 
+insert into tblUser(`name`,`image`,account,`password`,role_id) values 
 ('Võ Thị Thanh Thảo','','vothithanhthao','vothithanhthao',1),
 ('Lày A Cẩu','','layacau','layacau',2),
 ('Bùi Mạnh Quốc Huy','','buimanhquochuy','buimanhquochuy',3),
