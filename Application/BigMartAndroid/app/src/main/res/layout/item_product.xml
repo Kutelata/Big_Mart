@@ -1,100 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_rectangle"
+    android:backgroundTint="@color/black"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/ivUserImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_baseline_person_24" />
 
     <RelativeLayout
-        android:padding="20dp"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="20dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:alpha="0.3"
-                android:src="@drawable/bg_list_view"
-                app:tint="#77000000" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="3dp"
-                android:layout_marginBottom="3dp"
-                android:src="@drawable/bg_list_view" />
-        </RelativeLayout>
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:padding="10dp"
-            android:src="@drawable/ic_baseline_person" />
-
-        <RelativeLayout
-            android:id="@+id/rlMenuProduct"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:alpha="0.3"
-                android:src="@drawable/bg_list_view"
-                app:tint="#77000000" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="1dp"
-                android:layout_marginBottom="1dp"
-                android:src="@drawable/bg_list_view" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="15dp"
-                android:src="@drawable/ic_baseline_arrow_drop_down" />
-        </RelativeLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="100dp"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:gravity="left"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvProductName"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_weight="1"
-                android:gravity="bottom"
-                android:paddingBottom="1dp"
-                android:text="ramen"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello"
+                android:textColor="@color/white"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/tvProductPrice"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_weight="1"
-                android:text="30 items"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="asdas asdasd asdasd Helssssss sssss sssssss ssslo"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivOptionMenu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_baseline_more_vert_24" />
     </RelativeLayout>
-</RelativeLayout>
+</LinearLayout>

@@ -11,6 +11,7 @@ create table tblCustomer
     phone varchar(11) not null unique,
     `address` varchar(128),
     email varchar(128) not null unique,
+    `password` varchar(64) not null,
     `status` int(11) default(1)
 );
 
@@ -25,7 +26,7 @@ create table tblUser
     id int auto_increment primary key,
     `name` varchar(64) not null,
     `image` varchar(256),
-    username varchar(64) not null,
+    `account` varchar(64) not null,
     `password` varchar(64) not null,
     role_id int
 );
