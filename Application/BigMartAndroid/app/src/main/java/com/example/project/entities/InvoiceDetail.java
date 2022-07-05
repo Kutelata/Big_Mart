@@ -9,17 +9,18 @@ public class InvoiceDetail {
     @SerializedName("product_id")
     private Integer productId;
     private Integer quantity;
-    private Float price;
+    @SerializedName("row_total")
+    private Float rowTotal;
 
     public InvoiceDetail() {
     }
 
-    public InvoiceDetail(Integer id, Integer invoiceId, Integer productId, Integer quantity, Float price) {
+    public InvoiceDetail(Integer id, Integer invoiceId, Integer productId, Integer quantity, Float rowTotal) {
         this.id = id;
         this.invoiceId = invoiceId;
         this.productId = productId;
         this.quantity = quantity;
-        this.price = price;
+        this.rowTotal = rowTotal;
     }
 
     public Integer getId() {
@@ -54,11 +55,11 @@ public class InvoiceDetail {
         this.quantity = quantity;
     }
 
-    public Float getPrice() {
-        return price;
+    public Float getRowTotal() {
+        return rowTotal;
     }
 
-    public void setPrice(Float price) {
-        this.price = price;
+    public void setRowTotal(Float rowTotal) {
+        this.rowTotal = rowTotal;
     }
 }

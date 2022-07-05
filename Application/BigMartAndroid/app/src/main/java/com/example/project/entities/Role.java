@@ -3,15 +3,13 @@ package com.example.project.entities;
 public class Role {
     private Integer id;
     private String name;
-    private String position;
 
     public Role() {
     }
 
-    public Role(Integer id, String name, String position) {
+    public Role(Integer id, String name) {
         this.id = id;
         this.name = name;
-        this.position = position;
     }
 
     public Integer getId() {
@@ -28,13 +26,5 @@ public class Role {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
     }
 }

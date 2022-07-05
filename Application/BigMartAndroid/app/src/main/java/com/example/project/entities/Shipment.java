@@ -3,16 +3,18 @@ package com.example.project.entities;
 public class Shipment {
     private Integer id;
     private String name;
-    private String note;
+    private String code;
+    private Float price;
     private Integer status;
 
     public Shipment() {
     }
 
-    public Shipment(Integer id, String name, String note, Integer status) {
+    public Shipment(Integer id, String name, String code, Float price, Integer status) {
         this.id = id;
         this.name = name;
-        this.note = note;
+        this.code = code;
+        this.price = price;
         this.status = status;
     }
 
@@ -32,12 +34,20 @@ public class Shipment {
         this.name = name;
     }
 
-    public String getNote() {
-        return note;
+    public String getCode() {
+        return code;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
     }
 
     public Integer getStatus() {

@@ -32,7 +32,7 @@
             android:name=".activities.InvoiceListActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SearchActivity"
+            android:name=".activities.ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".activities.ProductDetailActivity"

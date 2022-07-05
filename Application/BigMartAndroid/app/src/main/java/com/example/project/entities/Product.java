@@ -10,14 +10,13 @@ public class Product {
     private String image;
     @SerializedName("category_id")
     private Integer categoryId;
-    @SerializedName("unit_id")
-    private Integer unitId;
     @SerializedName("provider_id")
     private Integer providerId;
     private Integer quantity;
     private Float price;
     @SerializedName("saleable_qty")
-    private Integer saleableQty ;
+    private Integer saleableQty;
+    private Integer point;
     private Integer status;
     private String description;
     @SerializedName("created_at")
@@ -28,16 +27,16 @@ public class Product {
     public Product() {
     }
 
-    public Product(Integer id, String name, String image, Integer categoryId, Integer unitId, Integer providerId, Integer quantity, Float price, Integer saleableQty, Integer status, String description, Date createdAt, Date updatedAt) {
+    public Product(Integer id, String name, String image, Integer categoryId, Integer providerId, Integer quantity, Float price, Integer saleableQty, Integer point, Integer status, String description, Date createdAt, Date updatedAt) {
         this.id = id;
         this.name = name;
         this.image = image;
         this.categoryId = categoryId;
-        this.unitId = unitId;
         this.providerId = providerId;
         this.quantity = quantity;
         this.price = price;
         this.saleableQty = saleableQty;
+        this.point = point;
         this.status = status;
         this.description = description;
         this.createdAt = createdAt;
@@ -76,14 +75,6 @@ public class Product {
         this.categoryId = categoryId;
     }
 
-    public Integer getUnitId() {
-        return unitId;
-    }
-
-    public void setUnitId(Integer unitId) {
-        this.unitId = unitId;
-    }
-
     public Integer getProviderId() {
         return providerId;
     }
@@ -114,6 +105,14 @@ public class Product {
 
     public void setSaleableQty(Integer saleableQty) {
         this.saleableQty = saleableQty;
+    }
+
+    public Integer getPoint() {
+        return point;
+    }
+
+    public void setPoint(Integer point) {
+        this.point = point;
     }
 
     public Integer getStatus() {

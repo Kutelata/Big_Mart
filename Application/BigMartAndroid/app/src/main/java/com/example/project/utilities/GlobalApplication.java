@@ -2,6 +2,7 @@ package com.example.project.utilities;
 
 import android.app.Application;
 
+import com.example.project.entities.Customer;
 import com.example.project.entities.Product;
 import com.example.project.entities.dto.EmployeeDTO;
 import com.example.project.entities.dto.ProductDTO;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class GlobalApplication extends Application {
     private static GlobalApplication instance;
-    private EmployeeDTO mEmployeeSaveLogin;
+    private Customer mCustomerApp;
     private List<ProductDTO> mProductCart;
 
     @Override
@@ -26,12 +27,12 @@ public class GlobalApplication extends Application {
         return instance;
     }
 
-    public EmployeeDTO getEmployeeSaveLogin() {
-        return mEmployeeSaveLogin;
+    public Customer getCustomerApp() {
+        return mCustomerApp;
     }
 
-    public void setEmployeeSaveLogin(EmployeeDTO mEmployeeSaveLogin) {
-        this.mEmployeeSaveLogin = mEmployeeSaveLogin;
+    public void setCustomerApp(Customer customerApp) {
+        this.mCustomerApp = customerApp;
     }
 
     public List<ProductDTO> getProductCart() {

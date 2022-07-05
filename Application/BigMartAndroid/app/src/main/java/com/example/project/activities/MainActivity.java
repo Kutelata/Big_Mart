@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,10 +38,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements DialogSearch.ISearch {
     ActivityMainBinding binding;
-    Button btnCart, btnSearch;
+    Button btnSearch;
     Spinner sCategory;
     ListView lvProduct;
-    TextView tvUserName, tvLogout;
+    ImageView ivOptionMenu;
+    TextView tvUserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,27 +51,20 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        btnCart = binding.btnCart;
         btnSearch = binding.btnSearch;
         sCategory = binding.sCategory;
         lvProduct = binding.lvProduct;
-        tvUserName = binding.tvUserName;
-        tvLogout = binding.tvLogout;
 
-        tvUserName.setText(GlobalApplication.getInstance().getEmployeeSaveLogin().name);
+        ivOptionMenu = findViewById(R.id.ivOptionMenu);
+        tvUserName = findViewById(R.id.tvUserName);
 
-        btnCart.setOnClickListener(view -> {
-            Intent intent = new Intent(this, CartActivity.class);
-            startActivity(intent);
-        });
+        tvUserName.setText(GlobalApplication.getInstance().getCustomerApp().getName());
 
         btnSearch.setOnClickListener(view -> {
             showDialogSearch();
         });
 
-        tvLogout.setOnClickListener(view -> {
-            logout();
-        });
+        ivOptionMenu.setOnClickListener(view -> showMenuOptionHeader());
 
         sCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -81,9 +78,27 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
                 getListProduct("Tất cả");
             }
         });
+    }
 
+    private void showMenuOptionHeader() {
+        PopupMenu popup = new PopupMenu(this, ivOptionMenu);
+        popup.inflate(R.menu.menu_header);
+        popup.setOnMenuItemClickListener(menuItem -> actionMenuItemHeader(menuItem));
+    }
 
-        getListCategory();
+    private boolean actionMenuItemHeader(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuProfile:
+                redirectProfile();
+                break;
+            case R.id.menuCart:
+                redirectCart();
+                break;
+            case R.id.menuLogout:
+                logout();
+                break;
+        }
+        return true;
     }
 
     private void getListProduct(String categoryName) {
@@ -127,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
             };
             List<Category> categories = gson.fromJson(json, typeToken.getType());
 
-            categorySpinners.add("Tất cả");
+            categorySpinners.add("--- Chọn danh mục ---");
             for (Category category : categories) {
                 categorySpinners.add(category.getName());
             }
@@ -177,6 +192,16 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
         StringRequest stringRequest = new StringRequest(Request.Method.GET, api, listener, errorListener);
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+    }
+
+    private void redirectProfile(){
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
+
+    private void redirectCart() {
+        Intent intent = new Intent(this, CartActivity.class);
+        startActivity(intent);
     }
 
     private void logout() {

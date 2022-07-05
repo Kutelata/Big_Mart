@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -13,10 +15,10 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.project.databinding.ActivityLoginBinding;
+import com.example.project.entities.Customer;
 import com.example.project.entities.dto.EmployeeDTO;
 import com.example.project.utilities.CallAPIServer;
 import com.example.project.utilities.GlobalApplication;
-import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -24,9 +26,9 @@ import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     ActivityLoginBinding binding;
-    MaterialButton btnLogin;
-    EditText edtUsername;
-    EditText edtPassword;
+    EditText edtEmail, edtPassword;
+    Button btnLogin;
+    TextView tvRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,40 +37,46 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        GlobalApplication.getInstance().setEmployeeSaveLogin(null);
+        GlobalApplication.getInstance().setCustomerApp(null);
 
         btnLogin = binding.btnLogin;
-        edtUsername = binding.edtUsername;
+        edtEmail = binding.edtEmail;
         edtPassword = binding.edtPassword;
+        tvRegister = binding.tvRegister;
 
-        edtUsername.setText("vothithanhthao");
-        edtPassword.setText("vothithanhthao");
+        edtEmail.setText("nguyenngocthuy@gmail.com");
+        edtPassword.setText("123");
 
-        btnLogin.setOnClickListener(view ->
-                actionLogin(edtUsername.getText().toString(), edtPassword.getText().toString()));
+        btnLogin.setOnClickListener(view -> {
+                    Intent intent = new Intent(this, RegisterActivity.class);
+                    startActivity(intent);
+                }
+//                actionLogin(edtEmail.getText().toString(), edtPassword.getText().toString());
+        );
+
+        tvRegister.setOnClickListener(view -> redirectRegister());
     }
 
-    private void actionLogin(String userName, String password) {
-        String api = CallAPIServer.prepareAPI("employees");
+    private void actionLogin(String email, String password) {
+        String api = CallAPIServer.prepareAPI("customers");
 
         Response.Listener listener = response -> {
             String json = response.toString();
             Gson gson = new Gson();
-            TypeToken<List<EmployeeDTO>> typeToken = new TypeToken<List<EmployeeDTO>>() {
+            TypeToken<List<Customer>> typeToken = new TypeToken<List<Customer>>() {
             };
-            List<EmployeeDTO> employeeDTOs = gson.fromJson(json, typeToken.getType());
+            List<Customer> customers = gson.fromJson(json, typeToken.getType());
             boolean result = false;
-            for (EmployeeDTO employeeDTO : employeeDTOs) {
-                if (userName.equals(employeeDTO.username)
-                        && password.equals(employeeDTO.password)) {
-                    GlobalApplication.getInstance().setEmployeeSaveLogin(employeeDTO);
+            for (Customer customer : customers) {
+                if (email.equals(customer.getEmail())
+                        && password.equals(customer.getPassword())) {
+                    GlobalApplication.getInstance().setCustomerApp(customer);
                     result = true;
                     break;
                 }
             }
             if (result) {
                 Intent intent = new Intent(this, MainActivity.class);
-                finish();
                 startActivity(intent);
                 Toast.makeText(getApplicationContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
             } else {
@@ -80,5 +88,10 @@ public class LoginActivity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, api, listener, errorListener);
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+    }
+
+    private void redirectRegister(){
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
     }
 }

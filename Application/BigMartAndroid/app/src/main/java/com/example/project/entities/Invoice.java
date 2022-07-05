@@ -6,40 +6,25 @@ import java.util.Date;
 
 public class Invoice {
     private Integer id;
-    @SerializedName("created_at")
-    private Date createdAt;
-    @SerializedName("ship_at")
-    private Date shipAt;
     @SerializedName("shipment_id")
     private Integer shipmentId;
     @SerializedName("payment_id")
     private Integer paymentId;
     @SerializedName("customer_id")
     private Integer customerId;
-    @SerializedName("employee_id")
-    private Integer employeeId;
+    private Float total;
     private Integer status;
-    @SerializedName("address_ship")
-    private String addressShip;
-    @SerializedName("phone_ship")
-    private String phoneShip;
-    private String note;
 
     public Invoice() {
     }
 
-    public Invoice(Integer id, Date createdAt, Date shipAt, Integer shipmentId, Integer paymentId, Integer customerId, Integer employeeId, Integer status, String addressShip, String phoneShip, String note) {
+    public Invoice(Integer id, Integer shipmentId, Integer paymentId, Integer customerId, Float total, Integer status) {
         this.id = id;
-        this.createdAt = createdAt;
-        this.shipAt = shipAt;
         this.shipmentId = shipmentId;
         this.paymentId = paymentId;
         this.customerId = customerId;
-        this.employeeId = employeeId;
+        this.total = total;
         this.status = status;
-        this.addressShip = addressShip;
-        this.phoneShip = phoneShip;
-        this.note = note;
     }
 
     public Integer getId() {
@@ -48,22 +33,6 @@ public class Invoice {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getShipAt() {
-        return shipAt;
-    }
-
-    public void setShipAt(Date shipAt) {
-        this.shipAt = shipAt;
     }
 
     public Integer getShipmentId() {
@@ -90,12 +59,12 @@ public class Invoice {
         this.customerId = customerId;
     }
 
-    public Integer getEmployeeId() {
-        return employeeId;
+    public Float getTotal() {
+        return total;
     }
 
-    public void setEmployeeId(Integer employeeId) {
-        this.employeeId = employeeId;
+    public void setTotal(Float total) {
+        this.total = total;
     }
 
     public Integer getStatus() {
@@ -104,29 +73,5 @@ public class Invoice {
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public String getAddressShip() {
-        return addressShip;
-    }
-
-    public void setAddressShip(String addressShip) {
-        this.addressShip = addressShip;
-    }
-
-    public String getPhoneShip() {
-        return phoneShip;
-    }
-
-    public void setPhoneShip(String phoneShip) {
-        this.phoneShip = phoneShip;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
     }
 }

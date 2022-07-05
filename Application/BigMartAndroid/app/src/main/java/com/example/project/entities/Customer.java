@@ -1,7 +1,5 @@
 package com.example.project.entities;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.util.Date;
 
 public class Customer {
@@ -12,16 +10,13 @@ public class Customer {
     private String phone;
     private String address;
     private String email;
+    private String password;
     private Integer status;
-    @SerializedName("created_at")
-    private Date createdAt;
-    @SerializedName("updated_at")
-    private Date updatedAt;
 
     public Customer() {
     }
 
-    public Customer(Integer id, String name, Integer gender, Date birthday, String phone, String address, String email, Integer status, Date createdAt, Date updatedAt) {
+    public Customer(Integer id, String name, Integer gender, Date birthday, String phone, String address, String email, String password, Integer status) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -29,9 +24,8 @@ public class Customer {
         this.phone = phone;
         this.address = address;
         this.email = email;
+        this.password = password;
         this.status = status;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
     public Integer getId() {
@@ -90,27 +84,19 @@ public class Customer {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Integer getStatus() {
         return status;
     }
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
     }
 }
