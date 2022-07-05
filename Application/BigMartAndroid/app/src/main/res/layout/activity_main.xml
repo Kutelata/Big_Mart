@@ -6,67 +6,18 @@
     android:background="@color/black"
     tools:context=".activities.MainActivity">
 
-    <include layout="@layout/header" />
-
-    <RelativeLayout
-        android:background="@drawable/shape_rectangle"
-        android:id="@+id/rlHomeTop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginRight="20dp"
-        android:padding="10dp">
-
-        <TextView
-            android:id="@+id/tvHomeTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Xin chào"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvUserName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tvHomeTitle"
-            android:layout_marginTop="6dp"
-            android:text="Long"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
-        <ImageView
-            android:id="@+id/ivUser"
-            android:layout_width="62dp"
-            android:layout_height="62dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/ic_baseline_person_24" />
-
-        <TextView
-            android:id="@+id/tvLogout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ivUser"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="6dp"
-            android:text="Đăng xuất"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-    </RelativeLayout>
+    <include
+        android:id="@+id/iHeader"
+        layout="@layout/header" />
 
     <GridLayout
+        android:background="@drawable/shape_rectangle"
         android:id="@+id/glHomeMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/rlHomeTop"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="32dp"
-        android:columnCount="2"
+        android:layout_below="@id/iHeader"
         android:padding="10dp"
+        android:columnCount="2"
         android:rowCount="3"
         android:useDefaultMargins="true">
 
@@ -84,16 +35,21 @@
 
         <Button
             android:id="@+id/btnCart"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="1"
+            android:backgroundTint="@color/white"
             android:layout_column="0"
             android:layout_columnWeight="5"
             android:layout_gravity="fill"
+            android:drawableLeft="@drawable/ic_baseline_shopping_cart_24"
             android:text="Giỏ hàng"
             android:textSize="15sp" />
 
         <Button
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"
             android:id="@+id/btnSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -101,6 +57,7 @@
             android:layout_column="1"
             android:layout_columnWeight="5"
             android:layout_gravity="fill"
+            android:drawableLeft="@drawable/ic_baseline_search_24"
             android:text="Tìm kiếm"
             android:textSize="15sp" />
 

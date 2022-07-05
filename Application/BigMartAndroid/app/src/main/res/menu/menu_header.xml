@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:iconTint="@color/black"
+        android:id="@+id/menuProfile"
+        android:title="Thông tin cá nhân" />
+
+    <item
+        android:iconTint="@color/black"
         android:id="@+id/menuLogout"
         android:title="Đăng xuất" />
 </menu>

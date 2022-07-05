@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/shape_rectangle"
-    android:backgroundTint="@color/black"
     android:layout_alignParentTop="true"
     android:padding="10dp">
 
