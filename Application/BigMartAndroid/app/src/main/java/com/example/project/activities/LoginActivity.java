@@ -16,7 +16,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.project.databinding.ActivityLoginBinding;
 import com.example.project.entities.Customer;
-import com.example.project.entities.dto.EmployeeDTO;
 import com.example.project.utilities.CallAPIServer;
 import com.example.project.utilities.GlobalApplication;
 import com.google.gson.Gson;
@@ -47,11 +46,12 @@ public class LoginActivity extends AppCompatActivity {
         edtEmail.setText("nguyenngocthuy@gmail.com");
         edtPassword.setText("123");
 
-        btnLogin.setOnClickListener(view -> {
-                    Intent intent = new Intent(this, RegisterActivity.class);
-                    startActivity(intent);
-                }
-//                actionLogin(edtEmail.getText().toString(), edtPassword.getText().toString());
+        btnLogin.setOnClickListener(view ->
+//                {
+//                    Intent intent = new Intent(this, RegisterActivity.class);
+//                    startActivity(intent);
+//                }
+                actionLogin(edtEmail.getText().toString(), edtPassword.getText().toString())
         );
 
         tvRegister.setOnClickListener(view -> redirectRegister());

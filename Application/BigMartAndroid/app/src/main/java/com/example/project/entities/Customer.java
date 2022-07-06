@@ -28,6 +28,13 @@ public class Customer {
         this.status = status;
     }
 
+    public Customer(String name, String phone, String email, String password) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -78,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
                 getListProduct("Tất cả");
             }
         });
+
+        getListCategory();
     }
 
     private void showMenuOptionHeader() {
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
             TypeToken<List<ProductDTO>> typeToken = new TypeToken<List<ProductDTO>>() {
             };
             List<ProductDTO> productDTOs = gson.fromJson(json, typeToken.getType());
-            if (!categoryName.equals("Tất cả")) {
+            if (!categoryName.equals("Chọn danh mục")) {
                 List<ProductDTO> newProductDTOs = new ArrayList<>();
                 for (ProductDTO productDTO : productDTOs) {
                     if (categoryName.equals(productDTO.categoryId.getName())) {
@@ -142,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
             };
             List<Category> categories = gson.fromJson(json, typeToken.getType());
 
-            categorySpinners.add("--- Chọn danh mục ---");
+            categorySpinners.add("Chọn danh mục");
             for (Category category : categories) {
                 categorySpinners.add(category.getName());
             }
