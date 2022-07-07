@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -57,10 +58,11 @@ public class AdapterProduct extends ArrayAdapter<ProductDTO> {
 
         TextView tvProductName = item.findViewById(R.id.tvProductName);
         TextView tvProductPrice = item.findViewById(R.id.tvProductPrice);
-        RelativeLayout rlMenuProduct = item.findViewById(R.id.rlMenuProduct);
+        TextView tvProductPoint = item.findViewById(R.id.tvProductPoint);
+        ImageView ivMenuProduct = item.findViewById(R.id.ivMenuProduct);
 
-        rlMenuProduct.setOnClickListener(view -> {
-            PopupMenu popupMenu = new PopupMenu(mCtx, rlMenuProduct);
+        ivMenuProduct.setOnClickListener(view -> {
+            PopupMenu popupMenu = new PopupMenu(mCtx, ivMenuProduct);
             popupMenu.getMenuInflater().inflate(R.menu.menu_product, popupMenu.getMenu());
 
             popupMenu.setOnMenuItemClickListener(menuItem -> {
@@ -83,7 +85,8 @@ public class AdapterProduct extends ArrayAdapter<ProductDTO> {
         });
 
         tvProductName.setText(productDTO.name + "");
-        tvProductPrice.setText(productDTO.price + "");
+        tvProductPrice.setText(productDTO.price.shortValue() + " VND");
+        tvProductPoint.setText(productDTO.point + " điểm");
 
         return item;
     }

@@ -76,7 +76,6 @@ public class ProductDetailActivity extends AppCompatActivity {
                 tvProductName.setText(productDTO.name);
 
                 tvProductCategory.setText(productDTO.categoryId.getName());
-                tvProductUnit.setText(productDTO.unitId.getName());
                 tvProductProvider.setText(productDTO.providerId.getName());
                 tvProductQuantity.setText(productDTO.quantity.toString());
                 tvProductPrice.setText(productDTO.price.toString());

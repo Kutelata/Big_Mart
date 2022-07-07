@@ -9,21 +9,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.project.databinding.ActivityLoginBinding;
 import com.example.project.entities.Customer;
-import com.example.project.utilities.CallAPIServer;
+import com.example.project.services.CustomerService;
+import com.example.project.services.interfaces.ICustomerService;
 import com.example.project.utilities.GlobalApplication;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
+    ICustomerService customerService;
     ActivityLoginBinding binding;
     EditText edtEmail, edtPassword;
     Button btnLogin;
@@ -36,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        customerService = new CustomerService(this);
+
         GlobalApplication.getInstance().setCustomerApp(null);
 
         btnLogin = binding.btnLogin;
@@ -46,51 +41,37 @@ public class LoginActivity extends AppCompatActivity {
         edtEmail.setText("nguyenngocthuy@gmail.com");
         edtPassword.setText("123");
 
-        btnLogin.setOnClickListener(view ->
-//                {
-//                    Intent intent = new Intent(this, RegisterActivity.class);
-//                    startActivity(intent);
-//                }
-                actionLogin(edtEmail.getText().toString(), edtPassword.getText().toString())
-        );
+        btnLogin.setOnClickListener(view -> actionLogin(edtEmail.getText().toString(), edtPassword.getText().toString()));
 
         tvRegister.setOnClickListener(view -> redirectRegister());
     }
 
     private void actionLogin(String email, String password) {
-        String api = CallAPIServer.prepareAPI("customers");
-
-        Response.Listener listener = response -> {
-            String json = response.toString();
-            Gson gson = new Gson();
-            TypeToken<List<Customer>> typeToken = new TypeToken<List<Customer>>() {
-            };
-            List<Customer> customers = gson.fromJson(json, typeToken.getType());
-            boolean result = false;
-            for (Customer customer : customers) {
-                if (email.equals(customer.getEmail())
-                        && password.equals(customer.getPassword())) {
-                    GlobalApplication.getInstance().setCustomerApp(customer);
-                    result = true;
-                    break;
+        customerService.getAll(listCustomer -> {
+            if (listCustomer != null) {
+                boolean result = false;
+                for (Customer customer : listCustomer) {
+                    if (email.equals(customer.getEmail())
+                            && password.equals(customer.getPassword())) {
+                        GlobalApplication.getInstance().setCustomerApp(customer);
+                        result = true;
+                        break;
+                    }
                 }
-            }
-            if (result) {
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                Toast.makeText(getApplicationContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                if (result) {
+                    Intent intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Tài khoản và mật khẩu không tồn tại", Toast.LENGTH_SHORT).show();
+                }
             } else {
-                Toast.makeText(this, "Tài khoản và mật khẩu không tồn tại", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Có lỗi xảy ra!", Toast.LENGTH_SHORT).show();
             }
-        };
-
-        Response.ErrorListener errorListener = error -> Toast.makeText(LoginActivity.this, "Có lỗi xảy ra, đăng nhập thất bại!", Toast.LENGTH_SHORT).show();
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, api, listener, errorListener);
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+        });
     }
 
-    private void redirectRegister(){
+    private void redirectRegister() {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }

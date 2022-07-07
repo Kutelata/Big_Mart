@@ -27,6 +27,10 @@ import com.example.project.databinding.ActivityMainBinding;
 import com.example.project.dialogs.DialogSearch;
 import com.example.project.entities.Category;
 import com.example.project.entities.dto.ProductDTO;
+import com.example.project.services.CategoryService;
+import com.example.project.services.CustomerService;
+import com.example.project.services.interfaces.ICaregoryService;
+import com.example.project.services.interfaces.ICustomerService;
 import com.example.project.utilities.CallAPIServer;
 import com.example.project.utilities.GlobalApplication;
 import com.google.gson.Gson;
@@ -36,6 +40,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements DialogSearch.ISearch {
+    ICustomerService customerService;
+    ICaregoryService caregoryService;
+
     ActivityMainBinding binding;
     Button btnSearch;
     Spinner sCategory;
@@ -50,6 +57,9 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        customerService = new CustomerService(this);
+        caregoryService = new CategoryService(this);
+
         btnSearch = binding.btnSearch;
         sCategory = binding.sCategory;
         lvProduct = binding.lvProduct;
@@ -63,7 +73,9 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
             showDialogSearch();
         });
 
-        ivOptionMenu.setOnClickListener(view -> showMenuOptionHeader());
+        ivOptionMenu.setOnClickListener(view -> {
+            showMenuOptionHeader();
+        });
 
         sCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -74,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                getListProduct("Tất cả");
+                getListProduct("Chọn danh mục");
             }
         });
 
@@ -83,8 +95,9 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
 
     private void showMenuOptionHeader() {
         PopupMenu popup = new PopupMenu(this, ivOptionMenu);
-        popup.inflate(R.menu.menu_header);
+        popup.getMenuInflater().inflate(R.menu.menu_header, popup.getMenu());
         popup.setOnMenuItemClickListener(menuItem -> actionMenuItemHeader(menuItem));
+        popup.show();
     }
 
     private boolean actionMenuItemHeader(MenuItem item) {
@@ -133,30 +146,20 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
     }
 
     private void getListCategory() {
-        String api = CallAPIServer.prepareAPI("categories");
-
-        Response.Listener<String> listener = response -> {
-            ArrayList<String> categorySpinners = new ArrayList<>();
-            String json = response;
-            Gson gson = new Gson();
-            TypeToken<List<Category>> typeToken = new TypeToken<List<Category>>() {
-            };
-            List<Category> categories = gson.fromJson(json, typeToken.getType());
-
-            categorySpinners.add("Chọn danh mục");
-            for (Category category : categories) {
-                categorySpinners.add(category.getName());
+        caregoryService.getAll(listCategory -> {
+            if (listCategory != null) {
+                ArrayList<String> categorySpinners = new ArrayList<>();
+                categorySpinners.add("Chọn danh mục");
+                for (Category category : listCategory) {
+                    categorySpinners.add(category.getName());
+                }
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, categorySpinners);
+                sCategory.setAdapter(adapter);
+                sCategory.setSelection(0);
+            } else {
+                Toast.makeText(this, "Có lỗi xảy ra!", Toast.LENGTH_SHORT).show();
             }
-
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, categorySpinners);
-            sCategory.setAdapter(adapter);
-            sCategory.setSelection(0);
-        };
-
-        Response.ErrorListener errorListener = error -> Toast.makeText(this, "Có lỗi xảy ra, không lấy được danh sách danh mục!", Toast.LENGTH_SHORT).show();
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, api, listener, errorListener);
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+        });
     }
 
     private void showDialogSearch() {
@@ -195,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
         requestQueue.add(stringRequest);
     }
 
-    private void redirectProfile(){
+    private void redirectProfile() {
         Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
     }
