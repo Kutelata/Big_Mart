@@ -11,9 +11,12 @@ import android.widget.Toast;
 
 import com.example.project.databinding.ActivityLoginBinding;
 import com.example.project.entities.Customer;
+import com.example.project.entities.dto.ProductDTO;
 import com.example.project.services.CustomerService;
 import com.example.project.services.interfaces.ICustomerService;
 import com.example.project.utilities.GlobalApplication;
+
+import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
     ICustomerService customerService;
@@ -32,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         customerService = new CustomerService(this);
 
         GlobalApplication.getInstance().setCustomerApp(null);
+        GlobalApplication.getInstance().setProductCart(new ArrayList<>());
 
         btnLogin = binding.btnLogin;
         edtEmail = binding.edtEmail;

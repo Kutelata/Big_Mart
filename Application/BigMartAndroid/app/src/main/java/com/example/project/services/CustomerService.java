@@ -47,12 +47,23 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public void getById(int id, VolleyResult<Customer> callback) {
+        String newApi = String.format("%s/%d", mApi, id);
 
+        Response.Listener listener = response -> {
+            String json = response.toString();
+            Gson gson = new Gson();
+            Customer customer = gson.fromJson(json, Customer.class);
+            callback.onSuccess(customer);
+        };
+
+        Response.ErrorListener errorListener = error -> callback.onSuccess(null);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, newApi, listener, errorListener);
+        VolleySingleton.getInstance(mCtx).addToRequestQueue(stringRequest);
     }
 
     @Override
     public void insert(Customer entity, VolleyResult<Customer> callback) {
-        mApi = String.format("%s/createCustomer", mApi);
+        String newApi = String.format("%s/createCustomer", mApi);
 
         Response.Listener listener = response -> {
             String json = response.toString();
@@ -63,7 +74,7 @@ public class CustomerService implements ICustomerService {
 
         Response.ErrorListener errorListener = error -> callback.onSuccess(null);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, mApi, listener, errorListener) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, newApi, listener, errorListener) {
             @Nullable
             @Override
             protected Map<String, String> getParams() {

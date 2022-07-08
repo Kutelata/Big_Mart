@@ -103,6 +103,7 @@ public class AdapterProduct extends ArrayAdapter<ProductDTO> {
                 if (checkProduct == 0) {
                     productCart.add(product);
                 }
+
                 Toast.makeText(mCtx, "Thêm thành công!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(mCtx, "Có lỗi xảy ra!", Toast.LENGTH_SHORT).show();

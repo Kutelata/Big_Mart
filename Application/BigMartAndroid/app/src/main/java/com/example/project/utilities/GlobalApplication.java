@@ -3,8 +3,6 @@ package com.example.project.utilities;
 import android.app.Application;
 
 import com.example.project.entities.Customer;
-import com.example.project.entities.Product;
-import com.example.project.entities.dto.EmployeeDTO;
 import com.example.project.entities.dto.ProductDTO;
 
 import java.util.ArrayList;

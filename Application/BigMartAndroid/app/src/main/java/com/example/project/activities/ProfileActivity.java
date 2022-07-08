@@ -17,30 +17,32 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.project.databinding.ActivityProfileBinding;
 import com.example.project.entities.Customer;
+import com.example.project.services.CustomerService;
+import com.example.project.services.interfaces.ICustomerService;
 import com.example.project.utilities.CallAPIServer;
+import com.example.project.utilities.GlobalApplication;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
+    ICustomerService customerService;
     ActivityProfileBinding binding;
-    RelativeLayout rlCustomerInfo;
-    EditText edtSearch;
-    Button btnSearch, btnHistoryInvoice;
+    Button btnHistoryInvoice;
     TextView tvCustomerId, tvCustomerName, tvCustomerGender,
             tvCustomerBirthday, tvCustomerPhone, tvCustomerAddress,
-            tvCustomerEmail, tvCustomerCreatedAt, tvCustomerUpdatedAt, tvCustomerStatus;
+            tvCustomerEmail, tvCustomerPoint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        rlCustomerInfo = binding.rlCustomerInfo;
-        edtSearch = binding.edtSearch;
-        btnSearch = binding.btnSearch;
+        customerService = new CustomerService(this);
+
         btnHistoryInvoice = binding.btnHistoryInvoice;
         tvCustomerId = binding.tvCustomerId;
         tvCustomerName = binding.tvCustomerName;
@@ -49,52 +51,30 @@ public class ProfileActivity extends AppCompatActivity {
         tvCustomerPhone = binding.tvCustomerPhone;
         tvCustomerAddress = binding.tvCustomerAddress;
         tvCustomerEmail = binding.tvCustomerEmail;
-        tvCustomerCreatedAt = binding.tvCustomerCreatedAt;
-        tvCustomerUpdatedAt = binding.tvCustomerUpdatedAt;
-        tvCustomerStatus = binding.tvCustomerStatus;
+        tvCustomerPoint = binding.tvCustomerPoint;
 
-        rlCustomerInfo.setVisibility(View.GONE);
+        btnHistoryInvoice.setOnClickListener(view -> getInvoiceHistory());
 
-        edtSearch.setText("nguyenngocthuy@gmail.com");
-
-        btnSearch.setOnClickListener(view -> getListCustomer(edtSearch.getText().toString()));
+        getListCustomer();
     }
 
-    private void getListCustomer(String customerEmail) {
-        String api = CallAPIServer.prepareAPI("customers");
-
-        Response.Listener<String> listener = response -> {
-            Customer findCustomer = null;
-            String json = response;
-            Gson gson = new Gson();
-            TypeToken<List<Customer>> typeToken = new TypeToken<List<Customer>>() {
-            };
-            List<Customer> customers = gson.fromJson(json, typeToken.getType());
-
-            for (Customer customer : customers) {
-                if (customerEmail.equals(customer.getEmail())) {
-                    findCustomer = customer;
-                    break;
-                }
-            }
-
-            if (findCustomer != null) {
-                rlCustomerInfo.setVisibility(View.VISIBLE);
-                tvCustomerId.setText(findCustomer.getId().toString());
-                tvCustomerName.setText(findCustomer.getName());
-                tvCustomerGender.setText(findCustomer.getGender().toString());
-                tvCustomerBirthday.setText(findCustomer.getBirthday().toString());
-                tvCustomerAddress.setText(findCustomer.getAddress());
-                tvCustomerEmail.setText(findCustomer.getEmail());
-                tvCustomerStatus.setText(findCustomer.getStatus().toString());
+    private void getListCustomer() {
+        int customerId = GlobalApplication.getInstance().getCustomerApp().getId();
+        customerService.getById(customerId, customer -> {
+            if (customer != null) {
+                tvCustomerId.setText(customer.getId().toString());
+                tvCustomerName.setText(customer.getName());
+                tvCustomerGender.setText(customer.getGender() == 1 ? "Nam" : "Nữ");
+                tvCustomerBirthday.setText(customer.getBirthday().toString());
+                tvCustomerAddress.setText(customer.getAddress());
+                tvCustomerEmail.setText(customer.getEmail());
             } else {
-                rlCustomerInfo.setVisibility(View.GONE);
+                Toast.makeText(this, "Có lỗi xảy ra!", Toast.LENGTH_SHORT).show();
             }
-        };
+        });
+    }
 
-        Response.ErrorListener errorListener = error -> Toast.makeText(this, "Có lỗi xảy ra, không lấy được thông tin khách hàng!", Toast.LENGTH_SHORT).show();
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, api, listener, errorListener);
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+    private void getInvoiceHistory(){
+
     }
 }

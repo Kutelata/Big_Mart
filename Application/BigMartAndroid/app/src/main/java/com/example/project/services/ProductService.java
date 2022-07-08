@@ -72,7 +72,7 @@ public class ProductService implements IProductService {
 
     @Override
     public void getProductById(int id, VolleyResult<ProductDTO> callback) {
-        mApi = String.format("%s/%d", mApi, id);
+        String newApi = String.format("%s/%d", mApi, id);
 
         Response.Listener<String> listener = response -> {
             String json = response;
@@ -83,7 +83,7 @@ public class ProductService implements IProductService {
 
         Response.ErrorListener errorListener = error -> callback.onSuccess(null);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, mApi, listener, errorListener);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, newApi, listener, errorListener);
         RequestQueue requestQueue = Volley.newRequestQueue(mCtx);
         requestQueue.add(stringRequest);
     }

@@ -6,32 +6,12 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <EditText
-        android:id="@+id/edtSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:hint="Địa chỉ email khách hàng"
-        android:inputType="textPersonName" />
-
-    <Button
-        android:textColor="@color/black"
-        android:backgroundTint="@color/white"
-        android:id="@+id/btnSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tìm kiếm" />
-
     <RelativeLayout
         android:id="@+id/rlCustomerInfo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp">
+        android:layout_height="match_parent">
 
         <TextView
-
             android:id="@+id/tvCustomerInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -159,59 +139,29 @@
             <TextView
                 android:layout_row="7"
                 android:layout_column="0"
-                android:text="Ngày tạo :"
+                android:text="Điểm tích lũy :"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/tvCustomerCreatedAt"
+                android:id="@+id/tvCustomerPoint"
                 android:layout_row="7"
                 android:layout_column="1"
-                android:text="Ngày tạo :"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_row="8"
-                android:layout_column="0"
-                android:text="Ngày cập nhật :"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/tvCustomerUpdatedAt"
-                android:layout_row="8"
-                android:layout_column="1"
-                android:text="Ngày cập nhật :"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_row="9"
-                android:layout_column="0"
-                android:text="Trạng thái :"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/tvCustomerStatus"
-                android:layout_row="9"
-                android:layout_column="1"
-                android:text="Trạng thái :"
+                android:text="Điểm tích lũy :"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
         </GridLayout>
 
         <Button
-            android:textColor="@color/black"
-            android:backgroundTint="@color/white"
             android:id="@+id/btnHistoryInvoice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/glCustomerInfo"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:text="Lịch sử đơn hàng" />
+            android:backgroundTint="@color/white"
+            android:text="Lịch sử đơn hàng"
+            android:textColor="@color/black" />
     </RelativeLayout>
 
 </LinearLayout>
