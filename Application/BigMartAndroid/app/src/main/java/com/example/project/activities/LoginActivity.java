@@ -41,7 +41,14 @@ public class LoginActivity extends AppCompatActivity {
         edtEmail.setText("nguyenngocthuy@gmail.com");
         edtPassword.setText("123");
 
-        btnLogin.setOnClickListener(view -> actionLogin(edtEmail.getText().toString(), edtPassword.getText().toString()));
+        btnLogin.setOnClickListener(view -> {
+            if (edtEmail.getText().toString().equals("") ||
+                    edtPassword.getText().toString().equals("")) {
+                Toast.makeText(this, "Các trường không được để rỗng", Toast.LENGTH_SHORT).show();
+            } else {
+                actionLogin(edtEmail.getText().toString(), edtPassword.getText().toString());
+            }
+        });
 
         tvRegister.setOnClickListener(view -> redirectRegister());
     }

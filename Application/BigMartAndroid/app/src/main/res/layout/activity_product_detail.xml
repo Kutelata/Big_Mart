@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200"
+    android:background="@color/black"
     android:orientation="vertical"
     android:padding="20dp">
 
@@ -29,7 +29,7 @@
             android:layout_below="@id/tvProductInfo"
             android:columnCount="2"
             android:padding="10dp"
-            android:rowCount="13"
+            android:rowCount="14"
             android:useDefaultMargins="true">
 
             <TextView
@@ -92,35 +92,20 @@
             <TextView
                 android:layout_row="4"
                 android:layout_column="0"
-                android:text="Đơn vị tính :"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/tvProductUnit"
-                android:layout_row="4"
-                android:layout_column="1"
-                android:text="Đơn vị tính :"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_row="5"
-                android:layout_column="0"
                 android:text="Nhà cung cấp :"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/tvProductProvider"
-                android:layout_row="5"
+                android:layout_row="4"
                 android:layout_column="1"
                 android:text="Nhà cung cấp :"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
             <TextView
-                android:layout_row="6"
+                android:layout_row="5"
                 android:layout_column="0"
                 android:text="Số lượng :"
                 android:textColor="@color/white"
@@ -128,14 +113,14 @@
 
             <TextView
                 android:id="@+id/tvProductQuantity"
-                android:layout_row="6"
+                android:layout_row="5"
                 android:layout_column="1"
                 android:text="Số lượng :"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
             <TextView
-                android:layout_row="7"
+                android:layout_row="6"
                 android:layout_column="0"
                 android:text="Giá :"
                 android:textColor="@color/white"
@@ -143,14 +128,14 @@
 
             <TextView
                 android:id="@+id/tvProductPrice"
-                android:layout_row="7"
+                android:layout_row="6"
                 android:layout_column="1"
                 android:text="Giá :"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
             <TextView
-                android:layout_row="8"
+                android:layout_row="7"
                 android:layout_column="0"
                 android:text="Số lượng có thể bán :"
                 android:textColor="@color/white"
@@ -158,9 +143,24 @@
 
             <TextView
                 android:id="@+id/tvProductSaleableQty"
-                android:layout_row="8"
+                android:layout_row="7"
                 android:layout_column="1"
                 android:text="Số lượng có thể bán :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_row="8"
+                android:layout_column="0"
+                android:text="Điểm thưởng :"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvProductPoint"
+                android:layout_row="8"
+                android:layout_column="1"
+                android:text="Điểm thưởng :"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -224,6 +224,15 @@
                 android:textColor="@color/white"
                 android:textSize="20sp" />
         </GridLayout>
-    </RelativeLayout>
 
+        <Button
+            android:id="@+id/btnAddToCart"
+            android:layout_centerInParent="true"
+            android:layout_below="@id/glProductInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:text="Thêm sản phẩm vào giỏ hàng"/>
+    </RelativeLayout>
 </LinearLayout>

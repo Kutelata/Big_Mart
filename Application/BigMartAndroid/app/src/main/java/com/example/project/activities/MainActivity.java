@@ -16,11 +16,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.project.R;
 import com.example.project.adapters.AdapterProduct;
 import com.example.project.databinding.ActivityMainBinding;
@@ -29,19 +24,19 @@ import com.example.project.entities.Category;
 import com.example.project.entities.dto.ProductDTO;
 import com.example.project.services.CategoryService;
 import com.example.project.services.CustomerService;
+import com.example.project.services.ProductService;
 import com.example.project.services.interfaces.ICaregoryService;
 import com.example.project.services.interfaces.ICustomerService;
-import com.example.project.utilities.CallAPIServer;
+import com.example.project.services.interfaces.IProductService;
 import com.example.project.utilities.GlobalApplication;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements DialogSearch.ISearch {
     ICustomerService customerService;
-    ICaregoryService caregoryService;
+    ICaregoryService categoryService;
+    IProductService productService;
 
     ActivityMainBinding binding;
     Button btnSearch;
@@ -58,7 +53,8 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
         setContentView(binding.getRoot());
 
         customerService = new CustomerService(this);
-        caregoryService = new CategoryService(this);
+        categoryService = new CategoryService(this);
+        productService = new ProductService(this);
 
         btnSearch = binding.btnSearch;
         sCategory = binding.sCategory;
@@ -69,14 +65,8 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
 
         tvUserName.setText(GlobalApplication.getInstance().getCustomerApp().getName());
 
-        btnSearch.setOnClickListener(view -> {
-            showDialogSearch();
-        });
-
-        ivOptionMenu.setOnClickListener(view -> {
-            showMenuOptionHeader();
-        });
-
+        btnSearch.setOnClickListener(view -> showDialogSearch());
+        ivOptionMenu.setOnClickListener(view -> showMenuOptionHeader());
         sCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -96,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
     private void showMenuOptionHeader() {
         PopupMenu popup = new PopupMenu(this, ivOptionMenu);
         popup.getMenuInflater().inflate(R.menu.menu_header, popup.getMenu());
-        popup.setOnMenuItemClickListener(menuItem -> actionMenuItemHeader(menuItem));
+        popup.setOnMenuItemClickListener(this::actionMenuItemHeader);
         popup.show();
     }
 
@@ -116,37 +106,29 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
     }
 
     private void getListProduct(String categoryName) {
-        String api = CallAPIServer.prepareAPI("products");
-
-        Response.Listener<String> listener = response -> {
-            String json = response;
-            Gson gson = new Gson();
-            AdapterProduct adapterProduct;
-            TypeToken<List<ProductDTO>> typeToken = new TypeToken<List<ProductDTO>>() {
-            };
-            List<ProductDTO> productDTOs = gson.fromJson(json, typeToken.getType());
-            if (!categoryName.equals("Chọn danh mục")) {
-                List<ProductDTO> newProductDTOs = new ArrayList<>();
-                for (ProductDTO productDTO : productDTOs) {
-                    if (categoryName.equals(productDTO.categoryId.getName())) {
-                        newProductDTOs.add(productDTO);
+        productService.getAllProduct(listProduct -> {
+            if (listProduct != null) {
+                AdapterProduct adapterProduct;
+                if (!categoryName.equals("Chọn danh mục")) {
+                    List<ProductDTO> newProductDTOs = new ArrayList<>();
+                    for (ProductDTO productDTO : listProduct) {
+                        if (categoryName.equals(productDTO.categoryId.getName())) {
+                            newProductDTOs.add(productDTO);
+                        }
                     }
+                    adapterProduct = new AdapterProduct(this, R.layout.item_product, newProductDTOs, productService);
+                } else {
+                    adapterProduct = new AdapterProduct(this, R.layout.item_product, listProduct, productService);
                 }
-                adapterProduct = new AdapterProduct(this, R.layout.item_product, newProductDTOs);
-            } else {
-                adapterProduct = new AdapterProduct(this, R.layout.item_product, productDTOs);
+                lvProduct.setAdapter(adapterProduct);
+            }else{
+                Toast.makeText(this, "Có lỗi xảy ra!", Toast.LENGTH_SHORT).show();
             }
-            lvProduct.setAdapter(adapterProduct);
-        };
-
-        Response.ErrorListener errorListener = error -> Toast.makeText(this, "Có lỗi xảy ra, không lấy được danh sách sản phẩm!", Toast.LENGTH_SHORT).show();
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, api, listener, errorListener);
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+        });
     }
 
     private void getListCategory() {
-        caregoryService.getAll(listCategory -> {
+        categoryService.getAll(listCategory -> {
             if (listCategory != null) {
                 ArrayList<String> categorySpinners = new ArrayList<>();
                 categorySpinners.add("Chọn danh mục");
@@ -169,33 +151,25 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
 
     @Override
     public void searchProductName(String productName) {
-        String api = CallAPIServer.prepareAPI("products");
-
-        Response.Listener<String> listener = response -> {
-            String json = response;
-            Gson gson = new Gson();
-            AdapterProduct adapterProduct;
-            TypeToken<List<ProductDTO>> typeToken = new TypeToken<List<ProductDTO>>() {
-            };
-            List<ProductDTO> productDTOs = gson.fromJson(json, typeToken.getType());
-            if (!productName.equals("")) {
-                List<ProductDTO> newProductDTOs = new ArrayList<>();
-                for (ProductDTO productDTO : productDTOs) {
-                    if (productDTO.name.toLowerCase().contains(productName.toLowerCase())) {
-                        newProductDTOs.add(productDTO);
+        productService.getAllProduct(listProduct -> {
+            if (listProduct != null) {
+                AdapterProduct adapterProduct;
+                if (!productName.equals("")) {
+                    List<ProductDTO> newProductDTOs = new ArrayList<>();
+                    for (ProductDTO productDTO : listProduct) {
+                        if (productDTO.name.toLowerCase().contains(productName.toLowerCase())) {
+                            newProductDTOs.add(productDTO);
+                        }
                     }
+                    adapterProduct = new AdapterProduct(this, R.layout.item_product, newProductDTOs, productService);
+                } else {
+                    adapterProduct = new AdapterProduct(this, R.layout.item_product, listProduct, productService);
                 }
-                adapterProduct = new AdapterProduct(this, R.layout.item_product, newProductDTOs);
+                lvProduct.setAdapter(adapterProduct);
             } else {
-                adapterProduct = new AdapterProduct(this, R.layout.item_product, productDTOs);
+                Toast.makeText(this, "Có lỗi xảy ra!", Toast.LENGTH_SHORT).show();
             }
-            lvProduct.setAdapter(adapterProduct);
-        };
-
-        Response.ErrorListener errorListener = error -> Toast.makeText(this, "Có lỗi xảy ra, không lấy được danh sách sản phẩm!", Toast.LENGTH_SHORT).show();
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, api, listener, errorListener);
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+        });
     }
 
     private void redirectProfile() {

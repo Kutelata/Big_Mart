@@ -5,31 +5,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.project.R;
 import com.example.project.databinding.ActivityProductDetailBinding;
-import com.example.project.databinding.ActivitySearchBinding;
 import com.example.project.entities.dto.ProductDTO;
-import com.example.project.utilities.CallAPIServer;
-import com.google.gson.Gson;
+import com.example.project.services.ProductService;
+import com.example.project.services.interfaces.IProductService;
+import com.example.project.utilities.GlobalApplication;
+
+import java.util.List;
 
 public class ProductDetailActivity extends AppCompatActivity {
+    IProductService productService;
     ActivityProductDetailBinding binding;
     ImageView ivProductImage;
     TextView tvProductId, tvProductName,
-            tvProductCategory, tvProductUnit, tvProductProvider,
-            tvProductQuantity, tvProductPrice, tvProductSaleableQty, tvProductCreatedAt,
+            tvProductCategory, tvProductProvider,
+            tvProductQuantity, tvProductPrice, tvProductSaleableQty, tvProductPoint, tvProductCreatedAt,
             tvProductUpdatedAt, tvProductDescription, tvProductStatus;
+    Button btnAddToCart;
     Intent intent;
 
     @Override
@@ -40,57 +37,75 @@ public class ProductDetailActivity extends AppCompatActivity {
         binding = ActivityProductDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        productService = new ProductService(this);
+
         tvProductId = binding.tvProductId;
         tvProductName = binding.tvProductName;
 
         ivProductImage = binding.ivProductImage;
 
         tvProductCategory = binding.tvProductCategory;
-        tvProductUnit = binding.tvProductUnit;
         tvProductProvider = binding.tvProductProvider;
         tvProductQuantity = binding.tvProductQuantity;
         tvProductPrice = binding.tvProductPrice;
         tvProductSaleableQty = binding.tvProductSaleableQty;
+        tvProductPoint = binding.tvProductPoint;
         tvProductCreatedAt = binding.tvProductCreatedAt;
         tvProductUpdatedAt = binding.tvProductUpdatedAt;
         tvProductDescription = binding.tvProductDescription;
         tvProductStatus = binding.tvProductStatus;
+        btnAddToCart = binding.btnAddToCart;
 
         intent = getIntent();
         int productId = intent.getIntExtra("productId", 0);
 
-        getProduct(productId);
+        btnAddToCart.setOnClickListener(view -> addProductToCart(productId));
+
+        getProductDetail(productId);
     }
 
-    private void getProduct(int productId) {
-        String url = String.format("products/%d", productId);
-        String api = CallAPIServer.prepareAPI(url);
-
-        Response.Listener<String> listener = response -> {
-            String json = response;
-            Gson gson = new Gson();
-            ProductDTO productDTO = gson.fromJson(json, ProductDTO.class);
-
-            if (productDTO != null){
-                tvProductId.setText(productDTO.id.toString());
-                tvProductName.setText(productDTO.name);
-
-                tvProductCategory.setText(productDTO.categoryId.getName());
-                tvProductProvider.setText(productDTO.providerId.getName());
-                tvProductQuantity.setText(productDTO.quantity.toString());
-                tvProductPrice.setText(productDTO.price.toString());
-                tvProductSaleableQty.setText(productDTO.saleableQty.toString());
-                tvProductCreatedAt.setText(productDTO.createdAt.toString());
-                tvProductUpdatedAt.setText(productDTO.updatedAt.toString());
-                tvProductDescription.setText(productDTO.description);
-                tvProductStatus.setText(productDTO.status.toString());
+    private void getProductDetail(int productId) {
+        productService.getProductById(productId, product -> {
+            if (product != null) {
+                tvProductId.setText(product.id.toString());
+                tvProductName.setText(product.name);
+                tvProductCategory.setText(product.categoryId.getName());
+                tvProductProvider.setText(product.providerId.getName());
+                tvProductQuantity.setText(product.quantity.toString());
+                tvProductPrice.setText(product.price.toString());
+                tvProductSaleableQty.setText(product.saleableQty.toString());
+                tvProductPoint.setText(product.point.toString());
+                tvProductCreatedAt.setText((product.createdAt == null) ? "" : product.createdAt.toString());
+                tvProductUpdatedAt.setText((product.updatedAt == null) ? "" : product.updatedAt.toString());
+                tvProductDescription.setText(product.description);
+                tvProductStatus.setText(product.status.toString());
+            } else {
+                Toast.makeText(this, "Có lỗi xảy ra!", Toast.LENGTH_SHORT).show();
             }
-        };
+        });
+    }
 
-        Response.ErrorListener errorListener = error -> Toast.makeText(this, "Có lỗi xảy ra, không lấy được danh sách sản phẩm!", Toast.LENGTH_SHORT).show();
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, api, listener, errorListener);
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+    private void addProductToCart(int productId){
+        productService.getProductById(productId, product -> {
+            if (product != null) {
+                List<ProductDTO> productCart = GlobalApplication.getInstance().getProductCart();
+                int checkProduct = 0;
+                if (productCart.size() != 0) {
+                    for (ProductDTO item : productCart) {
+                        if (item.id == productId) {
+                            item.cartQuantity++;
+                            checkProduct++;
+                            break;
+                        }
+                    }
+                }
+                if (checkProduct == 0) {
+                    productCart.add(product);
+                }
+                Toast.makeText(this, "Thêm thành công!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Có lỗi xảy ra!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

@@ -3,9 +3,7 @@ package com.example.project.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -17,19 +15,16 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.project.R;
-import com.example.project.databinding.ActivitySearchBinding;
-import com.example.project.entities.Category;
+import com.example.project.databinding.ActivityProfileBinding;
 import com.example.project.entities.Customer;
 import com.example.project.utilities.CallAPIServer;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
-    ActivitySearchBinding binding;
+    ActivityProfileBinding binding;
     RelativeLayout rlCustomerInfo;
     EditText edtSearch;
     Button btnSearch, btnHistoryInvoice;
@@ -40,7 +35,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivitySearchBinding.inflate(getLayoutInflater());
+        binding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         rlCustomerInfo = binding.rlCustomerInfo;
@@ -62,9 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         edtSearch.setText("nguyenngocthuy@gmail.com");
 
-        btnSearch.setOnClickListener(view -> {
-            getListCustomer(edtSearch.getText().toString());
-        });
+        btnSearch.setOnClickListener(view -> getListCustomer(edtSearch.getText().toString()));
     }
 
     private void getListCustomer(String customerEmail) {
