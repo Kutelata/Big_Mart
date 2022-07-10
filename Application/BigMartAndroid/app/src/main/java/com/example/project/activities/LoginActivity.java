@@ -63,7 +63,8 @@ public class LoginActivity extends AppCompatActivity {
                 boolean result = false;
                 for (Customer customer : listCustomer) {
                     if (email.equals(customer.getEmail())
-                            && password.equals(customer.getPassword())) {
+                            && password.equals(customer.getPassword())
+                            && customer.getStatus() == 1) {
                         GlobalApplication.getInstance().setCustomerApp(customer);
                         result = true;
                         break;

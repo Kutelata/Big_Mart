@@ -25,6 +25,7 @@ public class DialogSearch extends Dialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = DialogSearchBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 

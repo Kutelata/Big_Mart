@@ -17,13 +17,15 @@ import androidx.annotation.Nullable;
 
 import com.example.project.R;
 import com.example.project.activities.ProductDetailActivity;
+import com.example.project.dialogs.DialogQuantity;
+import com.example.project.dialogs.DialogSearch;
 import com.example.project.entities.dto.ProductDTO;
 import com.example.project.services.interfaces.IProductService;
 import com.example.project.utilities.GlobalApplication;
 
 import java.util.List;
 
-public class AdapterCart extends ArrayAdapter<ProductDTO> {
+public class AdapterCart extends ArrayAdapter<ProductDTO> implements DialogQuantity.IQuantity {
     private Context mCtx;
     private int mLayout;
     private List<ProductDTO> mProductDTOs;
@@ -73,6 +75,7 @@ public class AdapterCart extends ArrayAdapter<ProductDTO> {
     private boolean actionMenuItemEachProduct(int productId, MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuChangeQuantity:
+                showDialogQuantity();
                 break;
             case R.id.menuDelete:
                 break;
@@ -80,11 +83,17 @@ public class AdapterCart extends ArrayAdapter<ProductDTO> {
         return true;
     }
 
-    private void changeQuantity(){
-
+    private void showDialogQuantity() {
+        DialogQuantity dialogQuantity = new DialogQuantity(mCtx, this);
+        dialogQuantity.show();
     }
 
     private void deleteProduct(){
 
+    }
+
+    @Override
+    public void changeQuantity(String quantity) {
+        Toast.makeText(mCtx, quantity, Toast.LENGTH_SHORT).show();
     }
 }
