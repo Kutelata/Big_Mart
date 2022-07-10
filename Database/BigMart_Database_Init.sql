@@ -12,13 +12,15 @@ create table tblCustomer
     `address` varchar(128),
     email varchar(128) not null unique,
     `password` varchar(64) not null,
+	`point` int default(0),
     `status` int(11) default(1)
 );
 
 create table tblRole
 (
     id int auto_increment primary key,
-    `name` varchar(64) not null
+    `name` varchar(64) not null,
+	`resource` varchar(256)
 );
 
 create table tblUser

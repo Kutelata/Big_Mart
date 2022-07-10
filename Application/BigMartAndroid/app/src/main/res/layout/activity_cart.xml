@@ -4,28 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200"
-    tools:context=".activities.CartActivity">
+    android:background="@color/black"
+    tools:context=".activities.CartActivity"
+    android:padding="20dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ListView
-            android:id="@+id/lvCart"
+        <ScrollView
+            android:id="@+id/svCart"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="600dp">
 
-        </ListView>
+            <ListView
+                android:id="@+id/lvCart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </ListView>
+        </ScrollView>
 
         <Button
-            android:id="@+id/btnPayment"
+            android:id="@+id/btnPay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/lvCart"
+            android:layout_below="@id/svCart"
             android:layout_centerInParent="true"
             android:layout_marginTop="20dp"
+            android:backgroundTint="@color/white"
             android:text="Thanh toán"
+            android:textColor="@color/black"
             android:textSize="20sp" />
     </RelativeLayout>
 </ScrollView>

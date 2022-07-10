@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
                     adapterProduct = new AdapterProduct(this, R.layout.item_product, listProduct, productService);
                 }
                 lvProduct.setAdapter(adapterProduct);
-            }else{
+            } else {
                 Toast.makeText(this, "Có lỗi xảy ra!", Toast.LENGTH_SHORT).show();
             }
         });
@@ -178,8 +178,13 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
     }
 
     private void redirectCart() {
-        Intent intent = new Intent(this, CartActivity.class);
-        startActivity(intent);
+        List<ProductDTO> productDTOs = GlobalApplication.getInstance().getProductCart();
+        if (productDTOs != null && productDTOs.size() != 0) {
+            Intent intent = new Intent(this, CartActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Không có sản phẩm trong giỏ hàng", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void logout() {
