@@ -1,7 +1,7 @@
 <?php
 
 include_once 'Controller.php';
-include_once '../api/CategoryRepository.php';
+include_once '../api/repository/CategoryRepository.php';
 
 class CategoryController extends Controller
 {
@@ -9,7 +9,7 @@ class CategoryController extends Controller
     {
         if (isset($_REQUEST['id'])) {
             $id = $_REQUEST['id'];
-            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/edit-category.php?id=' . $id);
+            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/category/edit-category.php?id=' . $id);
         }
     }
 
@@ -18,24 +18,23 @@ class CategoryController extends Controller
         if (isset($_REQUEST['id'])) {
             $id = $_REQUEST['id'];
             $categoryRepository = new CategoryRepository();
-            $categoryRepository->deleteCategory($id);
-            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/category-list.php');
+            $categoryRepository->delete($id);
+            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/category/category-list.php');
         }
     }
 
     public function create()
     {
-        $description = isset($_POST['description']) ? $_POST['description'] : '';
         if (isset($_POST['name'])) {
             $image = $this->uploadFile();
             $categoryData = [
                 'name' => $_POST['name'],
-                'description' => $description,
+                'status' => (int)$_POST['status'],
                 'image' => $image,
             ];
             $categoryRepository = new CategoryRepository();
-            $categoryRepository->createCategory($categoryData);
-            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/category-list.php');
+            $categoryRepository->create($categoryData);
+            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/category/category-list.php');
         }
     }
 
@@ -57,14 +56,19 @@ class CategoryController extends Controller
             if (isset($_POST['name'])) {
                 $categoryData = [
                     'name' => $_POST['name'],
-                    'description' => $_POST['description'],
+                    'status' => (int)$_POST['status'],
                     'image' => $image,
                 ];
                 $categoryRepository = new CategoryRepository();
-                $categoryRepository->updateCategory($id, $categoryData);
-                header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/category-list.php');
+                $categoryRepository->update($id, $categoryData);
+                header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/category/category-list.php');
             }
         }
+    }
+
+    public function index()
+    {
+        header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/category/category-list.php');
     }
 
     public function execute()

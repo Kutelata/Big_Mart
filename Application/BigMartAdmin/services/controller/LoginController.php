@@ -1,7 +1,7 @@
 <?php
 
-include './Controller.php';
-include '../api/EmployeeRepository.php';
+include 'Controller.php';
+include '../api/repository/UserRepository.php';
 
 class LoginController extends Controller
 {
@@ -9,17 +9,16 @@ class LoginController extends Controller
     {
         $params = $this->getParams();
         if (!empty($params['email']) && !empty($params['password'])) {
-            $employeeRepository = new EmployeeRepository();
-            $employeeList = $employeeRepository->getAllEmployees();
-            if ($employeeList && is_array($employeeList)) {
-                foreach ($employeeList as $employee) {
-                    if ($employee['username'] == $params['email']
-                        && $employee['password'] == $params['password']) {
+            $userRepository = new UserRepository();
+            $userList = $userRepository->getAll();
+            if ($userList && is_array($userList)) {
+                foreach ($userList as $user) {
+                    if ($user['account'] == $params['email']
+                        && $user['password'] == md5($params['password'])) {
                         session_start();
                         $_SESSION['timeout'] = time();
                         $_SESSION['session_id'] = session_id();
-                        $_SESSION["email"] = $params['email'];
-                        $_SESSION["password"] = $params['password'];
+                        $_SESSION["data"] = $user;
                         return true;
                     }
                 }

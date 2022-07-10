@@ -1,7 +1,7 @@
 <?php
 
 include_once 'Controller.php';
-include_once '../api/ProviderRepository.php';
+include_once '../api/repository/ProviderRepository.php';
 
 class ProviderController extends Controller
 {
@@ -9,7 +9,7 @@ class ProviderController extends Controller
     {
         if (isset($_REQUEST['id'])) {
             $id = $_REQUEST['id'];
-            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/edit-provider.php?id=' . $id);
+            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/provider/edit-provider.php?id=' . $id);
         }
     }
 
@@ -18,28 +18,25 @@ class ProviderController extends Controller
         if (isset($_REQUEST['id'])) {
             $id = $_REQUEST['id'];
             $providerRepository = new ProviderRepository();
-            $providerRepository->deleteProvider($id);
-            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/provider-list.php');
+            $providerRepository->delete($id);
+            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/provider/provider-list.php');
         }
     }
 
     public function create()
     {
-        $address = isset($_POST['address']) ? $_POST['address'] : '';
-        $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
-        $email = isset($_POST['email']) ? $_POST['email'] : '';
-        $status = isset($_POST['status']) && (int)$_POST['status'] == 1 ? 1 : 2;
         if (isset($_POST['name'])) {
+            $status = isset($_POST['status']) && (int)$_POST['status'] == 1 ? 1 : 2;
             $data = [
                 'name' => $_POST['name'],
-                'address' => $address,
-                'phone' => $phone,
+                'address' => $_POST['address'],
+                'phone' => $_POST['phone'],
                 'status' => $status,
-                'email' => $email,
+                'email' => $_POST['email'],
             ];
             $providerRepository = new ProviderRepository();
-            $providerRepository->createProvider($data);
-            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/provider-list.php');
+            $providerRepository->create($data);
+            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/provider/provider-list.php');
         }
     }
 
@@ -56,9 +53,14 @@ class ProviderController extends Controller
                 'email' => $_POST['email'],
             ];
             $providerRepository = new ProviderRepository();
-            $providerRepository->updateProvider($id, $data);
-            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/provider-list.php');
+            $providerRepository->update($id, $data);
+            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/provider/provider-list.php');
         }
+    }
+
+    public function index()
+    {
+        header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/provider/provider-list.php');
     }
 
     public function execute()

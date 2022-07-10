@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4e3c2a79-e18a-4bcf-9338-5635fbdb5483" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Application/BigMartAdmin/services/api/repository/UserRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Application/BigMartAdmin/views/category/category-list.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Application/BigMartAdmin/views/product/product-list.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/services/api/CategoryRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/Application/BigMartAdmin/services/api/repository/CategoryRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/services/api/EmployeeRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/services/api/ProductRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/Application/BigMartAdmin/services/api/repository/ProductRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/services/api/ProviderRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/Application/BigMartAdmin/services/api/repository/ProviderRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/services/api/UnitRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/services/controller/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Application/BigMartAdmin/services/controller/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/services/controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Application/BigMartAdmin/services/controller/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/services/controller/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Application/BigMartAdmin/services/controller/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/services/controller/ProviderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Application/BigMartAdmin/services/controller/ProviderController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/services/controller/UnitController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/views/category-list.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/views/common/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/Application/BigMartAdmin/views/common/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/views/common/nav-bar.php" beforeDir="false" afterPath="$PROJECT_DIR$/Application/BigMartAdmin/views/common/nav-bar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/views/common/side-bar.php" beforeDir="false" afterPath="$PROJECT_DIR$/Application/BigMartAdmin/views/common/side-bar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/views/create-category.php" beforeDir="false" afterPath="$PROJECT_DIR$/Application/BigMartAdmin/views/category/create-category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/views/create-product.php" beforeDir="false" afterPath="$PROJECT_DIR$/Application/BigMartAdmin/views/product/create-product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/views/create-provider.php" beforeDir="false" afterPath="$PROJECT_DIR$/Application/BigMartAdmin/views/provider/create-provider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/views/create-unit.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/views/edit-category.php" beforeDir="false" afterPath="$PROJECT_DIR$/Application/BigMartAdmin/views/category/edit-category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/views/edit-provider.php" beforeDir="false" afterPath="$PROJECT_DIR$/Application/BigMartAdmin/views/provider/edit-provider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/views/edit-unit.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/views/form-layouts-horizontal.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/views/form-layouts-vertical.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/views/forms-basic-inputs.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/views/forms-input-groups.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/views/product-list.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/views/provider-list.php" beforeDir="false" afterPath="$PROJECT_DIR$/Application/BigMartAdmin/views/provider/provider-list.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/views/tables-basic.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/BigMartAdmin/views/unit-list.php" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2AcEiCWIdfHx8KkbAPtmEZ2AMrx" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/xampp/htdocs/Big_Mart/Application/BigMartAdmin/services/controller",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "php.override.implement.member.chooser.php.doc": "NONE",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\xampp\\htdocs\\Big_Mart\\Application\\BigMartAPI\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\Big_Mart\Application\BigMartAdmin\services\controller" />
+      <recent name="C:\xampp\htdocs\Big_Mart\Application\BigMartAdmin\services\api\repository" />
+      <recent name="C:\xampp\htdocs\Big_Mart\Application\BigMartAdmin\views" />
+      <recent name="C:\xampp\htdocs\Big_Mart\Application\BigMartAdmin\views\shipping" />
+      <recent name="C:\xampp\htdocs\Big_Mart\Application\BigMartAdmin\views\user" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\Big_Mart\Application\BigMartAdmin\views\user" />
+      <recent name="C:\xampp\htdocs\Big_Mart\Application\BigMartAdmin\views\invoice" />
+      <recent name="C:\xampp\htdocs\Big_Mart\Application\BigMartAdmin\views\customer" />
+      <recent name="C:\xampp\htdocs\Big_Mart\Application\BigMartAdmin\views\provider" />
+      <recent name="C:\xampp\htdocs\Big_Mart\Application\BigMartAdmin\views\product" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4e3c2a79-e18a-4bcf-9338-5635fbdb5483" name="Changes" comment="" />
+      <created>1655300604453</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1655300604453</updated>
+      <workItem from="1655300608903" duration="6259000" />
+      <workItem from="1655309641563" duration="3592000" />
+      <workItem from="1655465767006" duration="7899000" />
+      <workItem from="1655481590408" duration="4003000" />
+      <workItem from="1655568450108" duration="5096000" />
+      <workItem from="1655746092536" duration="3174000" />
+      <workItem from="1655793972293" duration="5059000" />
+      <workItem from="1655877932047" duration="1809000" />
+      <workItem from="1655967940088" duration="720000" />
+      <workItem from="1656038315772" duration="36353000" />
+      <workItem from="1656310225410" duration="9989000" />
+      <workItem from="1656370657367" duration="1242000" />
+      <workItem from="1656613212373" duration="6687000" />
+      <workItem from="1656841383769" duration="2408000" />
+      <workItem from="1657129897126" duration="1066000" />
+      <workItem from="1657131348529" duration="1880000" />
+      <workItem from="1657199786801" duration="10370000" />
+      <workItem from="1657292789936" duration="7922000" />
+      <workItem from="1657345529331" duration="25663000" />
+      <workItem from="1657465391146" duration="10336000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

@@ -1,6 +1,6 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-        <a href="index.php" class="app-brand-link">
+        <a href="/Big_Mart/Application/BigMartAdmin/views/index.php" class="app-brand-link">
             <span class="app-brand-logo demo">
               <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
                    xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -47,22 +47,17 @@
             </span>
             <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
         </a>
-
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
             <i class="bx bx-chevron-left bx-sm align-middle"></i>
         </a>
     </div>
-
     <div class="menu-inner-shadow"></div>
-
     <ul class="menu-inner py-1">
         <li class="menu-item active">
-            <a href="index.php" class="menu-link">
+            <a href="/Big_Mart/Application/BigMartAdmin/views/index.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
-        </li>
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Forms &amp; Tables</span>
         </li>
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -71,23 +66,81 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="category-list.php" class="menu-link">
-                        <div data-i18n="Category">Category</div>
+                    <a href="/Big_Mart/Application/BigMartAdmin/services/controller/CategoryController.php?action=index"
+                       class="menu-link">
+                        <div data-i18n="Categories">Categories</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="product-list.php" class="menu-link">
-                        <div data-i18n="Product">Product</div>
+                    <a href="/Big_Mart/Application/BigMartAdmin/services/controller/ProductController.php?action=index"
+                       class="menu-link">
+                        <div data-i18n="Products">Products</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="provider-list.php" class="menu-link">
-                        <div data-i18n="Category">Provider</div>
+                    <a href="/Big_Mart/Application/BigMartAdmin/services/controller/ProviderController.php?action=index"
+                       class="menu-link">
+                        <div data-i18n="Providers">Providers</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Customers">Customers</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="/Big_Mart/Application/BigMartAdmin/services/controller/CustomerController.php?action=index"
+                       class="menu-link">
+                        <div data-i18n="All Customers">All Customers</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Permissions">Permissions</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="/Big_Mart/Application/BigMartAdmin/services/controller/UserController.php?action=index"
+                       class="menu-link">
+                        <div data-i18n="All Customers">User</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="unit-list.php" class="menu-link">
-                        <div data-i18n="Category">Unit</div>
+                    <a href="/Big_Mart/Application/BigMartAdmin/services/controller/RoleController.php?action=index"
+                       class="menu-link">
+                        <div data-i18n="Roles">Roles</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Catalog">Sales</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="/Big_Mart/Application/BigMartAdmin/services/controller/InvoiceController.php?action=index"
+                       class="menu-link">
+                        <div data-i18n="Product">Invoices</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/Big_Mart/Application/BigMartAdmin/services/controller/ShippingController.php?action=index"
+                       class="menu-link">
+                        <div data-i18n="Product">Shipping Methods</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/Big_Mart/Application/BigMartAdmin/services/controller/PaymentController.php?action=index"
+                       class="menu-link">
+                        <div data-i18n="Product">Payment Methods</div>
                     </a>
                 </li>
             </ul>

@@ -1,7 +1,7 @@
 <?php
 
 include_once 'Controller.php';
-include_once '../api/ProductRepository.php';
+include_once '../api/repository/ProductRepository.php';
 
 class ProductController extends Controller
 {
@@ -10,7 +10,8 @@ class ProductController extends Controller
         if (isset($_REQUEST['id'])) {
             $id = $_REQUEST['id'];
             $productRepository = new ProductRepository();
-            $productRepository->deleteProduct($id);
+            $productRepository->delete($id);
+            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/product/product-list.php');
         }
     }
 
@@ -18,11 +19,7 @@ class ProductController extends Controller
     {
         if (isset($_REQUEST['id'])) {
             $id = $_REQUEST['id'];
-            $productRepository = new ProductRepository();
-            echo '<pre>';
-            var_dump($productRepository->getProductById($id));
-            echo '</pre>';
-            die;
+            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/product/edit-product.php?id=' . $id);
         }
     }
 
@@ -34,18 +31,18 @@ class ProductController extends Controller
                 'name' => $_POST['name'],
                 'image' => $image,
                 'category_id' => (int)$_POST['category_id'],
-                'unit_id' => (int)$_POST['unit_id'],
                 'provider_id' => (int)$_POST['provider_id'],
                 'quantity' => (int)$_POST['quantity'],
                 'price' => (float)$_POST['price'],
                 'saleable_qty' => (int)$_POST['quantity'],
                 'status' => (int)$_POST['status'],
+                'point' => (int)$_POST['point'],
                 'description' => $_POST['description'],
                 'created_at' => date("Y-m-d"),
             ];
             $productRepository = new ProductRepository();
-            $productRepository->createProduct($data);
-            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/product-list.php');
+            $productRepository->create($data);
+            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/product/product-list.php');
         }
     }
 
@@ -55,6 +52,46 @@ class ProductController extends Controller
             $action = $_REQUEST['action'];
             $this->$action();
         }
+    }
+
+    public function update()
+    {
+        $id = $_POST['id'] ?? '';
+        if (!$_FILES['image']['name']
+            && !$_FILES['image']['type']
+            && !$_FILES['image']['tmp_name']
+            && !$_FILES['image']['size']
+            && isset($_POST['old-image'])
+        ) {
+            $image = $_POST['old-image'];
+        } else {
+            $image = $this->uploadFile();
+        }
+
+        if ($id) {
+            if (isset($_POST['name'])) {
+                $data = [
+                    'name' => $_POST['name'],
+                    'image' => $image,
+                    'category_id' => (int)$_POST['category_id'],
+                    'provider_id' => (int)$_POST['provider_id'],
+                    'quantity' => (int)$_POST['quantity'],
+                    'price' => (float)$_POST['price'],
+                    'point' => (int)$_POST['point'],
+                    'status' => (int)$_POST['status'],
+                    'description' => $_POST['description'],
+                    'updated_at' => date("Y-m-d"),
+                ];
+                $productRepository = new ProductRepository();
+                $productRepository->update($id, $data);
+                header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/product/product-list.php');
+            }
+        }
+    }
+
+    public function index()
+    {
+        header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/product/product-list.php');
     }
 
     protected function uploadFile()
