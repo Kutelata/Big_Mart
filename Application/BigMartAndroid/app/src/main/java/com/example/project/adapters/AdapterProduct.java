@@ -96,6 +96,7 @@ public class AdapterProduct extends ArrayAdapter<ProductDTO> {
                         if (item.id == productId) {
                             item.cartQuantity++;
                             checkProduct++;
+                            Toast.makeText(mCtx, "Thêm thành công!" + item.cartQuantity, Toast.LENGTH_SHORT).show();
                             break;
                         }
                     }

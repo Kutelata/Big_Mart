@@ -11,22 +11,12 @@ import android.widget.Toast;
 
 import com.example.project.databinding.ActivityLoginBinding;
 import com.example.project.entities.Customer;
-import com.example.project.entities.dto.ProductDTO;
 import com.example.project.services.CustomerService;
 import com.example.project.services.interfaces.ICustomerService;
-import com.example.project.utilities.CipherUtil;
 import com.example.project.utilities.GlobalApplication;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
+import java.util.Base64;
 
 public class LoginActivity extends AppCompatActivity {
     ICustomerService customerService;
@@ -72,31 +62,17 @@ public class LoginActivity extends AppCompatActivity {
             if (listCustomer != null) {
                 boolean result = false;
                 for (Customer customer : listCustomer) {
-                    try {
-                        SecretKey secretKey = CipherUtil.generateKey();
-                        String decodePass = CipherUtil.decrypt(customer.getPassword().getBytes(StandardCharsets.UTF_8),secretKey);
-                        Toast.makeText(this,decodePass,Toast.LENGTH_SHORT).show();
-                        if (email.equals(customer.getEmail())
-                                && password.equals(decodePass)
-                                && customer.getStatus() == 1) {
-                            GlobalApplication.getInstance().setCustomerApp(customer);
-                            result = true;
-                            break;
-                        }
-                    } catch (NoSuchPaddingException e) {
-                        e.printStackTrace();
-                    } catch (NoSuchAlgorithmException e) {
-                        e.printStackTrace();
-                    } catch (InvalidKeyException e) {
-                        e.printStackTrace();
-                    } catch (IllegalBlockSizeException e) {
-                        e.printStackTrace();
-                    } catch (BadPaddingException e) {
-                        e.printStackTrace();
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
+                    String decodePass = null;
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        decodePass = new String(Base64.getDecoder().decode(customer.getPassword()));
                     }
-
+                    if (email.equals(customer.getEmail())
+                            && password.equals(decodePass)
+                            && customer.getStatus() == 1) {
+                        GlobalApplication.getInstance().setCustomerApp(customer);
+                        result = true;
+                        break;
+                    }
                 }
                 if (result) {
                     Intent intent = new Intent(this, MainActivity.class);

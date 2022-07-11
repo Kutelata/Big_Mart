@@ -1,5 +1,5 @@
 insert into tblCustomer(`name`,gender,birthday,phone,`address`,email,`password`,`point`,`status`) values 
-('Nguyễn Ngọc Thúy',0,'1990-11-23','0832536199','Khu tập thể A3 Nam Đồng, A1P49, Phố P. Hồ Đắc Di, Nam Đồng, Đống Đa, Hà Nội','nguyenngocthuy@gmail.com','123',1,1),
+('Nguyễn Ngọc Thúy',0,'1990-11-23','0832536199','Khu tập thể A3 Nam Đồng, A1P49, Phố P. Hồ Đắc Di, Nam Đồng, Đống Đa, Hà Nội','nguyenngocthuy@gmail.com','MTIz',1,1),
 ('Đáo Đức Thành',1,'1991-11-23','0832536200','Tòa nhà C´Land, 156 Ng. Xã Đàn 2, Nam Đồng, Đống Đa, Hà Nội','daoducthanh@gmail.com','123',2,0),
 ('Tô Nghị',2,'1992-11-23','0832536201','Trần Hưng Đạo, Hoàn Kiếm, Hà Nội','tonghi@gmail.com','123',3,1),
 ('Nguyễn Lê Tuấn',0,'1993-11-23','0832536202','81 Trần Hưng Đạo, Hoàn Kiếm, Hà Nội','nguyenletuan@gmail.com','123',4,0),

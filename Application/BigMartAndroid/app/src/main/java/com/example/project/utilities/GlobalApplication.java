@@ -5,7 +5,6 @@ import android.app.Application;
 import com.example.project.entities.Customer;
 import com.example.project.entities.dto.ProductDTO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GlobalApplication extends Application {
@@ -17,8 +16,6 @@ public class GlobalApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-
-        mProductCart = new ArrayList<>();
     }
 
     public static GlobalApplication getInstance() {

@@ -1,7 +1,6 @@
 package com.example.project.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,12 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.project.R;
-import com.example.project.activities.ProductDetailActivity;
 import com.example.project.dialogs.DialogQuantity;
-import com.example.project.dialogs.DialogSearch;
 import com.example.project.entities.dto.ProductDTO;
 import com.example.project.services.interfaces.IProductService;
-import com.example.project.utilities.GlobalApplication;
 
 import java.util.List;
 
@@ -50,7 +46,7 @@ public class AdapterCart extends ArrayAdapter<ProductDTO> implements DialogQuant
         ProductDTO productDTO = mProductDTOs.get(position);
 
         TextView tvProductName = item.findViewById(R.id.tvProductName);
-        TextView tvProductQuantity = item.findViewById(R.id.tvProductQuantity);
+        TextView tvCartQuantity = item.findViewById(R.id.tvCartQuantity);
         TextView tvProductPrice = item.findViewById(R.id.tvProductPrice);
         TextView tvProductPoint = item.findViewById(R.id.tvProductPoint);
         ImageView ivMenuProduct = item.findViewById(R.id.ivMenuProduct);
@@ -58,7 +54,7 @@ public class AdapterCart extends ArrayAdapter<ProductDTO> implements DialogQuant
         ivMenuProduct.setOnClickListener(view -> showMenuEachProduct(productDTO.id, view));
 
         tvProductName.setText(productDTO.name + "");
-        tvProductQuantity.setText(productDTO.quantity + "");
+        tvCartQuantity.setText(String.format("Số lượng: %s", productDTO.cartQuantity));
         tvProductPrice.setText(productDTO.price.shortValue() + " VND");
         tvProductPoint.setText(productDTO.point + " điểm");
 
@@ -88,7 +84,7 @@ public class AdapterCart extends ArrayAdapter<ProductDTO> implements DialogQuant
         dialogQuantity.show();
     }
 
-    private void deleteProduct(){
+    private void deleteProduct() {
 
     }
 

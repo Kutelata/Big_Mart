@@ -29,15 +29,15 @@
                 android:id="@+id/tvProductName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Product name"
+                android:text="Tên sản phẩm:"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/tvProductQuantity"
+                android:id="@+id/tvCartQuantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Product quantity"
+                android:text="Số lượng:"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -45,7 +45,7 @@
                 android:id="@+id/tvProductPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Product price"
+                android:text="Giá:"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -53,7 +53,7 @@
                 android:id="@+id/tvProductPoint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Product point"
+                android:text="Điểm thưởng:"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
         </LinearLayout>

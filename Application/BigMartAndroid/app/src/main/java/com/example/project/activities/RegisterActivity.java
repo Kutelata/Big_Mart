@@ -13,16 +13,8 @@ import com.example.project.databinding.ActivityRegisterBinding;
 import com.example.project.entities.Customer;
 import com.example.project.services.CustomerService;
 import com.example.project.services.interfaces.ICustomerService;
-import com.example.project.utilities.CipherUtil;
 
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
+import java.util.Base64;
 
 public class RegisterActivity extends AppCompatActivity {
     ICustomerService customerService;
@@ -58,29 +50,17 @@ public class RegisterActivity extends AppCompatActivity {
             } else if (!edtPassword.getText().toString().equals(edtConfirmPassword.getText().toString())) {
                 Toast.makeText(this, "Mật khẩu và nhập lại mật khẩu không giống nhau", Toast.LENGTH_SHORT).show();
             } else {
-                try {
-                    SecretKey secretKey = CipherUtil.generateKey();
-                    String encodePass = CipherUtil.encrypt(edtPassword.getText().toString(), secretKey).toString();
-                    Customer customer = new Customer(
-                            edtUserName.getText().toString(),
-                            edtPhone.getText().toString(),
-                            edtEmail.getText().toString(),
-                            encodePass);
-                    createAccount(customer);
-                } catch (NoSuchPaddingException e) {
-                    e.printStackTrace();
-                } catch (NoSuchAlgorithmException e) {
-                    e.printStackTrace();
-                } catch (InvalidKeyException e) {
-                    e.printStackTrace();
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                } catch (IllegalBlockSizeException e) {
-                    e.printStackTrace();
-                } catch (BadPaddingException e) {
-                    e.printStackTrace();
+                String password = edtPassword.getText().toString();
+                String encodePass = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    encodePass = Base64.getEncoder().encodeToString(password.getBytes());
                 }
-
+                Customer customer = new Customer(
+                        edtUserName.getText().toString(),
+                        edtPhone.getText().toString(),
+                        edtEmail.getText().toString(),
+                        encodePass);
+                createAccount(customer);
             }
         });
 
@@ -89,12 +69,12 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void createAccount(Customer customer) {
         customerService.insert(customer, newCustomer -> {
-            if(newCustomer != null){
+            if (newCustomer != null) {
                 Intent intent = new Intent(this, LoginActivity.class);
                 finish();
                 startActivity(intent);
                 Toast.makeText(getApplicationContext(), "Đămg ký tài khoản thành công", Toast.LENGTH_SHORT).show();
-            }else{
+            } else {
                 Toast.makeText(this, "Đăng ký tài khoản thất bại", Toast.LENGTH_SHORT).show();
             }
         });
