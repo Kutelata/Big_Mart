@@ -14,9 +14,19 @@ import com.example.project.entities.Customer;
 import com.example.project.entities.dto.ProductDTO;
 import com.example.project.services.CustomerService;
 import com.example.project.services.interfaces.ICustomerService;
+import com.example.project.utilities.CipherUtil;
 import com.example.project.utilities.GlobalApplication;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
 
 public class LoginActivity extends AppCompatActivity {
     ICustomerService customerService;
@@ -62,13 +72,31 @@ public class LoginActivity extends AppCompatActivity {
             if (listCustomer != null) {
                 boolean result = false;
                 for (Customer customer : listCustomer) {
-                    if (email.equals(customer.getEmail())
-                            && password.equals(customer.getPassword())
-                            && customer.getStatus() == 1) {
-                        GlobalApplication.getInstance().setCustomerApp(customer);
-                        result = true;
-                        break;
+                    try {
+                        SecretKey secretKey = CipherUtil.generateKey();
+                        String decodePass = CipherUtil.decrypt(customer.getPassword().getBytes(StandardCharsets.UTF_8),secretKey);
+                        Toast.makeText(this,decodePass,Toast.LENGTH_SHORT).show();
+                        if (email.equals(customer.getEmail())
+                                && password.equals(decodePass)
+                                && customer.getStatus() == 1) {
+                            GlobalApplication.getInstance().setCustomerApp(customer);
+                            result = true;
+                            break;
+                        }
+                    } catch (NoSuchPaddingException e) {
+                        e.printStackTrace();
+                    } catch (NoSuchAlgorithmException e) {
+                        e.printStackTrace();
+                    } catch (InvalidKeyException e) {
+                        e.printStackTrace();
+                    } catch (IllegalBlockSizeException e) {
+                        e.printStackTrace();
+                    } catch (BadPaddingException e) {
+                        e.printStackTrace();
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
                     }
+
                 }
                 if (result) {
                     Intent intent = new Intent(this, MainActivity.class);

@@ -13,6 +13,16 @@ import com.example.project.databinding.ActivityRegisterBinding;
 import com.example.project.entities.Customer;
 import com.example.project.services.CustomerService;
 import com.example.project.services.interfaces.ICustomerService;
+import com.example.project.utilities.CipherUtil;
+
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
 
 public class RegisterActivity extends AppCompatActivity {
     ICustomerService customerService;
@@ -48,12 +58,29 @@ public class RegisterActivity extends AppCompatActivity {
             } else if (!edtPassword.getText().toString().equals(edtConfirmPassword.getText().toString())) {
                 Toast.makeText(this, "Mật khẩu và nhập lại mật khẩu không giống nhau", Toast.LENGTH_SHORT).show();
             } else {
-                Customer customer = new Customer(
-                        edtUserName.getText().toString(),
-                        edtPhone.getText().toString(),
-                        edtEmail.getText().toString(),
-                        edtPassword.getText().toString());
-                createAccount(customer);
+                try {
+                    SecretKey secretKey = CipherUtil.generateKey();
+                    String encodePass = CipherUtil.encrypt(edtPassword.getText().toString(), secretKey).toString();
+                    Customer customer = new Customer(
+                            edtUserName.getText().toString(),
+                            edtPhone.getText().toString(),
+                            edtEmail.getText().toString(),
+                            encodePass);
+                    createAccount(customer);
+                } catch (NoSuchPaddingException e) {
+                    e.printStackTrace();
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                } catch (InvalidKeyException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (IllegalBlockSizeException e) {
+                    e.printStackTrace();
+                } catch (BadPaddingException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
 
