@@ -25,5 +25,5 @@ public class ProductDTO {
     public Date updatedAt;
     public String description;
     public Integer status;
-    public Integer cartQuantity = 0;
+    public Integer cartQuantity;
 }
