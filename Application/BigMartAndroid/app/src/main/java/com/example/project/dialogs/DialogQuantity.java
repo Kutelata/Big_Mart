@@ -14,17 +14,15 @@ public class DialogQuantity extends Dialog {
     private DialogQuantityBinding binding;
     private AdapterCart mAdapterCart;
     private Integer mProductId;
-    private TextView mTextView;
 
     public interface IQuantity {
-        public void changeQuantity(int productId, TextView textView, String quantity);
+        public void changeQuantity(int productId, String quantity);
     }
 
-    public DialogQuantity(int productId, TextView textView, @NonNull Context context, AdapterCart adapterCart) {
+    public DialogQuantity(int productId, @NonNull Context context, AdapterCart adapterCart) {
         super(context);
         mAdapterCart = adapterCart;
         mProductId = productId;
-        mTextView = textView;
     }
 
     @Override
@@ -35,7 +33,7 @@ public class DialogQuantity extends Dialog {
         setContentView(binding.getRoot());
 
         binding.btnChangeQuantity.setOnClickListener(view -> {
-            mAdapterCart.changeQuantity(mProductId, mTextView, binding.edtQuantity.getText().toString());
+            mAdapterCart.changeQuantity(mProductId, binding.edtQuantity.getText().toString());
             dismiss();
         });
     }

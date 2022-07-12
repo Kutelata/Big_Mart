@@ -1,6 +1,7 @@
 package com.example.project.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.project.R;
+import com.example.project.activities.CartActivity;
 import com.example.project.dialogs.DialogQuantity;
 import com.example.project.entities.Product;
 import com.example.project.entities.dto.ProductDTO;
@@ -26,14 +28,12 @@ public class AdapterCart extends ArrayAdapter<ProductDTO> implements DialogQuant
     private Context mCtx;
     private int mLayout;
     private List<ProductDTO> mProductDTOs;
-    private List<ProductDTO> mProductCart;
 
     public AdapterCart(Context context, int resource, List<ProductDTO> productDTOs) {
         super(context, resource, productDTOs);
         this.mCtx = context;
         this.mLayout = resource;
         this.mProductDTOs = productDTOs;
-        this.mProductCart = GlobalApplication.getInstance().getProductCart();
     }
 
     @NonNull
@@ -65,36 +65,44 @@ public class AdapterCart extends ArrayAdapter<ProductDTO> implements DialogQuant
     private void showMenuEachProduct(int productId, View view, TextView textView) {
         PopupMenu popupMenu = new PopupMenu(mCtx, view);
         popupMenu.getMenuInflater().inflate(R.menu.menu_cart, popupMenu.getMenu());
-        popupMenu.setOnMenuItemClickListener(menuItem -> actionMenuItemEachProduct(productId, menuItem, textView));
+        popupMenu.setOnMenuItemClickListener(menuItem -> actionMenuItemEachProduct(productId, menuItem));
         popupMenu.show();
     }
 
-    private boolean actionMenuItemEachProduct(int productId, MenuItem item, TextView textView) {
+    private boolean actionMenuItemEachProduct(int productId, MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuChangeQuantity:
-                showDialogQuantity(productId, textView);
+                showDialogQuantity(productId);
                 break;
             case R.id.menuDelete:
+                deleteProduct(productId);
                 break;
         }
         return true;
     }
 
-    private void showDialogQuantity(int productId, TextView textView) {
-        DialogQuantity dialogQuantity = new DialogQuantity(productId, textView, mCtx, this);
+    private void showDialogQuantity(int productId) {
+        DialogQuantity dialogQuantity = new DialogQuantity(productId, mCtx, this);
         dialogQuantity.show();
     }
 
     private void deleteProduct(int productId) {
-
+        for (ProductDTO productDTO : mProductDTOs) {
+            if (productDTO.id == productId) {
+                mProductDTOs.remove(productDTO);
+                this.notifyDataSetChanged();
+                Toast.makeText(mCtx, "Xóa sản phẩm thành công", Toast.LENGTH_SHORT).show();
+                break;
+            }
+        }
     }
 
     @Override
-    public void changeQuantity(int productId, TextView textView, String quantity) {
-        for (ProductDTO productDTO : mProductCart) {
+    public void changeQuantity(int productId, String quantity) {
+        for (ProductDTO productDTO : mProductDTOs) {
             if (productDTO.id == productId) {
                 productDTO.cartQuantity = Integer.parseInt(quantity);
-                textView.setText(String.format("Số lượng: %s", quantity));
+                this.notifyDataSetChanged();
                 Toast.makeText(mCtx, "Thay đổi số lượng thành công", Toast.LENGTH_SHORT).show();
                 break;
             }

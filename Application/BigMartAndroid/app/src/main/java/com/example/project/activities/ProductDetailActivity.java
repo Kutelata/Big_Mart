@@ -100,6 +100,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     }
                 }
                 if (checkProduct == 0) {
+                    product.cartQuantity = 1;
                     productCart.add(product);
                 }
                 Toast.makeText(this, "Thêm thành công!", Toast.LENGTH_SHORT).show();
