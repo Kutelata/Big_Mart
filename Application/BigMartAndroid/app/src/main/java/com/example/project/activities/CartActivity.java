@@ -9,7 +9,6 @@ import android.widget.ListView;
 
 import com.example.project.R;
 import com.example.project.adapters.AdapterCart;
-import com.example.project.adapters.AdapterProduct;
 import com.example.project.databinding.ActivityCartBinding;
 import com.example.project.entities.dto.ProductDTO;
 import com.example.project.services.ProductService;
@@ -43,7 +42,7 @@ public class CartActivity extends AppCompatActivity {
 
     private void getCart() {
         List<ProductDTO> productDTOs = GlobalApplication.getInstance().getProductCart();
-        AdapterCart adapterCart = new AdapterCart(this, R.layout.item_cart, productDTOs, productService);
+        AdapterCart adapterCart = new AdapterCart(this, R.layout.item_cart, productDTOs);
         lvCart.setAdapter(adapterCart);
     }
 

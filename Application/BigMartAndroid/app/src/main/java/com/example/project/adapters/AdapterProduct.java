@@ -2,7 +2,6 @@ package com.example.project.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -92,21 +91,19 @@ public class AdapterProduct extends ArrayAdapter<ProductDTO> {
             if (product != null) {
                 List<ProductDTO> productCart = GlobalApplication.getInstance().getProductCart();
                 int checkProduct = 0;
-                for (ProductDTO item : productCart) {
-                    if (item.id == productId) {
-                        item.cartQuantity++;
-                        checkProduct++;
-                        break;
+                if (productCart.size() != 0) {
+                    for (ProductDTO item : productCart) {
+                        if (item.id == productId) {
+                            item.cartQuantity++;
+                            checkProduct++;
+                            break;
+                        }
                     }
                 }
                 if (checkProduct == 0) {
                     product.cartQuantity = 1;
                     productCart.add(product);
                 }
-                for(ProductDTO item : productCart){
-                    Log.e("error", item.name);
-                }
-
                 Toast.makeText(mCtx, "Thêm thành công!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(mCtx, "Có lỗi xảy ra!", Toast.LENGTH_SHORT).show();
