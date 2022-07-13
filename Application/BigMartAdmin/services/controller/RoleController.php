@@ -17,17 +17,29 @@ class RoleController extends Controller
     {
         if (isset($_REQUEST['id'])) {
             $id = $_REQUEST['id'];
-            $roleRepository = new RoleRepository();
-            $roleRepository->delete($id);
-            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/role/role-list.php');
+            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/role/delete-role.php?id=' . $id);
         }
     }
 
     public function create()
     {
         if (isset($_POST['name'])) {
+            if (isset($_POST['type']) && $_POST['type'] == 'customize') {
+                $resource = [
+                    'type' => $_POST['type'],
+                    'resource' => $_POST['resource']
+                ];
+            }
+            if (isset($_POST['type']) && $_POST['type'] == 'all') {
+                $resource = [
+                    'type' => $_POST['type'],
+                    'resource' => ""
+                ];
+            }
+
             $roleData = [
-                'name' => $_POST['name']
+                'name' => $_POST['name'],
+                'resource' => json_encode($resource)
             ];
             $roleRepository = new RoleRepository();
             $roleRepository->create($roleData);
@@ -40,8 +52,22 @@ class RoleController extends Controller
         $id = $_POST['id'] ?? '';
         if ($id) {
             if (isset($_POST['name'])) {
+                if (isset($_POST['type']) && $_POST['type'] == 'customize') {
+                    $resource = [
+                        'type' => $_POST['type'],
+                        'resource' => $_POST['resource']
+                    ];
+                }
+                if (isset($_POST['type']) && $_POST['type'] == 'all') {
+                    $resource = [
+                        'type' => $_POST['type'],
+                        'resource' => ""
+                    ];
+                }
+
                 $roleData = [
-                    'name' => $_POST['name']
+                    'name' => $_POST['name'],
+                    'resource' => json_encode($resource)
                 ];
                 $roleRepository = new RoleRepository();
                 $roleRepository->update($id, $roleData);

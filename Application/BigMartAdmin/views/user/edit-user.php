@@ -46,7 +46,9 @@ $roleList = $roleRepository->getAll();
                                             <label for="role" class="form-label">Role</label>
                                             <select class="form-select form-select-lg mb-3" name="role_id">
                                                 <?php foreach ($roleList as $role) : ?>
-                                                    <option value="<?= $role['id'] ?>"><?= $role['name'] ?></option>
+                                                    <option value="<?= $role['id'] ?>" <?= $userData['role_id']['id'] == $role['id'] ? 'selected' : '' ?>>
+                                                        <?= $role['name'] ?>
+                                                    </option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>

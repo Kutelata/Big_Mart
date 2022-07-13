@@ -17,9 +17,7 @@ class ProviderController extends Controller
     {
         if (isset($_REQUEST['id'])) {
             $id = $_REQUEST['id'];
-            $providerRepository = new ProviderRepository();
-            $providerRepository->delete($id);
-            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/provider/provider-list.php');
+            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/provider/delete-provider.php?id=' . $id);
         }
     }
 

@@ -17,9 +17,7 @@ class userController extends Controller
     {
         if (isset($_REQUEST['id'])) {
             $id = $_REQUEST['id'];
-            $userRepository = new UserRepository();
-            $userRepository->delete($id);
-            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/user/user-list.php');
+            header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/user/delete-user.php?id=' . $id);
         }
     }
 
@@ -63,6 +61,8 @@ class userController extends Controller
                 ];
                 $userRepository = new UserRepository();
                 $userRepository->update($id, $userData);
+                session_start();
+                $_SESSION['data'] = $userRepository->getById($id);
                 header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/user/user-list.php');
             }
         }
@@ -92,7 +92,8 @@ class userController extends Controller
                     'image' => $image,
                 ];
 
-                if ($_POST['new_password'] == $_POST['password_confirmation']) {
+                if (!empty($_POST['new_password']) && !empty($_POST['password_confirmation'])
+                    && $_POST['new_password'] == $_POST['password_confirmation']) {
                     $userData['password'] = md5($_POST['password_confirmation']);
                     $password = $userData['password'];
                 }
