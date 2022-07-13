@@ -21,6 +21,8 @@ class CheckLoginController extends Controller
     {
         if (!$this->isLoggedIn()) {
             header('Location: ' . $this->getBaseUrl() . '/Big_Mart/Application/BigMartAdmin/views/login.php');
+        } else {
+            $this->redirectToDenyPage();
         }
     }
 
@@ -79,5 +81,4 @@ class CheckLoginController extends Controller
 
 $checkLoginController = new CheckLoginController();
 $checkLoginController->redirectToLoginPage();
-$checkLoginController->redirectToDenyPage();
 $resources = $checkLoginController->getResources();
