@@ -76,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if (result) {
                     Intent intent = new Intent(this, MainActivity.class);
+                    finish();
                     startActivity(intent);
                     Toast.makeText(getApplicationContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                 } else {

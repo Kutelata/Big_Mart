@@ -1,0 +1,19 @@
+Logout mới ra dc login (Done)
+
+Thêm vào giỏ hàng  hiển thị nhập số lượng (check api) 
+
+Tạo thêm 1 bảng lưu dữ liệu giỏ hàng người dùng (Quote)
+
+Khi xóa hết sản phẩm ra khỏi giỏ hàng thì về trang list 
+Point:
+	- Khi thanh toán thành công cộng point cho customer điểm * so luong
+	- Thêm input nhập số point 
+	- Validate point 
+Phương thức thanh toán : thêm tiền 
+Phương thức vận chuyển : thêm tiền
+
+// Việt
+Lịch sử hóa đơn - Chi tiết hóa đơn
+Sửa thông tin người dùng
+
+Hóa đơn sau khi thanh toán (back về trang chủ)
