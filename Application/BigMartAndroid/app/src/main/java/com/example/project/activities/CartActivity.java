@@ -6,10 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.project.R;
 import com.example.project.adapters.AdapterCart;
-import com.example.project.adapters.AdapterProduct;
 import com.example.project.databinding.ActivityCartBinding;
 import com.example.project.entities.dto.ProductDTO;
 import com.example.project.services.ProductService;
@@ -19,6 +19,7 @@ import com.example.project.utilities.GlobalApplication;
 import java.util.List;
 
 public class CartActivity extends AppCompatActivity {
+    List<ProductDTO> productCarts;
     IProductService productService;
     ActivityCartBinding binding;
     ListView lvCart;
@@ -33,6 +34,8 @@ public class CartActivity extends AppCompatActivity {
 
         productService = new ProductService(this);
 
+        productCarts = GlobalApplication.getInstance().getProductCart();
+
         lvCart = binding.lvCart;
         btnPay = binding.btnPay;
 
@@ -41,14 +44,17 @@ public class CartActivity extends AppCompatActivity {
         btnPay.setOnClickListener(view -> redirectPayment());
     }
 
-    private void getCart() {
-        List<ProductDTO> productDTOs = GlobalApplication.getInstance().getProductCart();
-        AdapterCart adapterCart = new AdapterCart(this, R.layout.item_cart, productDTOs, productService);
+    public void getCart() {
+        AdapterCart adapterCart = new AdapterCart(this, R.layout.item_cart, productCarts);
         lvCart.setAdapter(adapterCart);
     }
 
     private void redirectPayment() {
-        Intent intent = new Intent(this, PaymentActivity.class);
-        startActivity(intent);
+        if(productCarts != null && productCarts.size() != 0){
+            Intent intent = new Intent(this, PaymentActivity.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(this, "Không có sản phẩm trong giỏ hàng", Toast.LENGTH_SHORT).show();
+        }
     }
 }

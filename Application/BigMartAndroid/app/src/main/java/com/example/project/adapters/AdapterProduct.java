@@ -96,15 +96,14 @@ public class AdapterProduct extends ArrayAdapter<ProductDTO> {
                         if (item.id == productId) {
                             item.cartQuantity++;
                             checkProduct++;
-                            Toast.makeText(mCtx, "Thêm thành công!" + item.cartQuantity, Toast.LENGTH_SHORT).show();
                             break;
                         }
                     }
                 }
                 if (checkProduct == 0) {
+                    product.cartQuantity = 1;
                     productCart.add(product);
                 }
-
                 Toast.makeText(mCtx, "Thêm thành công!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(mCtx, "Có lỗi xảy ra!", Toast.LENGTH_SHORT).show();

@@ -2,16 +2,14 @@ package com.example.project.entities;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 public class Invoice {
     private Integer id;
     @SerializedName("shipment_id")
-    private Integer shipmentId;
+    private Integer shipmentId = 0;
     @SerializedName("payment_id")
-    private Integer paymentId;
+    private Integer paymentId = 0;
     @SerializedName("customer_id")
-    private Integer customerId;
+    private Integer customerId = 0;
     private Float total;
     private Integer status;
 

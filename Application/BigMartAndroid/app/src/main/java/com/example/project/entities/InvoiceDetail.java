@@ -15,6 +15,13 @@ public class InvoiceDetail {
     public InvoiceDetail() {
     }
 
+    public InvoiceDetail(Integer invoiceId, Integer productId, Integer quantity, Float rowTotal) {
+        this.invoiceId = invoiceId;
+        this.productId = productId;
+        this.quantity = quantity;
+        this.rowTotal = rowTotal;
+    }
+
     public InvoiceDetail(Integer id, Integer invoiceId, Integer productId, Integer quantity, Float rowTotal) {
         this.id = id;
         this.invoiceId = invoiceId;
