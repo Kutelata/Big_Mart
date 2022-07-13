@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -190,9 +191,8 @@ public class PaymentActivity extends AppCompatActivity {
                     for (ProductDTO productDTO : productCarts) {
                         InvoiceDetail invoiceDetail =
                                 new InvoiceDetail(newInvoice.getId(), productDTO.id, productDTO.cartQuantity, productDTO.price * productDTO.cartQuantity);
-                        invoiceDetailService.insert(invoiceDetail, newInvoiceDetail ->
-                            customer.setPoint(customer.getPoint() + productDTO.point)
-                        );
+                        invoiceDetailService.insert(invoiceDetail, newInvoiceDetail -> {});
+                        customer.setPoint(customer.getPoint() + productDTO.point);
                     }
                     customerService.update(customer.getId(), customer, newCustomer -> {
                         if(newCustomer != null){

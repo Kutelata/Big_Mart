@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -110,19 +111,17 @@ public class CustomerService implements ICustomerService {
                 Map<String, String> params = new HashMap<>();
                 params.put("name", entity.getName());
                 params.put("gender", entity.getGender().toString());
-                params.put("birthday", entity.getBirthday().toString());
+
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                String birthday = formatter.format(entity.getBirthday());
+                params.put("birthday", birthday);
+
                 params.put("phone", entity.getPhone());
                 params.put("address", entity.getAddress());
                 params.put("email", entity.getEmail());
                 params.put("password", entity.getPassword());
                 params.put("point", entity.getPoint().toString());
                 return params;
-            }
-            @Override
-            public HashMap<String, String> getHeaders() {
-                HashMap headers = new HashMap();
-                headers.put("Content-Type", "application/json; charset=utf-8");
-                return headers;
             }
         };
 
