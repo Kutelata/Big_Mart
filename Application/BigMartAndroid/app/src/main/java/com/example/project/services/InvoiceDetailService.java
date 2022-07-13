@@ -8,7 +8,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.example.project.entities.Invoice;
-import com.example.project.services.interfaces.IInvoiceService;
+import com.example.project.entities.InvoiceDetail;
+import com.example.project.services.interfaces.IInvoiceDetailService;
 import com.example.project.utilities.CallAPIServer;
 import com.example.project.utilities.VolleyResult;
 import com.example.project.utilities.VolleySingleton;
@@ -18,34 +19,34 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class InvoiceService implements IInvoiceService {
+public class InvoiceDetailService implements IInvoiceDetailService {
     private Context mCtx;
     private String mApi;
 
-    public InvoiceService(Context mCtx) {
+    public InvoiceDetailService(Context mCtx) {
         this.mCtx = mCtx;
-        mApi = CallAPIServer.prepareAPI("invoices");
+        mApi = CallAPIServer.prepareAPI("invoice-detail");
     }
 
     @Override
-    public void getAll(VolleyResult<List<Invoice>> callback) {
-
-    }
-
-    @Override
-    public void getById(int id, VolleyResult<Invoice> callback) {
+    public void getAll(VolleyResult<List<InvoiceDetail>> callback) {
 
     }
 
     @Override
-    public void insert(Invoice entity, VolleyResult<Invoice> callback) {
-        String newApi = String.format("%s/createInvoice", mApi);
+    public void getById(int id, VolleyResult<InvoiceDetail> callback) {
+
+    }
+
+    @Override
+    public void insert(InvoiceDetail entity, VolleyResult<InvoiceDetail> callback) {
+        String newApi = String.format("%s/createInvoiceDetail", mApi);
 
         Response.Listener listener = response -> {
             String json = response.toString();
             Gson gson = new Gson();
-            Invoice invoice = gson.fromJson(json, Invoice.class);
-            callback.onSuccess(invoice);
+            InvoiceDetail invoiceDetail = gson.fromJson(json, InvoiceDetail.class);
+            callback.onSuccess(invoiceDetail);
         };
 
         Response.ErrorListener errorListener = error -> callback.onSuccess(null);
@@ -55,11 +56,10 @@ public class InvoiceService implements IInvoiceService {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("shipment_id", entity.getShipmentId().toString());
-                params.put("payment_id", entity.getPaymentId().toString());
-                params.put("customer_id", entity.getCustomerId().toString());
-                params.put("status", entity.getStatus().toString());
-                params.put("total", entity.getTotal().toString());
+                params.put("invoice_id", entity.getInvoiceId().toString());
+                params.put("product_id", entity.getProductId().toString());
+                params.put("quantity", entity.getQuantity().toString());
+                params.put("row_total", entity.getRowTotal().toString());
                 return params;
             }
         };
@@ -68,12 +68,12 @@ public class InvoiceService implements IInvoiceService {
     }
 
     @Override
-    public void update(int id, Invoice entity, VolleyResult<Invoice> callback) {
+    public void update(int id, InvoiceDetail entity, VolleyResult<InvoiceDetail> callback) {
 
     }
 
     @Override
-    public void delete(int id, VolleyResult<Invoice> callback) {
+    public void delete(int id, VolleyResult<InvoiceDetail> callback) {
 
     }
 }

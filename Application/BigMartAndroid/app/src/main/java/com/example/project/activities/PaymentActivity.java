@@ -2,6 +2,7 @@ package com.example.project.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,15 +14,20 @@ import android.widget.Toast;
 
 import com.example.project.R;
 import com.example.project.databinding.ActivityPaymentBinding;
-import com.example.project.entities.Category;
+import com.example.project.entities.Customer;
 import com.example.project.entities.Invoice;
+import com.example.project.entities.InvoiceDetail;
 import com.example.project.entities.Payment;
 import com.example.project.entities.Shipment;
 import com.example.project.entities.dto.ProductDTO;
-import com.example.project.services.CategoryService;
 import com.example.project.services.CustomerService;
+import com.example.project.services.InvoiceDetailService;
+import com.example.project.services.InvoiceService;
 import com.example.project.services.PaymentService;
 import com.example.project.services.ShipmentService;
+import com.example.project.services.interfaces.ICustomerService;
+import com.example.project.services.interfaces.IInvoiceDetailService;
+import com.example.project.services.interfaces.IInvoiceService;
 import com.example.project.services.interfaces.IPaymentService;
 import com.example.project.services.interfaces.IShipmentService;
 import com.example.project.utilities.GlobalApplication;
@@ -32,8 +38,12 @@ import java.util.List;
 public class PaymentActivity extends AppCompatActivity {
     IPaymentService paymentService;
     IShipmentService shipmentService;
+    IInvoiceService invoiceService;
+    IInvoiceDetailService invoiceDetailService;
+    ICustomerService customerService;
 
     List<ProductDTO> productCarts;
+    Customer customer;
     Invoice invoice;
 
     ActivityPaymentBinding binding;
@@ -50,8 +60,13 @@ public class PaymentActivity extends AppCompatActivity {
 
         paymentService = new PaymentService(this);
         shipmentService = new ShipmentService(this);
+        invoiceService = new InvoiceService(this);
+        invoiceDetailService = new InvoiceDetailService(this);
+        customerService = new CustomerService(this);
+
         invoice = new Invoice();
         productCarts = GlobalApplication.getInstance().getProductCart();
+        customer = GlobalApplication.getInstance().getCustomerApp();
 
         sPayment = binding.sPayment;
         sShipment = binding.sShipment;
@@ -85,11 +100,12 @@ public class PaymentActivity extends AppCompatActivity {
         });
 
         btnPay.setOnClickListener(view -> {
-
+            checkout();
         });
 
         getListPayment();
         getListShipment();
+        setTotalInvoice();
     }
 
     private void getListPayment() {
@@ -156,7 +172,44 @@ public class PaymentActivity extends AppCompatActivity {
         });
     }
 
-    private void checkout(){
-        
+    private void setTotalInvoice() {
+        float total = 0;
+        for (ProductDTO productDTO : productCarts) {
+            total += productDTO.cartQuantity * productDTO.price;
+        }
+        invoice.setTotal(total);
+        tvProductTotal.setText(String.format("Tổng: %s VND", total));
+    }
+
+    private void checkout() {
+        invoice.setCustomerId(customer.getId());
+        invoice.setStatus(1);
+        if (invoice.getPaymentId() != 0 && invoice.getShipmentId() != 0 && invoice.getCustomerId() != 0) {
+            invoiceService.insert(invoice, newInvoice -> {
+                if (newInvoice != null) {
+                    for (ProductDTO productDTO : productCarts) {
+                        InvoiceDetail invoiceDetail =
+                                new InvoiceDetail(newInvoice.getId(), productDTO.id, productDTO.cartQuantity, productDTO.price * productDTO.cartQuantity);
+                        invoiceDetailService.insert(invoiceDetail, newInvoiceDetail ->
+                            customer.setPoint(customer.getPoint() + productDTO.point)
+                        );
+                    }
+                    customerService.update(customer.getId(), customer, newCustomer -> {
+                        if(newCustomer != null){
+                            Intent intent = new Intent(this, MainActivity.class);
+                            finish();
+                            startActivity(intent);
+                            GlobalApplication.getInstance().setCustomerApp(newCustomer);
+                            GlobalApplication.getInstance().setProductCart(new ArrayList<>());
+                            Toast.makeText(getApplicationContext(), "Thanh toán thành công!", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(), "Không cập nhật được khách hàng!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            });
+        } else {
+            Toast.makeText(this, "Lỗi khóa ngoại!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

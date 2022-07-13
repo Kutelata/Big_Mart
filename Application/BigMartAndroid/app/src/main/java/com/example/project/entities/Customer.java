@@ -11,12 +11,13 @@ public class Customer {
     private String address;
     private String email;
     private String password;
+    private Integer point;
     private Integer status;
 
     public Customer() {
     }
 
-    public Customer(Integer id, String name, Integer gender, Date birthday, String phone, String address, String email, String password, Integer status) {
+    public Customer(Integer id, String name, Integer gender, Date birthday, String phone, String address, String email, String password, Integer point, Integer status) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -25,6 +26,7 @@ public class Customer {
         this.address = address;
         this.email = email;
         this.password = password;
+        this.point = point;
         this.status = status;
     }
 
@@ -105,5 +107,13 @@ public class Customer {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getPoint() {
+        return point;
+    }
+
+    public void setPoint(Integer point) {
+        this.point = point;
     }
 }

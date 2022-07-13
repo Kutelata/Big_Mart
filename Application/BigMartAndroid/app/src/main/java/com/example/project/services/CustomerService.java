@@ -92,7 +92,41 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public void update(int id, Customer entity, VolleyResult<Customer> callback) {
+        String newApi = String.format("%s/%d", mApi, id);
 
+        Response.Listener listener = response -> {
+            String json = response.toString();
+            Gson gson = new Gson();
+            Customer customer = gson.fromJson(json, Customer.class);
+            callback.onSuccess(customer);
+        };
+
+        Response.ErrorListener errorListener = error -> callback.onSuccess(null);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.PUT, newApi, listener, errorListener) {
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("name", entity.getName());
+                params.put("gender", entity.getGender().toString());
+                params.put("birthday", entity.getBirthday().toString());
+                params.put("phone", entity.getPhone());
+                params.put("address", entity.getAddress());
+                params.put("email", entity.getEmail());
+                params.put("password", entity.getPassword());
+                params.put("point", entity.getPoint().toString());
+                return params;
+            }
+            @Override
+            public HashMap<String, String> getHeaders() {
+                HashMap headers = new HashMap();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                return headers;
+            }
+        };
+
+        VolleySingleton.getInstance(mCtx).addToRequestQueue(stringRequest);
     }
 
     @Override
