@@ -18,12 +18,12 @@ public class ProductDTO {
     public Float price;
     public Integer point;
     @SerializedName("saleable_qty")
-    public Integer saleableQty ;
+    public Integer saleableQty;
     @SerializedName("created_at")
     public Date createdAt;
     @SerializedName("updated_at")
     public Date updatedAt;
     public String description;
     public Integer status;
-    public Integer cartQuantity;
+    public Integer cartQuantity = 0;
 }

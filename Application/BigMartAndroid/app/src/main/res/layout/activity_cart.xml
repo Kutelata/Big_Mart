@@ -22,7 +22,7 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/white"
-        android:text="Thanh toán"
+        android:text="Chuyển đến thanh toán"
         android:textColor="@color/black"
         android:textSize="20sp" />
 </RelativeLayout>

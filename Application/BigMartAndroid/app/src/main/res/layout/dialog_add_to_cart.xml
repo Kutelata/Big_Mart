@@ -19,8 +19,8 @@
     <Button
         android:textColor="@color/white"
         android:backgroundTint="@color/black"
-        android:id="@+id/btnChangeQuantity"
+        android:id="@+id/btnAddToCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Thay đổi" />
+        android:text="Thêm" />
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.example.project.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import com.example.project.activities.CartActivity;
 import com.example.project.dialogs.DialogQuantity;
 import com.example.project.entities.Product;
 import com.example.project.entities.dto.ProductDTO;
+import com.example.project.services.interfaces.IProductService;
 import com.example.project.utilities.GlobalApplication;
 
 import java.util.List;
@@ -28,12 +30,14 @@ public class AdapterCart extends ArrayAdapter<ProductDTO> implements DialogQuant
     private Context mCtx;
     private int mLayout;
     private List<ProductDTO> mProductDTOs;
+    private IProductService mProductService;
 
-    public AdapterCart(Context context, int resource, List<ProductDTO> productDTOs) {
+    public AdapterCart(Context context, int resource, List<ProductDTO> productDTOs, IProductService productService) {
         super(context, resource, productDTOs);
         this.mCtx = context;
         this.mLayout = resource;
         this.mProductDTOs = productDTOs;
+        this.mProductService = productService;
     }
 
     @NonNull
@@ -92,6 +96,7 @@ public class AdapterCart extends ArrayAdapter<ProductDTO> implements DialogQuant
                 mProductDTOs.remove(productDTO);
                 this.notifyDataSetChanged();
                 Toast.makeText(mCtx, "Xóa sản phẩm thành công", Toast.LENGTH_SHORT).show();
+                ((Activity) mCtx).finish();
                 break;
             }
         }
@@ -99,13 +104,24 @@ public class AdapterCart extends ArrayAdapter<ProductDTO> implements DialogQuant
 
     @Override
     public void changeQuantity(int productId, String quantity) {
-        for (ProductDTO productDTO : mProductDTOs) {
-            if (productDTO.id == productId) {
-                productDTO.cartQuantity = Integer.parseInt(quantity);
-                this.notifyDataSetChanged();
-                Toast.makeText(mCtx, "Thay đổi số lượng thành công", Toast.LENGTH_SHORT).show();
-                break;
+        mProductService.getProductById(productId, product -> {
+            if (product != null) {
+                int convertQuantity = quantity.equals("") ? 0 : Integer.parseInt(quantity);
+                if (convertQuantity != 0 && convertQuantity <= product.quantity) {
+                    for (ProductDTO productDTO : mProductDTOs) {
+                        if (productDTO.id == productId) {
+                            productDTO.cartQuantity = Integer.parseInt(quantity);
+                            this.notifyDataSetChanged();
+                            Toast.makeText(mCtx, "Thay đổi số lượng thành công", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                    }
+                } else {
+                    Toast.makeText(mCtx, "Số lượng không đúng định dạng!", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(mCtx, "Có lỗi xảy ra!", Toast.LENGTH_SHORT).show();
             }
-        }
+        });
     }
 }

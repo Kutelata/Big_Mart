@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
@@ -15,7 +14,7 @@
 
         <TextView
             android:id="@+id/tvProductInfo"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="Thông tin sản phẩm"
@@ -44,7 +43,7 @@
                 android:id="@+id/tvProductId"
                 android:layout_row="0"
                 android:layout_column="1"
-                android:text="Mã sản phẩm :"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -59,7 +58,7 @@
                 android:id="@+id/tvProductName"
                 android:layout_row="1"
                 android:layout_column="1"
-                android:text="Tên sản phẩm :"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -86,7 +85,7 @@
                 android:id="@+id/tvProductCategory"
                 android:layout_row="3"
                 android:layout_column="1"
-                android:text="Tên loại :"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -101,22 +100,7 @@
                 android:id="@+id/tvProductProvider"
                 android:layout_row="4"
                 android:layout_column="1"
-                android:text="Nhà cung cấp :"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_row="5"
-                android:layout_column="0"
-                android:text="Số lượng :"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/tvProductQuantity"
-                android:layout_row="5"
-                android:layout_column="1"
-                android:text="Số lượng :"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -131,22 +115,22 @@
                 android:id="@+id/tvProductPrice"
                 android:layout_row="6"
                 android:layout_column="1"
-                android:text="Giá :"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
             <TextView
                 android:layout_row="7"
                 android:layout_column="0"
-                android:text="Số lượng có thể bán :"
+                android:text="Số lượng :"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/tvProductSaleableQty"
+                android:id="@+id/tvProductQuantity"
                 android:layout_row="7"
                 android:layout_column="1"
-                android:text="Số lượng có thể bán :"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -161,37 +145,7 @@
                 android:id="@+id/tvProductPoint"
                 android:layout_row="8"
                 android:layout_column="1"
-                android:text="Điểm thưởng :"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_row="9"
-                android:layout_column="0"
-                android:text="Ngày tạo :"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/tvProductCreatedAt"
-                android:layout_row="9"
-                android:layout_column="1"
-                android:text="Ngày tạo :"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_row="10"
-                android:layout_column="0"
-                android:text="Ngày cập nhật :"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/tvProductUpdatedAt"
-                android:layout_row="10"
-                android:layout_column="1"
-                android:text="Ngày cập nhật :"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -206,34 +160,33 @@
                 android:id="@+id/tvProductDescription"
                 android:layout_row="11"
                 android:layout_column="1"
-                android:text="Mô tả :"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_row="12"
-                android:layout_column="0"
-                android:text="Trạng thái :"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/tvProductStatus"
-                android:layout_row="12"
-                android:layout_column="1"
-                android:text="Trạng thái :"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="20sp" />
         </GridLayout>
 
+        <EditText
+            android:id="@+id/edtQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/glProductInfo"
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            android:hint="Nhập số lượng"
+            android:inputType="number"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
         <Button
             android:id="@+id/btnAddToCart"
-            android:layout_centerInParent="true"
-            android:layout_below="@id/glProductInfo"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/edtQuantity"
+            android:layout_centerInParent="true"
             android:backgroundTint="@color/white"
-            android:textColor="@color/black"
-            android:text="Thêm sản phẩm vào giỏ hàng"/>
+            android:text="Thêm sản phẩm vào giỏ hàng"
+            android:textColor="@color/black" />
     </RelativeLayout>
 </LinearLayout>

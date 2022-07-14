@@ -23,6 +23,19 @@
         android:background="@color/white"
         android:backgroundTint="@color/white" />
 
+    <EditText
+        android:id="@+id/edtPoint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:hint="Nhập điểm thưởng"
+        android:inputType="number"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
+
     <TextView
         android:id="@+id/tvProductTotal"
         android:layout_width="match_parent"
@@ -35,12 +48,12 @@
 
     <Button
         android:id="@+id/btnPay"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/white"
-        android:text="Chuyển đến thanh toán"
+        android:text="Thanh toán"
         android:textColor="@color/black"
         android:textSize="20sp" />
 </LinearLayout>

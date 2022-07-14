@@ -45,7 +45,7 @@ public class CartActivity extends AppCompatActivity {
     }
 
     public void getCart() {
-        AdapterCart adapterCart = new AdapterCart(this, R.layout.item_cart, productCarts);
+        AdapterCart adapterCart = new AdapterCart(this, R.layout.item_cart, productCarts, productService);
         lvCart.setAdapter(adapterCart);
     }
 

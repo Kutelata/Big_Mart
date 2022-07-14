@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,10 +23,9 @@ public class ProductDetailActivity extends AppCompatActivity {
     IProductService productService;
     ActivityProductDetailBinding binding;
     ImageView ivProductImage;
-    TextView tvProductId, tvProductName,
-            tvProductCategory, tvProductProvider,
-            tvProductQuantity, tvProductPrice, tvProductSaleableQty, tvProductPoint, tvProductCreatedAt,
-            tvProductUpdatedAt, tvProductDescription, tvProductStatus;
+    TextView tvProductId, tvProductName, tvProductCategory, tvProductProvider,
+            tvProductQuantity, tvProductPrice, tvProductPoint, tvProductDescription;
+    EditText edtQuantity;
     Button btnAddToCart;
     Intent intent;
 
@@ -48,18 +48,15 @@ public class ProductDetailActivity extends AppCompatActivity {
         tvProductProvider = binding.tvProductProvider;
         tvProductQuantity = binding.tvProductQuantity;
         tvProductPrice = binding.tvProductPrice;
-        tvProductSaleableQty = binding.tvProductSaleableQty;
         tvProductPoint = binding.tvProductPoint;
-        tvProductCreatedAt = binding.tvProductCreatedAt;
-        tvProductUpdatedAt = binding.tvProductUpdatedAt;
         tvProductDescription = binding.tvProductDescription;
-        tvProductStatus = binding.tvProductStatus;
+        edtQuantity = binding.edtQuantity;
         btnAddToCart = binding.btnAddToCart;
 
         intent = getIntent();
         int productId = intent.getIntExtra("productId", 0);
 
-        btnAddToCart.setOnClickListener(view -> addProductToCart(productId));
+        btnAddToCart.setOnClickListener(view -> addProductToCart(productId, edtQuantity.getText().toString()));
 
         getProductDetail(productId);
     }
@@ -72,38 +69,36 @@ public class ProductDetailActivity extends AppCompatActivity {
                 tvProductCategory.setText(product.categoryId.getName());
                 tvProductProvider.setText(product.providerId.getName());
                 tvProductQuantity.setText(product.quantity.toString());
-                tvProductPrice.setText(product.price.toString());
-                tvProductSaleableQty.setText(product.saleableQty.toString());
+                tvProductPrice.setText(product.price.toString() + " VND");
                 tvProductPoint.setText(product.point.toString());
-                tvProductCreatedAt.setText((product.createdAt == null) ? "" : product.createdAt.toString());
-                tvProductUpdatedAt.setText((product.updatedAt == null) ? "" : product.updatedAt.toString());
                 tvProductDescription.setText(product.description);
-                tvProductStatus.setText(product.status.toString());
             } else {
                 Toast.makeText(this, "Có lỗi xảy ra!", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void addProductToCart(int productId){
+    private void addProductToCart(int productId, String quantity) {
         productService.getProductById(productId, product -> {
             if (product != null) {
-                List<ProductDTO> productCart = GlobalApplication.getInstance().getProductCart();
-                int checkProduct = 0;
-                if (productCart.size() != 0) {
-                    for (ProductDTO item : productCart) {
-                        if (item.id == productId) {
-                            item.cartQuantity++;
-                            checkProduct++;
-                            break;
+                int convertQuantity = quantity.equals("") ? 0 : Integer.parseInt(quantity);
+                if (convertQuantity != 0 && convertQuantity <= product.quantity) {
+                    List<ProductDTO> productCarts = GlobalApplication.getInstance().getProductCart();
+                    if (productCarts.size() != 0) {
+                        for (ProductDTO item : productCarts) {
+                            if (item.id == productId) {
+                                item.cartQuantity += Integer.parseInt(quantity);
+                                break;
+                            }
                         }
+                    } else {
+                        product.cartQuantity = Integer.parseInt(quantity);
+                        productCarts.add(product);
                     }
+                    Toast.makeText(this, "Thêm sản phẩm thành công!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Số lượng không đúng định dạng!", Toast.LENGTH_SHORT).show();
                 }
-                if (checkProduct == 0) {
-                    product.cartQuantity = 1;
-                    productCart.add(product);
-                }
-                Toast.makeText(this, "Thêm thành công!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Có lỗi xảy ra!", Toast.LENGTH_SHORT).show();
             }

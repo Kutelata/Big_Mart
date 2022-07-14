@@ -17,13 +17,14 @@ import androidx.annotation.Nullable;
 
 import com.example.project.R;
 import com.example.project.activities.ProductDetailActivity;
+import com.example.project.dialogs.DialogAddToCart;
 import com.example.project.entities.dto.ProductDTO;
 import com.example.project.services.interfaces.IProductService;
 import com.example.project.utilities.GlobalApplication;
 
 import java.util.List;
 
-public class AdapterProduct extends ArrayAdapter<ProductDTO> {
+public class AdapterProduct extends ArrayAdapter<ProductDTO> implements DialogAddToCart.IQuantity {
     private Context mCtx;
     private int mLayout;
     private List<ProductDTO> mProductDTOs;
@@ -74,7 +75,7 @@ public class AdapterProduct extends ArrayAdapter<ProductDTO> {
                 passProductId(productId);
                 break;
             case R.id.menuAddToCart:
-                addProductToCart(productId);
+                menuInputQuantity(productId);
                 break;
         }
         return true;
@@ -86,25 +87,33 @@ public class AdapterProduct extends ArrayAdapter<ProductDTO> {
         mCtx.startActivity(intent);
     }
 
-    private void addProductToCart(int productId) {
+    private void menuInputQuantity(int productId) {
+        DialogAddToCart dialogAddToCart = new DialogAddToCart(productId, mCtx, this);
+        dialogAddToCart.show();
+    }
+
+    @Override
+    public void inputQuantity(int productId, String quantity) {
         mProductService.getProductById(productId, product -> {
             if (product != null) {
-                List<ProductDTO> productCart = GlobalApplication.getInstance().getProductCart();
-                int checkProduct = 0;
-                if (productCart.size() != 0) {
-                    for (ProductDTO item : productCart) {
-                        if (item.id == productId) {
-                            item.cartQuantity++;
-                            checkProduct++;
-                            break;
+                int convertQuantity = quantity.equals("") ? 0 : Integer.parseInt(quantity);
+                if (convertQuantity != 0 && convertQuantity <= product.quantity) {
+                    List<ProductDTO> productCarts = GlobalApplication.getInstance().getProductCart();
+                    if (productCarts.size() != 0) {
+                        for (ProductDTO item : productCarts) {
+                            if (item.id == productId) {
+                                item.cartQuantity += Integer.parseInt(quantity);
+                                break;
+                            }
                         }
+                    } else {
+                        product.cartQuantity = Integer.parseInt(quantity);
+                        productCarts.add(product);
                     }
+                    Toast.makeText(mCtx, "Thêm sản phẩm thành công!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(mCtx, "Số lượng không đúng định dạng!", Toast.LENGTH_SHORT).show();
                 }
-                if (checkProduct == 0) {
-                    product.cartQuantity = 1;
-                    productCart.add(product);
-                }
-                Toast.makeText(mCtx, "Thêm thành công!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(mCtx, "Có lỗi xảy ra!", Toast.LENGTH_SHORT).show();
             }
