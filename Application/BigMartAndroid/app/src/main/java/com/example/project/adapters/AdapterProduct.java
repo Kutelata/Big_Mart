@@ -2,6 +2,7 @@ package com.example.project.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +21,9 @@ import com.example.project.activities.ProductDetailActivity;
 import com.example.project.dialogs.DialogAddToCart;
 import com.example.project.entities.dto.ProductDTO;
 import com.example.project.services.interfaces.IProductService;
+import com.example.project.utilities.CallAPIServer;
 import com.example.project.utilities.GlobalApplication;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -51,6 +54,7 @@ public class AdapterProduct extends ArrayAdapter<ProductDTO> implements DialogAd
         TextView tvProductName = item.findViewById(R.id.tvProductName);
         TextView tvProductPrice = item.findViewById(R.id.tvProductPrice);
         TextView tvProductPoint = item.findViewById(R.id.tvProductPoint);
+        ImageView ivProductImage = item.findViewById(R.id.ivProductImage);
         ImageView ivMenuProduct = item.findViewById(R.id.ivMenuProduct);
 
         ivMenuProduct.setOnClickListener(view -> showMenuEachProduct(productDTO.id, view));
@@ -59,6 +63,11 @@ public class AdapterProduct extends ArrayAdapter<ProductDTO> implements DialogAd
         tvProductPrice.setText(productDTO.price.shortValue() + " VND");
         tvProductPoint.setText(productDTO.point + " điểm");
 
+        Picasso.get()
+                .load(CallAPIServer.prepareImageLink("Product", productDTO.image))
+                .resize(80, 80)
+                .centerCrop()
+                .into(ivProductImage);
         return item;
     }
 

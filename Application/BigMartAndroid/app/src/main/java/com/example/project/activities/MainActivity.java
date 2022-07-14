@@ -28,7 +28,9 @@ import com.example.project.services.ProductService;
 import com.example.project.services.interfaces.ICaregoryService;
 import com.example.project.services.interfaces.ICustomerService;
 import com.example.project.services.interfaces.IProductService;
+import com.example.project.utilities.CallAPIServer;
 import com.example.project.utilities.GlobalApplication;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
     Button btnSearch;
     Spinner sCategory;
     ListView lvProduct;
-    ImageView ivOptionMenu;
+    ImageView ivOptionMenu, ivUserImage;
     TextView tvUserName;
 
     @Override
@@ -62,8 +64,14 @@ public class MainActivity extends AppCompatActivity implements DialogSearch.ISea
 
         ivOptionMenu = findViewById(R.id.ivOptionMenu);
         tvUserName = findViewById(R.id.tvUserName);
-
-        tvUserName.setText(GlobalApplication.getInstance().getCustomerApp().getName());
+//        ivUserImage = findViewById(R.id.ivUserImage);
+//
+//        tvUserName.setText(GlobalApplication.getInstance().getCustomerApp().getName());
+//        Picasso.get()
+//                .load(CallAPIServer.prepareImageLink("User", ))
+//                .resize(40, 40)
+//                .centerCrop()
+//                .into(ivUserImage);
 
         btnSearch.setOnClickListener(view -> showDialogSearch());
         ivOptionMenu.setOnClickListener(view -> showMenuOptionHeader());

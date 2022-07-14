@@ -15,7 +15,9 @@ import com.example.project.databinding.ActivityProductDetailBinding;
 import com.example.project.entities.dto.ProductDTO;
 import com.example.project.services.ProductService;
 import com.example.project.services.interfaces.IProductService;
+import com.example.project.utilities.CallAPIServer;
 import com.example.project.utilities.GlobalApplication;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -66,6 +68,13 @@ public class ProductDetailActivity extends AppCompatActivity {
             if (product != null) {
                 tvProductId.setText(product.id.toString());
                 tvProductName.setText(product.name);
+
+                Picasso.get()
+                        .load(CallAPIServer.prepareImageLink("Product", product.image))
+                        .resize(80, 80)
+                        .centerCrop()
+                        .into(ivProductImage);
+
                 tvProductCategory.setText(product.categoryId.getName());
                 tvProductProvider.setText(product.providerId.getName());
                 tvProductQuantity.setText(product.quantity.toString());

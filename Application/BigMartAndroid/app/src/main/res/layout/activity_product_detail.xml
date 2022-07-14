@@ -71,6 +71,8 @@
 
             <ImageView
                 android:id="@+id/ivProductImage"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_row="2"
                 android:layout_column="1" />
 
