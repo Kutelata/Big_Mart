@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,7 +50,8 @@ public class PaymentActivity extends AppCompatActivity {
 
     ActivityPaymentBinding binding;
     Spinner sPayment, sShipment;
-    TextView tvProductTotal;
+    TextView tvProductTotal, tvPricePayment, tvPriceShipment;
+    EditText edtPoint;
     Button btnPay;
 
     @Override
@@ -72,6 +74,9 @@ public class PaymentActivity extends AppCompatActivity {
         sPayment = binding.sPayment;
         sShipment = binding.sShipment;
         tvProductTotal = binding.tvProductTotal;
+        tvPricePayment = binding.tvPricePayment;
+        tvPriceShipment = binding.tvPriceShipment;
+        edtPoint = binding.edtPoint;
         btnPay = binding.btnPay;
 
         sPayment.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -132,6 +137,10 @@ public class PaymentActivity extends AppCompatActivity {
                 for (Payment payment : listPayment) {
                     if (payment.getName().equals(name)) {
                         invoice.setPaymentId(payment.getId());
+                        tvPricePayment.setText(payment.getPrice().toString() + " VND");
+                        tvPricePayment.setVisibility(View.VISIBLE);
+                        invoice.setTotal(invoice.getTotal() + payment.getPrice());
+                        tvProductTotal.setText(String.format("Tổng: %s VND", invoice.getTotal()));
                         break;
                     }
                 }
@@ -164,6 +173,10 @@ public class PaymentActivity extends AppCompatActivity {
                 for (Shipment shipment : listShipment) {
                     if (shipment.getName().equals(name)) {
                         invoice.setShipmentId(shipment.getId());
+                        tvPriceShipment.setText(shipment.getPrice().toString() + " VND");
+                        tvPriceShipment.setVisibility(View.VISIBLE);
+                        invoice.setTotal(invoice.getTotal() + shipment.getPrice());
+                        tvProductTotal.setText(String.format("Tổng: %s VND", invoice.getTotal()));
                         break;
                     }
                 }
@@ -185,24 +198,36 @@ public class PaymentActivity extends AppCompatActivity {
     private void checkout() {
         invoice.setCustomerId(customer.getId());
         invoice.setStatus(1);
+
+        int pointPayment = Integer.parseInt(edtPoint.getText().toString());
+        if (pointPayment >= customer.getPoint()) {
+            pointPayment = customer.getPoint();
+            customer.setPoint(0);
+        } else {
+            customer.setPoint(customer.getPoint() - pointPayment);
+        }
+
+        invoice.setTotal(invoice.getTotal() - pointPayment * 1000);
         if (invoice.getPaymentId() != 0 && invoice.getShipmentId() != 0 && invoice.getCustomerId() != 0) {
             invoiceService.insert(invoice, newInvoice -> {
                 if (newInvoice != null) {
+
                     for (ProductDTO productDTO : productCarts) {
                         InvoiceDetail invoiceDetail =
                                 new InvoiceDetail(newInvoice.getId(), productDTO.id, productDTO.cartQuantity, productDTO.price * productDTO.cartQuantity);
-                        invoiceDetailService.insert(invoiceDetail, newInvoiceDetail -> {});
+                        invoiceDetailService.insert(invoiceDetail, newInvoiceDetail -> {
+                        });
                         customer.setPoint(customer.getPoint() + productDTO.point);
                     }
                     customerService.update(customer.getId(), customer, newCustomer -> {
-                        if(newCustomer != null){
+                        if (newCustomer != null) {
                             Intent intent = new Intent(this, MainActivity.class);
                             finish();
                             startActivity(intent);
                             GlobalApplication.getInstance().setCustomerApp(newCustomer);
                             GlobalApplication.getInstance().setProductCart(new ArrayList<>());
                             Toast.makeText(getApplicationContext(), "Thanh toán thành công!", Toast.LENGTH_SHORT).show();
-                        }else{
+                        } else {
                             Toast.makeText(getApplicationContext(), "Không cập nhật được khách hàng!", Toast.LENGTH_SHORT).show();
                         }
                     });

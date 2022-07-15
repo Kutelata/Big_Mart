@@ -15,6 +15,17 @@
         android:background="@color/white"
         android:backgroundTint="@color/white" />
 
+    <TextView
+        android:text="test"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:visibility="gone"
+        android:id="@+id/tvPricePayment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center" />
+
     <Spinner
         android:id="@+id/sShipment"
         android:layout_width="match_parent"
@@ -22,6 +33,17 @@
         android:layout_marginTop="10dp"
         android:background="@color/white"
         android:backgroundTint="@color/white" />
+
+    <TextView
+        android:text="test"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:visibility="gone"
+        android:id="@+id/tvPriceShipment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center" />
 
     <EditText
         android:id="@+id/edtPoint"
